@@ -1,0 +1,15 @@
+#articulo-body {
+	padding: 30px !important
+}
+
+
+@media screen and (max-width: 425px) {
+
+	#articulo-body {
+		padding: 5px !important
+	}
+
+}	
+
+
+

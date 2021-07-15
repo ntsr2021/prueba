@@ -1,0 +1,248 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Recibos de compra</h1>
+</div>
+
+
+
+<!-- Form filtros -->
+<form class="mb-3" id="recibo-filtros-form">
+<div class="row">
+<div class="col-md-12">
+  
+
+  <div class="card">
+    <div class="card-body">
+    
+
+      <!-- Filtros entrega -->
+      <div class="row">
+
+        <!-- Tipo de entrega -->
+        <div class="col-lg-6">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Tipo de entrega</span>
+              </div>
+              <select class="form-control" name="tipo_entrega" [(ngModel)]="filtros.tipo_entrega">
+                <option value=""></option>
+                <option value="pick_up">Pick Up (Retiro en tienda)</option>
+                <option value="delivery">Delivery (A domicilio)</option>
+              </select>
+            </div>
+            <label class="error error-label" id="vendedor-error" for="vendedor"></label>
+          </div> 
+        </div>
+
+
+        <!-- Punto de entrega -->
+        <div class="col-lg-6" *ngIf="filtros.tipo_entrega == 'pick_up'">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Punto de entrega</span>
+              </div>
+              <select class="form-control" name="punto_entrega" [(ngModel)]="filtros.punto_entrega">
+                <option value=""></option>
+                <option *ngFor="let punto of puntosEntrega" value="{{punto.direccion}}">{{punto.nombre}}</option>
+              </select>
+            </div>
+            <label class="error error-label" id="vendedor-error" for="vendedor"></label>
+          </div> 
+        </div>
+          
+      </div>
+      <!--/ Filtros entrega -->
+
+
+      <!-- Filtrar por fecha -->
+      <div class="row">
+        
+        <!-- Fecha inicial -->
+        <div class="col-lg-6">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Fecha inicial</span>
+              </div>
+              <input class="form-control" type="date" name="fecha_inicial" [(ngModel)]="filtros.fecha_inicial">
+            </div>
+            <label class="error error-label" id="fecha_inicial-error" for="fecha_inicial"></label>
+          </div> 
+        </div>
+
+
+        <!-- Fecha final -->
+        <div class="col-lg-6">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Fecha final</span>
+              </div>
+              <input class="form-control" type="date" name="fecha_final" [(ngModel)]="filtros.fecha_final">
+            </div>
+            <label class="error error-label" id="fecha_final-error" for="fecha_final"></label>
+          </div> 
+        </div>
+
+      </div>
+      <!--/ Filtrar por fecha -->
+
+
+    </div>
+
+
+    <div class="card-footer">
+
+      <!-- Btn filtrar -->
+      <div class="text-right">
+        <button class="btn btn-info mr-3" (click)="filtrarConsulta()">Filtrar</button>
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+</div>
+</div>
+
+</form>
+<!--/ Form filtros -->
+
+
+
+<mat-form-field>
+  <mat-label>Buscar</mat-label>
+  <input matInput (keyup)="filtrar($event)" placeholder="buscar">
+</mat-form-field>
+
+
+<div class="mat-elevation-z8 mb-4" id="tabla" style="width: 100% !important">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 tabla-adaptable" matSort #tabla1 style="width: 100% !important" id="table-recibo" *ngIf="user != null">
+    
+    <ng-container matColumnDef="codigo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>
+      <td mat-cell *matCellDef="let rec"> {{rec.codigo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cliente">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cliente </th>
+      <td mat-cell *matCellDef="let rec"> {{rec.nombre}} {{rec.apellido}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ci">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Documento Identidad </th>
+      <td mat-cell *matCellDef="let rec"> {{rec.tipo_doc.toUpperCase()}}-{{rec.doc}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fecha">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+      <td mat-cell *matCellDef="let rec"> {{rec.fecha}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="hora">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora </th>
+      <td mat-cell *matCellDef="let rec"> {{rec.hora}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="asignacion">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Asignado a </th>
+      <td mat-cell *matCellDef="let rec"> 
+        <span *ngIf="rec.asignado != null; else sin_asignar">{{rec.nombre_asignado}}</span>
+        <ng-template #sin_asignar><span>Sin asignar</span></ng-template>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="estatus">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Estatus </th>
+      <td mat-cell *matCellDef="let rec">   
+        <span [ngSwitch]="rec.estatus">
+          <span *ngSwitchCase="'p'"><b>Pendiente</b></span>
+          <span *ngSwitchCase="'a'">Atendido</span>
+          <span *ngSwitchCase="'f'">Finalizado</span>
+        </span>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="reporte">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let rec"> 
+        <a class="btn btn-info btn-sm" routerLink="./consulta/{{rec.id_recibo}}/{{rec.id_user}}" title="Consultar recibo"><i class="fas fa-search"></i></a>
+      </td>
+    </ng-container> 
+
+    <ng-container matColumnDef="asig_vend">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let rec"> 
+        <a class="btn btn-info btn-sm" title="Asginar a un vendedor" (click)="asignar.abrirModal(rec.id_recibo, rec.asignado)">
+          <i class="fas fa-arrow-alt-circle-right"></i>
+        </a>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="checkear">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let rec"> <a class="btn btn-info btn-sm" (click)="checkear(rec.id_recibo)" title="Aprobar recibo"><i class="fa fa-check"></i></a> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="revertir" *ngIf="user.rol == 'a' || user.rol == 's'">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let rec"> <a class="btn btn-info btn-sm" (click)="revertir(rec.id_recibo)" title="Revertir recibo"><i class="fa fa-refresh"></i></a> </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10, 15]" showFirstLastButtons></mat-paginator>
+  
+</div>
+
+<!-- <div class="text-center">
+  <button class="btn btn-warning" (click)="reporte()"><i class="fa fa-file-pdf"></i> Generar reporte</button>
+</div>  -->
+
+
+<!-- Consultar totales -->
+
+<div *ngIf="user != null">
+  <h4 class="mt-5 mb-3">TOTALES</h4>
+  <div class="mat-elevation-z8 mb-5">
+    <table mat-table [dataSource]="dataSourceTotal" class="mat-elevation-z8 tabla-adaptable" #tablaTotal style="width: 100%">
+      
+      <ng-container matColumnDef="ventas">
+        <th mat-header-cell *matHeaderCellDef> Ventas </th>
+        <td mat-cell *matCellDef="let total">{{total.ventas}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="productos">
+        <th mat-header-cell *matHeaderCellDef> Productos vendidos </th>
+        <td mat-cell *matCellDef="let total">{{total.productos}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="gan_dol">
+        <th mat-header-cell *matHeaderCellDef> Ganancia ($) </th>
+        <td mat-cell *matCellDef="let total">{{formatoMoneda.setFormato((total.gan_dol).toFixed(2))}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="gan_bs">
+        <th mat-header-cell *matHeaderCellDef> Ganancia (Bs) </th>
+        <td mat-cell *matCellDef="let total">{{formatoMoneda.setFormato((total.gan_dol*dolar).toFixed(2))}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnasTotal"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnasTotal;"></tr>
+    </table>
+    
+  </div>
+</div>
+
+
+
+<app-generar-recibo #generar_recibo></app-generar-recibo>
+
+<app-asignar #asignar (asignarEvent)="consultar()"></app-asignar>
+
+

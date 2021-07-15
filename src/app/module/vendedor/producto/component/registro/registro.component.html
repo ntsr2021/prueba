@@ -1,0 +1,192 @@
+<!-- Modal agregar producto -->
+<div class="modal fade" tabindex="-1" role="producto-agregar-modal" id="producto-agregar-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><b>Agregar producto</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form id="producto-form-reg">
+      <div class="modal-body">
+
+        <div class="text-center">
+          <div class="row">
+            <div class="offset-md-3 col-md-6">
+
+              <!-- Gestion de foto principal -->
+              <div id="foto-content">
+                <span class="fa fa-photo foto-icon" (click)="clicFile()" [ngStyle]="{'display':displayIcon}"></span>
+                <div class="text-right mb-2">
+                  <button type="button" class="btn btn-primary btn-sm mr-2" (click)="clicFile()" [ngStyle]="{'display':displayImg}">
+                    <i class="fa fa-pencil"></i>
+                  </button>
+                  <button type="button" class="btn btn-danger btn-sm" (click)="eliminarFoto()" [ngStyle]="{'display':displayImg}">
+                    <i class="fa fa-remove"></i>
+                  </button>
+                </div>
+                <img src="{{producto.fotoTemp}}" class="foto-img imagen" [ngStyle]="{'display':displayImg}">
+                <input type="file" name="foto" (change)="seleccionarArchivo($event)" style="display: none">
+              </div>
+              
+            </div>
+          </div>
+        </div>
+
+
+        <fieldset class="mt-3 pr-3 pl-3">
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Código</span>
+              </div>
+              <input class="form-control" name="codigo" [(ngModel)]="producto.codigo">
+            </div>
+            <label class="error error-label" id="codigo-error" for="codigo"></label>
+          </div>
+
+          <!-- Indicar primer departamento -->
+
+          <div class="form-group" *ngIf="grupo1 != null">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">{{grupo1.nombre}}</span>
+              </div>
+              <select class="form-control" name="departamento1" [(ngModel)]="producto.departamento1" (change)="selecDepartamento1()"> 
+                <option value="null"></option>
+                <option *ngFor="let dep of departamentos1" value="{{dep.id_departamento}}">{{dep.nombre}}</option>
+              </select>
+            </div>
+            <label class="error error-label" id="departamento1-error" for="departamento1"></label>
+          </div>
+          
+
+          <!-- Indicar segundo departamento -->
+
+          <div class="form-group" *ngIf="grupo2 != null">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">{{grupo2.nombre}}</span>
+              </div>
+              <select class="form-control" name="departamento2" [(ngModel)]="producto.departamento2" (change)="selecDepartamento2()">
+                <option value="null"></option>
+                <option *ngFor="let dep of departamentos2" value="{{dep.id_departamento}}">{{dep.nombre}}</option>
+              </select>
+            </div>
+            <span>(Opcional)</span>
+          </div>
+          
+
+          <!-- Indicar tercer departamento -->
+
+          <div class="form-group" *ngIf="grupo3 != null">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">{{grupo3.nombre}}</span>
+              </div>
+              <select class="form-control" name="departamento3" [(ngModel)]="producto.departamento3">
+                <option value="null"></option>
+                <option *ngFor="let dep of departamentos3" value="{{dep.id_departamento}}">{{dep.nombre}}</option>
+              </select>
+            </div>
+            <span>(Opcional)</span>
+          </div>
+
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Nombre</span>
+              </div>
+              <input class="form-control" name="nombre" [(ngModel)]="producto.nombre">
+            </div>
+            <label class="error error-label" id="nombre-error" for="nombre"></label>
+          </div>
+          
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Cantidad</span>
+              </div>
+              <input class="form-control" name="cantidad" [(ngModel)]="producto.cantidad">
+            </div>
+            <label class="error error-label" id="cantidad-error" for="cantidad"></label>
+          </div>
+          
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Precio</span>
+              </div>
+              <input class="form-control" name="precio" [(ngModel)]="producto.precioFormato" (keypress)="formatoMoneda.validar($event)" (keyup)="tipearMoneda()">
+            </div>
+            <label class="error error-label" id="precio-error" for="precio"></label>
+          </div>
+          
+
+
+          <!-- IVA -->
+	        <!-- <div class="row">
+	        	<div class="col-md-6">
+	        		<div class="form-check">
+	        		  <input class="form-check-input" name="posee_iva" type="checkbox" id="posee_iva" (change)="activarIVA()">
+	        		  <label class="form-check-label" for="posee_iva">
+	        		    Posee I.V.A. 
+	        		  </label>
+	        		</div>
+	        	</div>
+	        	<div class="col-md-6">
+	        		<div class="input-group mb-3">
+	        		  <div class="input-group-prepend">
+	        		    <span class="input-group-text">% I.V.A.</span>
+	        		  </div>
+	        		  <input class="form-control" disabled="" name="iva" [(ngModel)]="producto.iva">
+	        		</div>
+	        	</div>
+	        </div> -->
+          
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Descripción</span>
+              </div>
+              <textarea class="form-control" name="descripcion" [(ngModel)]="producto.descripcion" rows="3"></textarea>
+            </div>
+            <label class="error error-label" id="descripcion-error" for="descripcion"></label>
+          </div>
+          
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Estatus</span>
+              </div>
+              <select class="form-control" name="estatus" [(ngModel)]="producto.estatus">
+                <option value=""></option>
+                <option value="a">Normal</option>
+                <option value="d">Promoción</option>
+                <option value="nv">Inactivo</option>
+              </select>
+            </div>
+            <label class="error error-label" id="estatus-error" for="estatus"></label>
+          </div>
+          
+        </fieldset>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary" (click)="agregar()"><i class="fa fa-save"></i> Guardar</button>
+      </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+<!--/ Modal agregar producto -->
+

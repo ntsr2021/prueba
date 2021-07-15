@@ -1,0 +1,15 @@
+.aliado-img {
+	width: 100%;
+	height: 100px
+}
+
+#footer {
+	color: white
+}
+
+.red-social-icon span {
+	color: black !important
+}
+.red-social-icon:hover span {
+	color: blue !important
+}

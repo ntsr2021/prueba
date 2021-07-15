@@ -1,0 +1,228 @@
+<div class="container">
+
+
+  <!-- Btn volver -->
+	<div>
+		<a class="btn btn-secondary" routerLink="./../">Volver</a>
+	</div>
+
+
+  <div class="d-sm-flex align-items-center justify-content-between mb-3 mt-2">
+    <h1 class="h3 mb-0 text-gray-800">Nuevo Artículo</h1>
+  </div>
+
+
+  <!-- Form nuevo articulo -->
+  <form class="mt-4 mb-5" id="articulo-nuevo-form">
+  	
+    
+    <!-- Procesador de texto -->
+    <div class="card shadow">
+
+      <!-- Opciones -->
+      <div class="card-header" id="pt-header">
+        
+
+        <!-- Tamaño de la fuente -->
+        <div class="mr-5" style="float: left">
+
+          <button class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown">
+            <span class="fas fa-text-height"></span>
+          </button>
+
+          <div class="dropdown-menu" id="menu-tam-letra">
+            <button class="dropdown-item tamano-letra" id="btn-titulo" (click)="activarFontTitulo()">Titulo</button>
+            <button class="dropdown-item tamano-letra" id="btn-subtitulo" (click)="activarFontSubtitulo()">Subtitulo</button>
+            <button class="dropdown-item tamano-letra" id="btn-parrafo" (click)="activarFontParrafo()">Parrafo</button>
+          </div>
+
+        </div>
+
+
+        <!-- Formato -->
+        <div class="mr-5" style="float: left">
+          <button class="btn btn-sm btn-secondary mr-1" id="btn-negrita" (click)="activarNegrita()"><span class="fas fa-bold"></span></button>
+          <button class="btn btn-sm btn-secondary mr-1" id="btn-subrayado" (click)="activarSubrayado()"><span class="fas fa-underline"></span></button>
+          <button class="btn btn-sm btn-secondary mr-1" id="btn-italica" (click)="activarItalica()"><span class="fas fa-italic"></span></button>
+        </div>
+
+
+        <!-- Alineacion -->
+        <div class="mr-5" style="float: left">
+          <button class="btn btn-sm btn-secondary mr-1" (click)="alinearIzquierda()"><span class="fas fa-align-left"></span></button>
+          <button class="btn btn-sm btn-secondary mr-1" (click)="alinearCentro()"><span class="fas fa-align-center"></span></button>
+          <button class="btn btn-sm btn-secondary mr-1" (click)="alinearDerecha()"><span class="fas fa-align-right"></span></button>
+          <button class="btn btn-sm btn-secondary mr-1" (click)="alinearJustificado()"><span class="fas fa-align-justify"></span></button>
+        </div>
+
+
+        <!-- Listas -->
+        <div class="mr-5" style="float: left">
+          <button class="btn btn-sm btn-secondary mr-1" (click)="insertarListaDesordenada()"><span class="fas fa-list"></span></button>
+          <button class="btn btn-sm btn-secondary mr-1" (click)="insertarListaOrdenada()"><span class="fas fa-list-ol"></span></button>
+        </div>
+
+
+        <!-- Insertar enlace -->
+        <div class="mr-3" style="float: left">
+          <button class="btn btn-sm btn-secondary mr-1" (click)="insertarEnlace()"><span class="fas fa-link"></span></button>
+        </div>
+
+
+        <!-- Insertar imagen -->
+        <div class="mr-3" style="float: left">
+          <button class="btn btn-sm btn-secondary mr-1" (click)="insertarImg()"><span class="far fa-image"></span></button>
+
+
+          <button class="btn btn-sm btn-secondary dropdown-toggle mr-1" data-toggle="dropdown"><span class="fas fa-arrows-alt"></span></button>
+
+
+          <div class="dropdown-menu" id="image-menu-size">
+            <button class="dropdown-item tamano-letra" (click)="setTamanioImgGrande()">Grande</button>
+            <button class="dropdown-item tamano-letra" (click)="setTamanioImgMediano()">Mediano</button>
+            <button class="dropdown-item tamano-letra" (click)="setTamanioImgPequenio()">Pequeño</button>
+          </div>
+        </div>
+
+
+        <!-- Insertar video -->
+        <div style="float: left">
+          <button class="btn btn-sm btn-secondary mr-1" (click)="insertarVideo()"><span class="fas fa-video"></span></button>
+
+
+          <button class="btn btn-sm btn-secondary dropdown-toggle mr-1" data-toggle="dropdown"><span class="fas fa-arrows-alt"></span></button>
+
+
+          <div class="dropdown-menu" id="video-menu-size">
+            <button class="dropdown-item tamano-letra" (click)="setTamanioVideoGrande()">Grande</button>
+            <button class="dropdown-item tamano-letra" (click)="setTamanioVideoMediano()">Mediano</button>
+            <button class="dropdown-item tamano-letra" (click)="setTamanioVideoPequenio()">Pequeño</button>
+          </div>
+        </div>
+
+
+        <!-- Guardar y previsualizar -->
+        <div style="float: right">
+          <button class="btn btn-sm btn-secondary mr-1" data-toggle="modal" data-target="#guardar-modal"><span class="fas fa-save"></span></button>
+        </div>
+
+      </div>
+
+      <!--/ Opciones -->
+
+
+      <!-- LIENZO -->
+      <div class="card-body" spellcheck="true" contenteditable="" id="lienzo" style="outline: none !important">
+        
+      </div>
+
+
+
+
+      <!-- Control para seleccionar IMG -->
+      <input type="file" hidden="" (change)="selecImg($event)" id="control-selec-img">
+      
+
+      
+    </div>
+    <!-- / Procesador de texto -->
+
+
+  </form>
+  <!--/ Form nuevo articulo -->
+
+
+</div>
+
+
+<!-- Modal guardar -->
+<div class="modal fade" tabindex="-1" role="guardar-modal" id="guardar-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+
+      <div class="modal-header">
+        <h5 class="modal-title">Guardar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form id="guardar-form">
+        <div class="modal-body">
+
+
+
+
+        	<!-- Imagen principal -->
+        	<div class="text-center">
+        	  <div class="row">
+        	    <div class="offset-md-2 col-md-8">
+
+        	      <div id="foto-content">
+        	        <span class="fa fa-photo foto-icon" (click)="buscarImgPrincipal()" [ngStyle]="{'display':displayIconPrincipal}"></span>
+        	        <div class="text-right mb-2">
+        	          <button type="button" class="btn btn-primary btn-sm mr-2" (click)="buscarImgPrincipal()" [ngStyle]="{'display':displayImgPrincipal}">
+        	            <i class="fa fa-pencil"></i>
+        	          </button>
+        	          <button type="button" class="btn btn-danger btn-sm" (click)="eliminarImgPrincipal()" [ngStyle]="{'display':displayImgPrincipal}">
+        	            <i class="fa fa-remove"></i>
+        	          </button>
+        	        </div>
+        	        <img class="foto-img imagen" id="img_principal" [ngStyle]="{'display':displayImgPrincipal}">
+
+        	        <input type="file" name="img_principal" (change)="selecImgPrincipal($event)" style="display: none">
+
+        	      </div>
+        	      
+        	    </div>
+        	  </div>
+        	</div>
+
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Título</span>
+              </div>
+              <input class="form-control" name="titulo" [(ngModel)]="articulo.titulo">
+            </div>
+            <label class="error error-label" id="titulo-error" for="titulo"></label>
+          </div> 
+
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Etiquetas</span>
+              </div>
+              <input class="form-control" name="etiquetas" [(ngModel)]="articulo.etiquetas">
+            </div>
+            <label class="error error-label" id="etiquetas-error" for="etiquetas"></label>
+          </div> 
+
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Descripción</span>
+              </div>
+              <textarea class="form-control" name="descripcion" [(ngModel)]="articulo.descripcion" rows="3"></textarea>
+            </div>
+            <label class="error error-label" id="descripcion-error" for="descripcion"></label>
+          </div> 
+
+            
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" (click)="guardar()"><i class="fa fa-save"></i> Guardar</button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+

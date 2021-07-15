@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="navbar-collapse">
+    <ul class="navbar-nav mr-auto" id="navbar2-ul-filtros">
+
+    	<!-- Btn abrir menu de categorias -->
+      <li class="nav-item dropdown ml-3">
+        <button class="btn btn-secondary" (click)="menu_categorias.mostrar()"><i class="fa fa-list"></i> 
+          <span class="ml-2" id="btn-categorias-text">Categorías</span> 
+        </button>
+      </li>
+
+      <!-- Filtros -->
+      <li class="nav-item ml-3">
+        <a class="nav-link item-nav" routerLink="/recientes" id="filtro-reciente1"> 
+          <span id="filtro-reciente-text1">Productos recientes</span>
+          <span id="filtro-reciente-text2" style="display: none">Recientes</span>
+        </a>
+      </li>
+      <li class="nav-item ml-3">
+        <a class="nav-link item-nav" routerLink="/promociones"> Promociones
+
+          <i *ngIf="hayPromocion" class="fa fa-star" style="color: #ffc107"></i> <!-- Estrella q indica si hay promocion -->
+
+        </a>
+      </li>
+
+
+      <!-- Mas vendidos -->
+      <li class="nav-item ml-3" id="nav1-mas-solicitados">
+        <a class="nav-link item-nav" routerLink="/mas-vendidos">Más solicitados</a>
+      </li>
+
+    </ul>
+
+    
+    <!-- Cambiar moneda -->
+    <ul class="navbar-nav mr-right buscador-centrar-ele" id="navbar2-ul-moneda">
+      <li class="nav-item">
+        <div class="form-group" id="navbar2-group-moneda" style="margin-bottom: 0px !important">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text navbar-label">Moneda</span>
+            </div>
+            <select class="form-control navbar-selec" name="moneda" [(ngModel)]="moneda" (change)="cambiarMoneda()">
+            	<option value="dol">Dólares</option>
+            	<option value="bs">Bolívares</option>
+            </select>
+          </div>
+        </div> 
+      </li>
+    </ul>
+
+
+  </div>
+</nav>
+
+
+<!-- Menu de categorias -->
+<app-menu-categoria #menu_categorias></app-menu-categoria>

@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-md-3 col-md-6">
+
+      <form class="mt-1" id="cli-seguridad-form">
+
+
+        <div class="text-center">
+          <h3>Cambiar contraseña</h3>
+        </div>
+
+  
+        <div class="form-group mt-4">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fa fa-key"></i></div>
+            </div>
+            <input class="form-control" type="password" name="password_actual" placeholder="Contraseña anterior" [(ngModel)]="password.password_actual"> 
+          </div>
+          <label class="error error-label" id="password_actual-error" for="password_actual"></label>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fa fa-plus"></i><i class="fa fa-key"></i></div>
+            </div>
+            <input class="form-control" type="password" name="cli_password_nuevo" id="cli_password_nuevo" placeholder="Nueva contraseña" [(ngModel)]="password.password_nuevo"> 
+          </div>
+          <label class="error error-label" id="cli_password_nuevo-error" for="cli_password_nuevo"></label>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text"><i class="fa fa-refresh"></i><i class="fa fa-key"></i></div>
+            </div>
+            <input class="form-control" type="password" name="password_nuevo2" placeholder="Repetir contraseña"> 
+          </div>
+          <label class="error error-label" id="password_nuevo2-error" for="password_nuevo2"></label>
+        </div>
+
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-secondary" (click)="cambiar()">Cambiar</button>
+        </div>
+
+
+      </form>
+
+      <!-- Spinner - espera -->
+      <div class="text-center mt-3 mb-3 spinner-espera" *ngIf="espera == true"> 
+        <mat-spinner></mat-spinner>
+      </div>
+
+    </div>
+  </div>
+</div>

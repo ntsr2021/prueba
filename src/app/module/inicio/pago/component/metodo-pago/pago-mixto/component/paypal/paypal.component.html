@@ -1,0 +1,71 @@
+
+<div class="container">
+
+	<div class="row">
+		<div class="col-md-8 offset-md-2">
+			
+
+			<!-- Monto a cancelar y diferencia -->
+			<div *ngIf="montoPagado == null; else diferencia">
+
+		    <div class="form-group">
+		      <div class="input-group">
+		        <div class="input-group-prepend">
+		          <div class="input-group-text">Monto ($)</div>
+		        </div>
+		        <input class="form-control pm_monto_paypal" name="pm_monto" [(ngModel)]="montoFormato" (keypress)="formatoMoneda.validar($event)" (keyup)="tipear()">
+		      </div>
+		      <label class="error error-label" id="monto-error" for="pm_monto">El monto debe ser mayor o igual a $1 y menor al total a pagar</label>
+		    </div>
+
+		    <div class="form-group">
+		      <div class="input-group">
+		        <div class="input-group-prepend">
+		          <div class="input-group-text">Total ($)</div>
+		        </div>
+		        <input class="form-control" readonly="" name="total" value="{{formatoMoneda.setFormato(total().toFixed(2))}}">
+		      </div>
+		    </div>
+
+			</div>
+
+			<ng-template #diferencia>
+				<div class="form-group">
+			    <div class="input-group">
+			      <div class="input-group-prepend">
+			        <div class="input-group-text">Diferencia ($)</div>
+			      </div>
+			      <input class="form-control" readonly="" name="pm_monto" value="{{formatoMoneda.setFormato(total().toFixed(2))}}">
+			    </div>
+			    <label class="error error-label" id="pm_monto-error" for="pm_monto"></label>
+			  </div>
+			</ng-template>
+
+			
+
+			<!-- Alerta de cobro de comision -->
+			<div class="alert alert-warning text-center" role="alert">
+				Tenga en cuenta que, se sumara una cantidad adicional de <b>${{calcularComision()}}</b> al monto a pagar por comisión de PayPal.
+			</div>
+
+
+			<div style="position: relative;width: 100%;"> <!-- Permite a #paypal-muro ocupar el 100% del contenedor -->
+
+				<div class="paypal-bloquear" id="paypal-muro" *ngIf="montoPagado == null"></div> <!-- Permite desabilitar el boton de PayPal hasta que se introduzca un monto valido -->
+				<div id="smart-button-container">
+				  <div style="text-align: center;">
+				    <div id="pago-mixto-paypal-button-container"></div>
+				  </div>
+				</div>
+			
+			</div>
+
+
+			<div class="text-right">
+			  <button type="button" class="btn btn-primary" (click)="anterior()">Anterior</button>
+			</div>
+
+		</div>
+	</div>
+
+</div>

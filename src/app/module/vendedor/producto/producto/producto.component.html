@@ -1,0 +1,202 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Productos</h1>
+</div>
+
+
+<!-- Selec tipos de productos -->
+<div class="row">
+  <div class="col-lg-3">
+    <div class="form-group">
+      <form id="departamento-form">
+        <select class="form-control" name="departamento1" [(ngModel)]="buscador.departamento1" (change)="consProducto()">
+          <option *ngFor="let dep of departamentos" value="{{dep.id_departamento}}">{{dep.nombre}}</option>
+          <option value="">Otros</option>
+        </select>
+      </form>
+      
+    </div>
+  </div>
+
+
+  <!-- Cancelar promocion -->
+  <div class="col-md-3" *ngIf="user != null">
+    <button class="btn btn-secondary" *ngIf="bandHayPromocion == true && user.rol == 'a'" (click)="cancelarPromocion()">Desactivar productos en promoción</button>
+  </div>
+
+
+</div>
+
+
+<!-- Filtro para buscar productos -->
+<mat-form-field>
+  <mat-label>Buscar</mat-label>
+  <input matInput [(ngModel)]="buscador.busquedad" (keyup)="consProducto()" placeholder="Buscar">
+</mat-form-field>
+
+
+<!-- Btn agregar producto -->
+<div class="text-right" style="float: right;padding-top: 15px" *ngIf="user != null && user.rol == 'a'">
+  <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#producto-agregar-modal" (click)="agregar.reset()"><i class="fa fa-plus"></i> Agregar</button> 
+  <!-- Al abrir el registro de producto, llama a la funcion reset para vaciar todos los campos del modal de registro -->
+</div>
+
+
+<!-- Tabla consultar productos -->
+<div class="mat-elevation-z8 mb-5">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 tabla-adaptable" matSort #tabla1  *ngIf="user != null"> 
+
+    <ng-container matColumnDef="foto_prin">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Foto </th>
+      <td mat-cell *matCellDef="let pro">
+        <!-- Verifica si el producto tiene foto principal -->
+        <div *ngIf="(pro.foto_prin != '' && pro.foto_prin != null); else sin_foto"> 
+          <!-- Verifica si al producto se le acaba de añadir una foto principal, para actualizar la misma con marca de tiempo y no todas a la vez -->
+          <div *ngIf="id_prod_act == pro.id_producto; else no_editado"> <!-- El id_prod_act identifica cual es el producto por actualizar -->
+            <img class="pro-img" src="assets/img/producto/{{pro.foto_prin}}.jpg?marcaTiempo={{pro.marcaTiempo}}">
+          </div>
+          <!-- No actualiza la imagen con marca de tiempo ya que el producto no ha sido actualizado recientemente -->
+          <ng-template #no_editado>
+            <img class="pro-img" src="assets/img/producto/{{pro.foto_prin}}.jpg?marcaTiempo={{pro.marcaTiempo}}">
+          </ng-template>
+        </div>
+        <!-- Sino tiene foto principal -->
+         <ng-template #sin_foto>
+          <span class="fa fa-photo pro-foto-consulta"></span>
+        </ng-template>
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="codigo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>
+      <td mat-cell *matCellDef="let pro"> {{pro.codigo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+      <td mat-cell *matCellDef="let pro"> {{pro.nombre}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cantidad">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </th>
+      <td mat-cell *matCellDef="let pro"> {{pro.cantidad}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="precio_$">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio ($) </th>
+      <td mat-cell *matCellDef="let pro"> {{formatoMoneda.setFormato(pro.precio.toFixed(2))}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="precio_bs">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio (Bs) </th>
+      <td mat-cell *matCellDef="let pro"> {{ formatoMoneda.setFormato((pro.precio*dolar).toFixed(2)) }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="estatus">
+      <th mat-header-cell *matHeaderCellDef>Estatus</th>
+      <td mat-cell *matCellDef="let pro"> 
+        
+        <span [ngSwitch]="pro.estatus">
+          <span *ngSwitchCase="'a'">Normal</span>
+          <span *ngSwitchCase="'d'"><b>Promoción</b></span>
+          <span *ngSwitchCase="'nv'">Inactivo</span>
+        </span>
+
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="foto" *ngIf="user.rol == 'a'">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let pro"> 
+        <a class="btn btn-info btn-sm" routerLink="foto/{{pro.id_producto}}"><i class="fa fa-photo"></i></a>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="editar">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let pro"> 
+        <a class="btn btn-info btn-sm" (click)="editar.consUno(pro.id_producto)"><i class="fa fa-pencil"></i></a>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="eliminar" *ngIf="user.rol == 'a'">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let pro"> 
+        <a class="btn btn-danger btn-sm" (click)="eliminar(pro.id_producto)"><i class="fa fa-remove"></i></a>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+</div>
+<!-- /Tabla consultar productos -->
+
+
+<!-- Consultar totales -->
+<div *ngIf="user != null">
+  <h4 *ngIf="user.rol == 'a' || user.rol == 's'" class="mt-5 mb-3">TOTALES</h4>
+  <div *ngIf="user.rol == 'a' || user.rol == 's'" class="mat-elevation-z8 mb-5">
+    <table mat-table [dataSource]="dataSourceTotal" class="mat-elevation-z8" #tablaTotal style="width: 100% !important">
+      
+      <ng-container matColumnDef="productos">
+        <th mat-header-cell *matHeaderCellDef>  Productos </th>
+        <td mat-cell *matCellDef="let total">{{total.pro}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="dolares">
+        <th mat-header-cell *matHeaderCellDef> Dólares </th>
+        <td mat-cell *matCellDef="let total">{{formatoMoneda.setFormato(total.dol.toFixed(2))}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="bolivares">
+        <th mat-header-cell *matHeaderCellDef> Bolívares </th>
+        <td mat-cell *matCellDef="let total">{{formatoMoneda.setFormato((total.dol*dolar).toFixed(2))}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnasTotal"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnasTotal;"></tr>
+    </table>
+    
+  </div>
+</div>
+
+
+
+
+<!-- Componentes -->
+<app-registro (getRegistroEvent)="consProducto()" #agregar></app-registro> 
+<app-editar (getEdicionEvent)="actualizarImg($event)" #editar></app-editar>
+
+
+
+<!-- Modal desactivar promocion -->
+<div class="modal fade" tabindex="-1" role="desactivar-promo-modal" id="desactivar-promo-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Desactivar promoción</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        Desactivar productos en promocion
+          
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary mr-3" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary">Desactivar</button>
+      </div>
+
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="card shadow" id="content-metodo">
+  <div class="card-header">
+    <h5 class="text-center" id="metodo-title">Primer método de pago</h5>
+  </div>
+  <div class="card-body" *ngIf="user!=null"> 
+    
+
+    <!-- Controles -->
+    <mat-radio-group [(ngModel)]="forma_pago" (change)="formaPago()" name="pm_forma_pago">
+    	<mat-radio-button value="pm_tran_dol" color="primary">Transferencia en dólares</mat-radio-button>
+    	<mat-radio-button value="pm_tran_bs" color="primary">Transferencia en bolívares</mat-radio-button>
+    	<mat-radio-button value="pm_pago_movil" color="primary">Pago movil</mat-radio-button>
+    	<mat-radio-button value="pm_divisa" color="primary">Efectivo en divisa</mat-radio-button>
+
+      <mat-radio-button value="pm_paypal" color="primary">PayPal</mat-radio-button>
+
+
+      <!-- <mat-radio-button value="pm_gift_card" color="primary">Gift Card</mat-radio-button> -->
+    </mat-radio-group>
+
+
+
+    <!-- Cuerpo -->
+  	<div class="mt-3">
+
+			<div class="pm-forma-activa" id="pm_tran_dol" style="display: none">
+				<app-dolares (antEvent)="anterior()" (sigEvent)="siguiente($event)" [montoPagado]="montoPagado" [monedaEmpleada]="monedaEmpleada"></app-dolares>
+			</div>
+
+      <div id="pm_tran_bs" style="display: none">
+        <app-bolivares (antEvent)="anterior()" (sigEvent)="siguiente($event)" [montoPagado]="montoPagado" [monedaEmpleada]="monedaEmpleada"></app-bolivares>
+      </div>
+
+      <div id="pm_pago_movil" style="display: none">
+        <app-pago-movil (antEvent)="anterior()" (sigEvent)="siguiente($event)" [montoPagado]="montoPagado" [monedaEmpleada]="monedaEmpleada"></app-pago-movil>
+      </div>
+
+      <div id="pm_divisa" style="display: none">
+        <app-efectivo (antEvent)="anterior()" (sigEvent)="siguiente($event)" [montoPagado]="montoPagado" [monedaEmpleada]="monedaEmpleada"></app-efectivo>
+      </div>
+
+
+      <div id="pm_paypal" style="display: none">
+        <app-paypal (antEvent)="anterior()" (sigEvent)="siguiente($event)" [montoPagado]="montoPagado" [monedaEmpleada]="monedaEmpleada"></app-paypal>
+      </div>
+
+
+      <div id="pm_gift_card" style="display: none">
+        <app-gift-card (antEvent)="anterior()" (sigEvent)="siguiente($event)" [montoPagado]="montoPagado" [monedaEmpleada]="monedaEmpleada"></app-gift-card>
+      </div>
+
+  	</div>
+
+
+    <!-- Boton para retroceder cuando no se ha seleccionado una opcion -->
+    <div class="mt-3 text-right" id="pm-btn-anterior">
+      <button type="button" class="btn btn-primary" (click)="anterior()">Anterior</button>
+    </div>
+
+
+  </div>
+</div>

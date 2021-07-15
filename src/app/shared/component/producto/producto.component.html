@@ -1,0 +1,102 @@
+<div class="carousel slide" data-ride="carousel" id="productos-relacionados-carrousel" *ngIf="itemSlide != null && itemSlide != -1"> 
+	<!-- *ngIf="item.productos != null && productos != -1" -->
+
+	<div class="carousel-inner">
+
+	<div class="carousel-item" *ngFor="let item of itemSlide">
+
+
+		<div class="container-fluid mt-2">
+
+		<div class="row">
+			
+			<div class="col-lg-3 col-md-4 col-sm-6 col-6 columna-producto mb-5" *ngFor="let pro of item.productos">
+				
+				<!-- Producto -->
+
+				<div class="producto" [ngClass]="{'pro-agregado':proAgregado(pro.codigo)}" style="outline: none !important">
+			    
+
+					<!-- Header -->
+					<div class="pro-header" (click)="verDetalles(pro.id_producto)">
+						<img class="pro-img" src="assets/img/producto/{{pro.codigo}}-1.jpg?marcaTiempo={{pro.marcaTiempo}}">
+						<a class="btn pro-btn-detalle" ><i class="fa fa-eye"></i> Detalles</a>
+					</div>
+
+
+					<!-- Body -->
+					<div class="pro-body mt-2 mb-4">
+
+						<i class="fa fa-star pro-icon-star" [ngClass]="{'pro-agregado-star':proAgregado(pro.codigo)}"></i>
+
+						<span *ngIf="pro.estatus == 'd'">
+			      	<!-- <span class="badge bg-warning pro-badge text-white" style="font-size: 12px">EN PROMOCIÓN</span><br> -->
+			      	<b class="text-warning" style="font-size: 14px">EN PROMOCIÓN</b><br>
+			      </span>
+
+
+			      <h6><b>{{pro.cat1}} </b><b *ngIf="pro.cat2 != null">/<br> {{pro.cat2}}</b></h6>	
+
+
+						<span>{{pro.codigo}}</span><br>
+
+						<span style="font-size: 14px !important">{{pro.nombre}}</span>
+
+
+						<div class="text-center">
+							<b class="text-warning">
+
+						  	<span class="producto-moneda-tipo">$. </span>
+						  	<span class="producto-moneda-precio">{{formatoMoneda.setFormato(pro.precio.toFixed(2))}}</span>
+						  	
+							</b>
+						</div> 
+
+					</div>
+					<!--/ Body -->
+
+
+			  </div>
+
+				<!-- /Producto -->
+
+			</div>
+
+		</div>
+
+		</div>
+
+
+	</div>
+	</div>
+
+
+	<!-- Controles -->
+	<div *ngIf="itemSlide.length > 1">
+		
+		<a class="carousel-control-prev slider-ctr" href="#productos-relacionados-carrousel" role="button" data-slide="prev">
+		  <span class="fas fa-chevron-left slider-ctr-icon" aria-hidden="true"></span>
+		  <span class="sr-only">Anterior</span>
+		</a>
+
+		<a class="carousel-control-next slider-ctr" href="#productos-relacionados-carrousel" role="button" data-slide="next">
+		  <span class="fas fa-chevron-right slider-ctr-icon" aria-hidden="true"></span>
+		  <span class="sr-only">Siguiente</span>
+		</a>
+
+	</div>
+	
+
+</div>
+
+
+
+
+
+<!-- No hay productos -->
+<div class="text-center pb-5" *ngIf="itemSlide == -1">
+	<span class="fa fa-product-hunt" id="pro-icon-vacio"></span>
+	<h5><b>No hay productos</b></h5>
+</div>
+
+

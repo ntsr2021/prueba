@@ -1,0 +1,54 @@
+<h3>Reseña Compra</h3>
+
+<div class="example-container mat-elevation-z8">
+
+  <div class="example-table-container">
+   
+
+    <table mat-table [dataSource]="data" class="example-table"
+           matSort matSortActive="created" matSortDisableClear matSortDirection="asc">
+      <!-- IDReseña Column -->
+      <ng-container matColumnDef="id_resena_compra">
+        <th style="width: 15%" mat-header-cell *matHeaderCellDef>Id Reseña</th>
+        <td mat-cell *matCellDef="let row">{{row.id_resena_compra}}</td>
+      </ng-container>
+
+      <!-- Puntaje Column -->
+      <ng-container matColumnDef="puntaje">
+        <th style="width: 10%"mat-header-cell *matHeaderCellDef>Puntaje</th>
+        <td mat-cell *matCellDef="let row">{{row.puntaje}}</td>
+      </ng-container>
+
+      <!-- Estatus Column -->
+      <ng-container matColumnDef="estatus">
+        <th style="width: 10%"mat-header-cell *matHeaderCellDef>Estatus</th>
+        <td mat-cell *matCellDef="let row">{{row.estatus}}</td>
+      </ng-container>
+
+       <!-- Accion Column -->
+      <ng-container matColumnDef="accion">
+        <th style="width: 20%"mat-header-cell *matHeaderCellDef>Accion</th>
+        <td colspan="1" mat-cell *matCellDef="let row">
+          <i *ngIf="row.estatus=='P' || row.estatus=='I'" class="fas fa-thumbs-up" (click)="activarComentario(row)"></i>
+          <i *ngIf="row.estatus=='A'" class="fas fa-thumbs-down" (click)="desactivarComentario(row)"></i>
+          &nbsp;
+          &nbsp;
+          <i class="fas fa-trash-alt" (click)="eliminarComentrio(row)"></i>
+        </td>  
+      </ng-container>
+
+      <!-- Descripcion Column -->
+      <ng-container matColumnDef="descripcion">
+        <th mat-header-cell *matHeaderCellDef>Descripcion</th>
+        <td mat-cell *matCellDef="let row">{{row.descripcion}}</td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  <mat-paginator [length]="resultsLength" [pageSize]="20"></mat-paginator>
+</div>
+

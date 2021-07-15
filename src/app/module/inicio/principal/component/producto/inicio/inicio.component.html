@@ -1,0 +1,38 @@
+<div class="container mt-4 mb-5">
+	
+
+	<div *ngFor="let dep of departamentos">
+		
+		<h3 class="mt-3 mb-3">{{dep.nombre}}</h3>
+
+
+		<!-- Productos por departamento -->
+		<app-producto [productos]="dep.productos"></app-producto>
+
+
+		<!-- Btn ver todos -->
+		<div class="text-right" style="margin-top: -20px">
+			<a class="btn btn-sm btn-info" (click)="verTodos(dep.id_departamento)">Ver todos</a>
+		</div>
+		
+
+	</div>
+
+
+	<!-- Animacion de espera -->
+	<div *ngIf="animEspera == true">
+		<app-spinner></app-spinner>
+	</div>
+
+
+	<!-- Btn consultar mas categorias -->
+	<div class="text-center mb-5 mt-3" *ngIf="activarConsMas == true">
+		<button class="btn btn-secondary" (click)="consPorDepartamento()">Ver más categorías</button>
+	</div>
+
+
+</div>
+
+
+<!-- Btn subir scroll -->
+<app-btn-subir-scroll></app-btn-subir-scroll>

@@ -1,0 +1,107 @@
+/* Clase img visor */
+#visor {
+  text-align: center;
+}
+
+.drift-demo-trigger { 
+  max-width: 100%;
+  border-radius: 2.5px;
+  overflow: hidden
+}
+
+/* Img zoom del visor */
+.ligthbox { 
+  width: 45%;
+  height: 70%;
+  position: fixed;
+  top: 110px;
+  margin-left: 90px;
+  background: rgba(0, 0, 0, .8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Btn cerrar ventana img grande del visor */
+.btn-close { 
+  width: 35px;
+  height: 35px;
+  background: #000;
+  border: 1px solid #fff;
+  border-radius: 100%;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 2px;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  cursor: pointer;
+}
+
+/* Cuadro donde se muestra la img zoom del visor */
+.detail { 
+  position: relative;
+  width: 100%;
+  margin-left: 5%;
+  float: left
+}
+
+/* Responsive para el zoom de la img del visor */
+@media (max-width: 900px) { 
+  .detail,
+  .drift-demo-trigger {
+    float: none;
+  }
+
+  .drift-demo-trigger {
+    max-width: 100%;
+    width: auto;
+    margin: 0 auto;
+  }
+
+  .detail {
+    margin: 0;
+    width: auto;
+  }
+}
+
+
+/* Activar producto */
+.pro-activo {
+  box-shadow: 0px 0px 10px 2px #808080 !important; 
+}
+
+/* Estrella que se muestra cuando el producto ya esta agregado */
+.start {
+  color: #ffc107;
+  font-size: 20px;
+  position: absolute
+}
+
+/* Input que contiene la cantidad a solicitar del producto */
+#cantidad {
+  border-radius: 0 !important;
+  width: 100px;
+  text-align: center
+}
+
+
+
+/* Responsive */
+@media screen and (max-width: 991px) {
+
+  #visor-culumna {
+    margin-top: 30px !important
+  }
+
+  #precio-content {
+    margin-top: 30px !important
+  }
+
+  #detalles-content {
+    margin-top: 30px !important
+  }
+
+}

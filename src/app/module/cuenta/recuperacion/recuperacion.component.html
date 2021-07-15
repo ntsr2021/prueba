@@ -1,0 +1,30 @@
+<form class="mt-4" id="recuperar-form">
+
+  <div class="text-center mb-2">
+    <img src="assets/img/logo1.png" height="60px" weight="298px"  alt="Logo de la Empresa">
+  </div>
+
+  <h3 class="text-center">Recuperar contraseña</h3>
+
+  <!-- Correo -->
+  <div class="form-group mt-4">
+    <div class="input-group mt-4">
+      <div class="input-group-prepend">
+        <div class="input-group-text">@</div>
+      </div>
+      <input class="form-control" name="correo" placeholder="Correo electrónico" [(ngModel)]="correo">  
+    </div>
+    <label class="error error-label" id="correo-error" for="correo"></label>
+  </div>
+
+  <!-- Boton submit -->
+  <div class="text-center">
+    <button type="submit" class="btn btn-secondary" (click)="recuperar()">Recuperar</button>
+  </div>
+
+</form>
+
+<!-- Spinner - espera -->
+<div class="text-center mt-3 mb-3 spinner-espera" *ngIf="espera == true"> 
+  <mat-spinner></mat-spinner>
+</div>

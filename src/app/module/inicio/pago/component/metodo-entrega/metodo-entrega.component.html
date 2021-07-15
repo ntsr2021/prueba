@@ -1,0 +1,159 @@
+<div class="text-center">
+  <h3>Indique un método de entrega</h3>
+</div>
+
+
+<div class="row mt-3">
+	<div class="col-xl-8 offset-xl-2">
+
+
+		<!-- Boton consultar talonario -->
+		<!-- <div class="text-center mb-3">
+			<button class="btn btn-info" data-target="#talonario-modal" data-toggle="modal">Consultar tablero</button>
+		</div> -->
+
+
+    <!-- Indicar metodo de entrega -->
+    <div class="text-center mb-3">
+    	<mat-radio-group [(ngModel)]="metodo_entrega.metodo" (change)="metodoEntrega()">
+    		<mat-radio-button value="pick_up" color="primary">Pick Up (Retiro en tienda)</mat-radio-button>
+    		<mat-radio-button value="delivery" color="primary">Delivery (A domicilio)</mat-radio-button>
+    	</mat-radio-group>
+    </div>
+
+
+
+		<!-- Pick Up -->
+		<div id="pick_up" class="metodo-activa">
+
+			<form id="pick_up-form">
+
+
+				<div class="text-center mb-3">
+					<button class="btn btn-primary" data-toggle="modal" data-target="#selec-punto-entrega-modal">Seleccionar punto de entrega</button>
+				</div>
+				
+
+				<p *ngIf="metodo_entrega.punto != ''">
+	      	Punto de entrega seleccionado: <b>{{metodo_entrega.punto}}</b>
+	      </p>
+
+				<!-- <div class="form-group">
+				  <div class="input-group">
+				    <div class="input-group-prepend">
+				      <div class="input-group-text">Punto de entrega</div>
+				    </div>
+
+					<select class="form-control" name="punto" [(ngModel)]="metodo_entrega.punto">
+				    	<option value=""></option>
+				    	<option *ngFor="let pun of puntos" value="{{pun.direccion}}">{{pun.direccion}}</option>
+				    </select> 
+
+				  </div>
+				  <label class="error error-label" id="punto-error" for="punto"></label>
+				</div> -->
+
+				<div class="alert alert-info text-center" role="alert">
+					<p>
+						El tiempo de llegada de su compra al punto de entrega que seleccione puede variar entre 3 y 7 días hábiles. 
+					</p>
+					<p>
+						Tenga en cuenta que estos tiempos de entrega pueden extenderse un poco más, esto debido a la dificultad de logística ocasionada por el tema pandemia.
+					</p>
+				  
+				</div>
+
+				<div class="text-right">
+				  <button type="button" class="btn btn-primary mr-3" (click)="anterior()">Anterior</button>
+				  <button type="submit" class="btn btn-primary" (click)="siguiente()">Siguiente</button>
+				</div>
+			</form>
+
+		</div>
+
+
+		<!-- Delivery -->
+		<div id="delivery" style="display: none">
+
+			<form id="delivery-form">
+				<div class="alert alert-info text-center" role="alert">
+				  <p>El período de entrega de su compra puede variar entre 3 y 7 días hábiles.</p>
+
+				  <p>
+				  	Tenga en cuenta que estos tiempos de entrega pueden extenderse un poco más, esto debido a la dificultad de logística ocasionada por el tema pandemia.
+				  </p>
+
+				  <p>
+				  	Por los momentos nuestro servicio de delivery solo cubre las ciudades en donde se encuentran nuestras tiendas: Valencia, Maracay, Maracaibo, San Cristobal, Barquisimeto y Puerto Ordaz.
+				  </p>
+				</div>
+
+				<div class="text-right">
+				  <button type="button" class="btn btn-primary mr-3" (click)="anterior()">Anterior</button>
+				  <button type="submit" class="btn btn-primary" (click)="siguiente2()">Siguiente</button>
+				</div>
+			</form>
+			
+		</div>
+		
+	</div>
+</div>
+
+
+
+<!-- Modal talonario -->
+<!-- <div class="modal fade" tabindex="-1" role="talonario-modal" id="talonario-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Tablero</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+     	<div class="modal-body">
+     		
+     	</div>
+
+      <div class="modal-footer">
+      
+      </div>
+
+    </div>
+  </div>
+</div> -->
+<!--/ Modal talonario -->
+
+
+<!-- Modal selec punto entrega -->
+<div class="modal fade" tabindex="-1" role="selec-punto-entrega-modal" id="selec-punto-entrega-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Seleccione un punto de entrega</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let p of puntos" (click)="selecPuntoEntrega(p.nombre, p.direccion)"><b>{{p.nombre}}</b>: {{p.direccion}}</li>
+        </ul>
+          
+      </div>
+
+      
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+
+
+    </div>
+  </div>
+</div>

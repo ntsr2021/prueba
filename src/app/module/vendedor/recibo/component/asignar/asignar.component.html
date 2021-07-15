@@ -1,0 +1,42 @@
+<!-- Modal asignar pedido -->
+<div class="modal fade" tabindex="-1" role="asignar-modal" id="asignar-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Asignar pedido</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form id="asignar-form">
+	      <div class="modal-body">
+
+	      	<!-- <div class="text-center mb-3">
+	      		<span class="fa fa-user modal-icon"></span>
+	      	</div> -->
+
+	        <div class="form-group">
+	          <div class="input-group">
+	            <div class="input-group-prepend">
+	              <span class="input-group-text">Vendedor</span>
+	            </div>
+	            <select class="form-control" name="vendedor" [(ngModel)]="vendedor">
+	            	<option value="null"></option>
+	            	<option *ngFor="let vend of vendedores" value="{{vend.id_user}}">{{vend.username}}</option>
+	            </select>
+	          </div>
+	          <label class="error error-label" id="vendedor-error" for="vendedor"></label>
+	        </div> 
+	          
+	      </div>
+
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+	        <button type="submit" class="btn btn-primary" (click)="asignar()">Asignar</button>
+	      </div>
+      </form>
+
+    </div>
+  </div>
+</div>

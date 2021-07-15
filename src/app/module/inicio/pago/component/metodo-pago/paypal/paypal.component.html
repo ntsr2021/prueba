@@ -1,0 +1,38 @@
+
+<div class="container">
+
+	<div class="row">
+		<div class="col-md-8 offset-md-2">
+			
+
+			<div class="form-group">
+			  <div class="input-group">
+			    <div class="input-group-prepend">
+			      <div class="input-group-text">Monto a cancelar ($)</div>
+			    </div>
+			    <input class="form-control" readonly="" name="monto_dol" value="{{formatoMoneda.setFormato(total$())}}">
+			  </div>
+			</div>
+
+
+			<!-- Alerta de cobro de comision -->
+			<div class="alert alert-warning text-center" role="alert">
+				Tenga en cuenta que, se sumara una cantidad adicional de <b>${{calcularComision()}}</b> al monto a pagar por comisión de PayPal.
+			</div>
+
+
+			<div id="smart-button-container">
+			  <div style="text-align: center;">
+			    <div id="paypal-button-container"></div>
+			  </div>
+			</div>
+
+
+			<div class="text-right">
+			  <button type="button" class="btn btn-primary" (click)="anterior()">Anterior</button>
+			</div>
+
+		</div>
+	</div>
+
+</div>

@@ -1,0 +1,621 @@
+<div class="container" *ngIf="recibo != null">
+
+  <h3 class="text-center pt-4 mb-4" >RECIBO DE COMPRA <b>{{recibo.codigo}}</b></h3>
+
+  <!-- Datos personales, entrega y pago -->
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+
+      <div>
+        <a class="btn btn-secondary mb-3" href="" routerLink="../../../">Volver</a>
+        <button class="btn btn-warning" style="float: right;" (click)="generarRecibo(recibo.id_recibo)"><i class="fas fa-file-pdf"></i> Descargar en PDF</button>
+      </div>
+
+      <!-- Fecha y hora de solicitud -->
+      <div class="card mb-3">
+        <div class="card-body">
+          
+
+          <h5>Fecha y hora de solicitud</h5>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Fecha</div>
+              </div>
+              <input class="form-control" name="nombre" value="{{recibo.fecha}}" readonly=""> 
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Hora</div>
+              </div>
+              <input class="form-control" name="nombre" value="{{recibo.hora}}" readonly=""> 
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Cliente -->
+      <div class="card mb-3">
+        <div class="card-body">
+
+          <h5>Cliente</h5>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Nombre</div>
+              </div>
+              <input class="form-control" readonly="" value="{{recibo.nombre.toUpperCase()}} {{recibo.apellido.toUpperCase()}}" name="">
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-sm-3 form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">Tipo</div>
+                </div>
+                <input class="form-control" readonly="" value="{{recibo.tipo_doc.toUpperCase()}}" name="">
+              </div>
+            </div>
+            <div class="col-sm-9 form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">Documento</div>
+                </div>
+                <input class="form-control" readonly="" value="{{recibo.doc}}" name=""> 
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Teléfono</div>
+              </div>
+              <input class="form-control" readonly="" value="{{recibo.telefono}}" name="">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Correo</div>
+              </div>
+              <input class="form-control" readonly="" value="{{recibo.correo.toUpperCase()}}" name="">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Dirección</div>
+              </div>
+              <textarea class="form-control" readonly="" name="">{{recibo.cli_direccion.toUpperCase()}}</textarea>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- Entrega -->
+      <div class="card mb-3">
+        <div class="card-body">
+
+          <h5>Entrega</h5>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Tipo de entrega</div>
+              </div>
+              <input class="form-control" readonly="" value="PICK UP" name="" *ngIf="recibo.tipo == 'pick_up';else delivery">
+              <ng-template #delivery>
+                <input class="form-control" readonly="" value="DELIVERY" name="">
+              </ng-template>
+            </div>
+          </div>
+
+          <div class="form-group" *ngIf="recibo.tipo == 'pick_up'">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Punto de entrega</div>
+              </div>
+              <select class="form-control" readonly="">
+                <option value="">{{recibo.punto_entrega.toUpperCase()}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- Forma Pago -->
+      
+      <!-- Pago unico -->
+      <div *ngIf="pagos.length == 1 ; else mixto">
+        
+      <div class="card mb-3">
+      <div class="card-body">
+
+        <h5>Pago</h5>
+
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Tasa del dólar</div>
+            </div>
+            <input class="form-control" readonly="" value="Bs. {{formatoMoneda.setFormato(recibo.tasa_dolar.toFixed(2))}}">
+          </div>
+        </div>
+        <br>
+
+
+        <div class="form-group" *ngIf="pagos.length == 1 ; else mixto">
+          <div class="input-group" [ngSwitch]="pagos[0].forma_pago">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Forma de pago</div>
+            </div>
+
+              <input *ngSwitchCase="'tran_dol'" class="form-control" readonly="" value="TRANSFERENCIA EN DOLARES">
+              <input *ngSwitchCase="'tran_bs'" class="form-control" readonly="" value="TRANSFERENCIA EN BOLIVARES">
+              <input *ngSwitchCase="'divisa'" class="form-control" readonly="" value="DIVISA">
+              <input *ngSwitchCase="'pago_movil'" class="form-control" readonly="" value="PAGO MOVIL">
+              <input *ngSwitchCase="'gift_card'" class="form-control" readonly="" value="GIFT CARD">
+              <input *ngSwitchCase="'paypal'" class="form-control" readonly="" value="PAYPAL">
+      
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Monto cancelado</div>
+            </div>
+            
+            <input class="form-control" readonly="" value="$ {{formatoMoneda.setFormato(total$())}}" *ngIf="pagos[0].forma_pago == 'tran_dol' || pagos[0].forma_pago == 'divisa' || pagos[0].forma_pago == 'gift_card' || pagos[0].forma_pago == 'paypal'; else moneda_pago_unico">
+            <ng-template #moneda_pago_unico>
+              <input class="form-control" readonly="" value="Bs {{formatoMoneda.setFormato(totalBs())}}">
+            </ng-template>
+
+          </div>
+        </div>
+
+
+        <div *ngIf="pagos[0].forma_pago == 'tran_dol' || pagos[0].forma_pago == 'tran_bs' || pagos[0].forma_pago == 'pago_movil'">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Titular</div>
+              </div>
+              <input class="form-control" readonly="" value="{{pagos[0].nombre_titular.toUpperCase()}}">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3 form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">Tipo</div>
+                </div>
+                <input class="form-control" readonly="" value="{{pagos[0].tipo_doc_titular.toUpperCase()}}" name="">
+              </div>
+            </div>
+            <div class="col-sm-9 form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">Documento</div>
+                </div>
+                <input class="form-control" readonly="" value="{{pagos[0].doc_titular}}" name=""> 
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Referencia</div>
+              </div>
+              <input class="form-control" readonly="" value="{{pagos[0].referencia}}">
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Forma de pago en dolares -->
+        <div *ngIf="pagos[0].forma_pago == 'divisa'">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Denominación del o de los billetes</div>
+              </div>
+              <textarea class="form-control" readonly="">{{pagos[0].descripcion_billete.toUpperCase()}}</textarea>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Forma de pago gift card -->
+        <div *ngIf="pagos[0].forma_pago == 'gift_card'">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Código Gift Card</div>
+              </div>
+              <input class="form-control" readonly="" value="{{pagos[0].referencia}}">
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Forma de pago paypal -->
+        <div *ngIf="pagos[0].forma_pago == 'paypal'">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Referencia</div>
+              </div>
+              <input class="form-control" readonly="" value="{{pagos[0].referencia}}">
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+      </div>
+
+      </div>
+
+      <!--/ Pago unico -->
+      
+
+      <!-- Pago mixto -->
+      <ng-template #mixto>
+
+      <div class="card mb-3">
+      <div class="card-body">
+
+        <h5>Pago (MIXTO)</h5>
+
+
+        <!-- Tasa dolar -->
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Tasa del dólar</div>
+            </div>
+            <input class="form-control" readonly="" value="Bs. {{formatoMoneda.setFormato(recibo.tasa_dolar.toFixed(2))}}">
+          </div>
+        </div>
+        <br>
+
+        <!-- Primer metodo de pago -->
+        <h5>Primer método de pago</h5>
+
+        <div class="form-group">
+          <div class="input-group" [ngSwitch]="pagos[0].forma_pago">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Forma de pago</div>
+            </div>
+
+              <input *ngSwitchCase="'tran_dol'" class="form-control" readonly="" value="TRANSFERENCIA EN DOLARES">
+              <input *ngSwitchCase="'tran_bs'" class="form-control" readonly="" value="TRANSFERENCIA EN BOLIVARES">
+              <input *ngSwitchCase="'divisa'" class="form-control" readonly="" value="DIVISA">
+              <input *ngSwitchCase="'pago_movil'" class="form-control" readonly="" value="PAGO MOVIL">
+              <input *ngSwitchCase="'gift_card'" class="form-control" readonly="" value="GIFT CARD">
+              <input *ngSwitchCase="'paypal'" class="form-control" readonly="" value="PAYPAL">
+      
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Monto cancelado</div>
+            </div>
+            
+            <input class="form-control" readonly="" value="$ {{formatoMoneda.setFormato(pagos[0].monto.toFixed(2))}}" 
+            *ngIf="
+              pagos[0].forma_pago == 'tran_dol' || 
+              pagos[0].forma_pago == 'divisa' || 
+              pagos[0].forma_pago == 'gift_card' ||
+              pagos[0].forma_pago == 'paypal'; 
+
+              else moneda_mixto1">
+
+            <ng-template #moneda_mixto1>
+              <input class="form-control" readonly="" value="Bs {{formatoMoneda.setFormato(pagos[0].monto.toFixed(2))}}">
+            </ng-template>
+
+          </div>
+        </div>
+
+        <div *ngIf="pagos[0].forma_pago == 'tran_dol' || pagos[0].forma_pago == 'tran_bs' || pagos[0].forma_pago == 'pago_movil'">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Titular</div>
+              </div>
+              <input class="form-control" readonly="" value="{{pagos[0].nombre_titular.toUpperCase()}}">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3 form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">Tipo</div>
+                </div>
+                <input class="form-control" readonly="" value="{{pagos[0].tipo_doc_titular.toUpperCase()}}" name="">
+              </div>
+            </div>
+            <div class="col-sm-9 form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">Documento</div>
+                </div>
+                <input class="form-control" readonly="" value="{{pagos[0].doc_titular}}" name=""> 
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Referencia</div>
+              </div>
+              <input class="form-control" readonly="" value="{{pagos[0].referencia}}">
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Forma pago divisa -->
+        <div *ngIf="pagos[0].forma_pago == 'divisa'">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Denominación del o de los billetes</div>
+              </div>
+              <textarea class="form-control" readonly="">{{pagos[0].descripcion_billete.toUpperCase()}}</textarea>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Forma de pago gift card -->
+        <div *ngIf="pagos[0].forma_pago == 'gift_card'">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Código Gift Card</div>
+              </div>
+              <input class="form-control" readonly="" value="{{pagos[0].referencia}}">
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Forma de pago paypal -->
+        <div *ngIf="pagos[0].forma_pago == 'paypal'">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Referencia</div>
+              </div>
+              <input class="form-control" readonly="" value="{{pagos[0].referencia}}">
+            </div>
+          </div>
+        </div>
+
+
+        <!--/ Primer metodo de pago -->
+
+
+        <!-- Segundo metodo de pago -->
+        <h5 class="mt-4">Segundo método de pago</h5>
+
+        <div class="form-group">
+          <div class="input-group" [ngSwitch]="pagos[1].forma_pago">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Forma de pago</div>
+            </div>
+
+              <input *ngSwitchCase="'tran_dol'" class="form-control" readonly="" value="TRANSFERENCIA EN DOLARES">
+              <input *ngSwitchCase="'tran_bs'" class="form-control" readonly="" value="TRANSFERENCIA EN BOLIVARES">
+              <input *ngSwitchCase="'divisa'" class="form-control" readonly="" value="DIVISA">
+              <input *ngSwitchCase="'pago_movil'" class="form-control" readonly="" value="PAGO MOVIL">
+              <input *ngSwitchCase="'gift_card'" class="form-control" readonly="" value="GIFT CARD">
+              <input *ngSwitchCase="'paypal'" class="form-control" readonly="" value="PAYPAL">
+      
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Monto cancelado</div>
+            </div>
+
+            <input class="form-control" readonly="" value="$ {{formatoMoneda.setFormato(pagos[1].monto.toFixed(2))}}" 
+            *ngIf="
+            pagos[1].forma_pago == 'tran_dol' || 
+            pagos[1].forma_pago == 'divisa' || 
+            pagos[1].forma_pago == 'gift_card' ||
+            pagos[1].forma_pago == 'paypal'; 
+
+            else moneda_mixto2">
+
+            <ng-template #moneda_mixto2>
+              <input class="form-control" readonly="" value="Bs {{formatoMoneda.setFormato(pagos[1].monto.toFixed(2))}}">
+            </ng-template>
+
+          </div>
+        </div>
+
+        <div *ngIf="pagos[1].forma_pago == 'tran_dol' || pagos[1].forma_pago == 'tran_bs' || pagos[1].forma_pago == 'pago_movil'">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Titular</div>
+              </div>
+              <input class="form-control" readonly="" value="{{pagos[1].nombre_titular.toUpperCase()}}">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3 form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">Tipo</div>
+                </div>
+                <input class="form-control" readonly="" value="{{pagos[1].tipo_doc_titular.toUpperCase()}}" name="">
+              </div>
+            </div>
+            <div class="col-sm-9 form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">Documento</div>
+                </div>
+                <input class="form-control" readonly="" value="{{pagos[1].doc_titular}}" name=""> 
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Referencia</div>
+              </div>
+              <input class="form-control" readonly="" value="{{pagos[1].referencia}}">
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Forma de pago divisa -->
+        <div *ngIf="pagos[1].forma_pago == 'divisa'">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Denominación del o de los billetes</div>
+              </div>
+              <textarea class="form-control" readonly="">{{pagos[1].descripcion_billete.toUpperCase()}}</textarea>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Forma de pago gift card -->
+        <div *ngIf="pagos[1].forma_pago == 'gift_card'">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Código Gift Card</div>
+              </div>
+              <input class="form-control" readonly="" value="{{pagos[1].referencia}}">
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Forma de pago paypal -->
+        <div *ngIf="pagos[1].forma_pago == 'paypal'">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Referencia</div>
+              </div>
+              <input class="form-control" readonly="" value="{{pagos[1].referencia}}">
+            </div>
+          </div>
+        </div>
+
+        <!--/ Segundo metodo de pago -->
+
+      </div>
+      </div>
+      
+
+      </ng-template>  
+      <!--/ Pago mixto -->
+
+          
+      <!-- / Forma de pago -->    
+          
+
+    </div>
+  </div>
+  <!--/ Datos personales, entrega y pago -->
+
+
+  
+  <div class="row mt-3 mb-2">
+    <div class="col-md-10 offset-md-1">
+      
+      <h4 class="text-center"><b>PRODUCTOS</b></h4>
+
+      <!-- Productos comprados -->
+      <div class="mat-elevation-z8 mb-5" id="tabla" *ngIf="productos != null">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort #tabla1 style="width: 100%" id="table-recibo-consulta">
+
+          <ng-container matColumnDef="codigo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>
+            <td mat-cell *matCellDef="let pro"> {{pro.codigo}} </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+          </ng-container>
+
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+            <td mat-cell *matCellDef="let pro"> {{pro.nombre}} </td>
+            <td mat-footer-cell *matFooterCellDef><b>TOTAL</b></td>
+          </ng-container>
+
+          <ng-container matColumnDef="cantidad">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </th>
+            <td mat-cell *matCellDef="let pro"> {{pro.cantidad}} </td>
+            <td mat-footer-cell *matFooterCellDef> {{totalCantidad()}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="precio_$">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio ($) </th>
+            <td mat-cell *matCellDef="let pro"> {{formatoMoneda.setFormato((pro.precio*pro.cantidad).toFixed(2))}} </td>
+            <td mat-footer-cell *matFooterCellDef> {{formatoMoneda.setFormato(total$())}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="precio_bs">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio (Bs) </th>
+            <td mat-cell *matCellDef="let pro"> {{formatoMoneda.setFormato((pro.precio*dolar*pro.cantidad).toFixed(2))}} </td>
+            <td mat-footer-cell *matFooterCellDef> {{formatoMoneda.setFormato(totalBs())}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+          <tr mat-footer-row *matFooterRowDef="columnas"></tr>
+        </table>
+        
+      </div>
+      <!--/ Productos comprados -->
+
+    </div>
+  </div>
+
+
+
+  
+
+</div>
+
+
+<app-generar-recibo #generar_recibo></app-generar-recibo>

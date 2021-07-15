@@ -1,0 +1,44 @@
+#multimax-nav {
+  background: black;
+  padding-bottom: 10px;
+}
+
+
+
+#multimax-buscador-form {
+  width: 100% !important;
+}
+
+#multimax-buscador-content {
+  width: 100% !important
+}
+
+#multimax-buscador-group {
+  width: 100% !important
+}
+
+
+
+#multimax-buscador-input {
+  background: #e9ecef;
+  color: black;
+  border: none;
+  padding: 20px;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px
+}
+
+#multimax-buscador-icon-content {
+  border-top-right-radius: 25px !important;
+  border-bottom-right-radius: 25px !important;
+  background: #e9ecef;
+  border: none
+}
+
+#multimax-buscador-icon {
+  font-size: 25px
+}
+#multimax-buscador-icon:hover {
+  color: blue;
+  cursor: pointer
+}

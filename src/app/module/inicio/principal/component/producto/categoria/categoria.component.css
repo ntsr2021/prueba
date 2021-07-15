@@ -1,0 +1,9 @@
+/* Filtro semillero */
+.filtro-semillero {
+  color: #2cb0c8;
+}
+
+.filtro-semillero:hover {
+  color: #2594a8;
+  cursor: pointer;
+}

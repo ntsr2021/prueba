@@ -1,0 +1,123 @@
+<div id="wrapper">
+
+  <div id="page-top"></div>
+
+
+  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="cliente-menu-lateral" style="background: #202020 !important">
+
+    <a class="sidebar-brand" style="color: white !important">
+      <div class="sidebar-brand-icon">
+        <span class="fa fa-user" style="font-size: 40px"></span>
+      </div><br>
+      <div class="sidebar-brand-text mx-3" style="position: relative;top: -20px">
+        <span>Mi cuenta</span>
+      </div>
+    </a>
+
+    <hr class="sidebar-divider mt-4">
+
+    <li class="nav-item" id="nav-item-pedido">
+      <a class="nav-link" routerLink="recibo" routerLinkActive="nav-item-active">
+        <i class="fas fa-fw fa-home"></i>
+        <span>Pedidos</span></a>
+    </li>
+
+    <li class="nav-item" *ngIf="user != null && user.id_user == 549">
+      <a class="nav-link" routerLink="gift-card" routerLinkActive="nav-item-active">
+        <i class="fas fa-fw fa-gift"></i>
+        <span>Gift Cards</span></a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" id="nav-item-datos" routerLink="datos" routerLinkActive="nav-item-active">
+        <i class="fas fa-fw fa-list"></i>
+        <span>Mis datos</span></a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" routerLink="seguridad" routerLinkActive="nav-item-active">
+        <i class="fa fa-money"></i>
+        <span>Seguridad</span></a>
+    </li>
+
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Flecha reducir navbar -->
+    <div class="text-center d-none d-md-inline">
+      <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+  </ul>
+
+  <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+
+      <!-- Menu superior -->
+      <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+          <i class="fa fa-bars"></i>
+        </button>
+        
+        
+        <span *ngIf="cliente != null">¡Bienvenido <b>{{cliente.nombre}} {{cliente.apellido}}</b>!</span>    
+
+        
+        <ul class="navbar-nav ml-auto">
+
+
+          <!-- NOTIFICACIONES -->
+          <li class="nav-item dropdown no-arrow mx-1">
+            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="desacNotificaciones()">
+              <i class="fas fa-bell fa-fw" style="font-size: 25px"></i>
+              <!-- Counter - Alerts -->
+              <span class="badge badge-danger badge-counter" *ngIf="contNotNuevas != null && contNotNuevas != 0">{{contNotNuevas}}+</span>
+            </a>
+
+
+            <!-- Consultar notificaciones -->
+            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown" style="overflow-y: scroll;height: 315px">
+              <h6 class="dropdown-header">
+                Notificaciones
+              </h6>
+
+              <a class="dropdown-item d-flex align-items-center" href="#" *ngFor="let not of notificaciones" routerLink="{{not.redirect_to}}">
+                <div class="mr-3">
+                  <div class="icon-circle bg-info">
+                    <i class="fa-fw fas fa-clipboard text-white"></i>
+                  </div>
+                </div>
+                <div>
+                  <div class="small text-gray-500">
+                    {{formatoFecha.fechaSoloNumeros(not.fecha.split(' ')[0])}}
+                    {{formatoFecha.hora(not.fecha.split(' ')[1])}}
+                  </div>
+
+                  {{not.accion}} 
+                </div>
+              </a>
+
+              <!-- <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar todas</a> -->
+            </div>
+          </li>
+          <!-- / NOTIFICACIONES -->
+
+
+          <div class="topbar-divider d-none d-sm-block"></div>
+          <li class="dropdown no-arrow">
+            <a class="dropdown-item mt-3" (click)="salir()" style="color: black;cursor: pointer">
+              <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+              Salir
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+
+      <div class="container-fluid">
+        <router-outlet></router-outlet>
+      </div>
+
+
+    </div>
+  </div>
+</div>

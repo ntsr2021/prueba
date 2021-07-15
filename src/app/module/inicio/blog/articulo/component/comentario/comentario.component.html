@@ -1,0 +1,112 @@
+<div class="row">
+	<div class="col-lg-9">
+		
+		<h3 class="mt-5 mb-3">Comentarios <span *ngIf="cantComent != 0">{{cantComent}}</span></h3>
+
+
+
+		<!-- Consulta de comentarios -->
+		<div class="comentario" *ngFor="let com of comentarios">
+			
+			<mat-card class="example-card mb-4" >
+			  <div class="row">
+			  	
+			  	<!-- Icono del comentario -->
+			  	<div class="col-md-2">
+			  		<span class="fa fa-user comentario-icon text-secondary"></span>
+			  	</div>
+
+			  	<!-- Cuerpo del comentario -->
+			  	<div class="col-md-10">
+			  		<span class="nombre">{{com.autor}}</span><br>
+			  		<small class="text-secondary">{{establecerFormatoFecha(com.fecha)}}</small><br>
+			  		<p>{{com.comentario}}</p>
+
+			  		<button class="btn btn-sm btn-responder" (click)="responder($event, com.id_articulo_blog_coment)">Responder</button>
+			  	</div>
+
+			  </div>
+			</mat-card>
+
+
+			<!-- Comentarios de respuesta a la primera fila de comentarios -->
+			<div class="comentario ml-4" *ngFor="let comRes1 of com.coment_respuesta">
+				
+				<mat-card class="example-card mb-4" >
+				  <div class="row">
+				  	
+				  	<!-- Icono del comentario -->
+				  	<div class="col-md-2">
+				  		<span class="fa fa-user comentario-icon text-secondary"></span>
+				  	</div>
+
+				  	<!-- Cuerpo del comentario -->
+				  	<div class="col-md-10">
+				  		<span class="nombre">{{comRes1.autor}}</span><br>
+				  		<small class="text-secondary">{{establecerFormatoFecha(comRes1.fecha)}}</small><br>
+				  		<p>{{comRes1.comentario}}</p>
+
+				  		<button class="btn btn-sm btn-responder" (click)="responder($event, comRes1.id_articulo_blog_coment)">Responder</button>
+				  	</div>
+
+				  </div>
+				</mat-card>
+
+
+
+				<!-- Comentarios de respuesta a la segunda fila de comentarios -->
+				<div class="comentario ml-4" *ngFor="let comRes2 of comRes1.coment_respuesta">
+					
+					<mat-card class="example-card mb-4" >
+					  <div class="row">
+					  	
+					  	<!-- Icono del comentario -->
+					  	<div class="col-md-2">
+					  		<span class="fa fa-user comentario-icon text-secondary"></span>
+					  	</div>
+
+					  	<!-- Cuerpo del comentario -->
+					  	<div class="col-md-10">
+					  		<span class="nombre">{{comRes2.autor}}</span><br>
+					  		<small class="text-secondary">{{establecerFormatoFecha(comRes2.fecha)}}</small><br>
+					  		<p>{{comRes2.comentario}}</p>
+					  	</div>
+
+					  </div>
+					</mat-card>
+
+				</div>
+				<!--/ Comentarios de respuesta a la tercera fila de comentarios -->
+
+
+
+			</div>
+			<!--/ Comentarios de respuesta a la primera fila de comentarios -->
+			
+
+		</div>
+		<!--/ Consulta de comentarios -->
+
+
+
+
+
+		<!-- Comentar -->
+		<form class="mt-4" id="comentario-form">
+			
+			<div class="form-group">
+				<span class="form-label">Escribe un comentario</span>
+				<textarea class="form-control" rows="5" name="comentario" [(ngModel)]="comentario.comentario"></textarea>
+				<label class="error error-label" id="comentario-error" for="comentario"></label><br>
+
+				<button type="submit" class="btn btn-primary" (click)="comentar()">Comentar</button>
+
+				<br><br>
+				<span *ngIf="user == null">Si no tienes cuenta regístrate <a routerLink="./../../../cuenta" *ngIf="sugerirRegistro == true">aquí</a></span>
+			</div>
+
+		</form>
+
+	</div>
+</div>
+

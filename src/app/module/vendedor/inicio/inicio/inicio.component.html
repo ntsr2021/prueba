@@ -1,0 +1,92 @@
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Tablero</h1>
+</div>
+
+<!-- Content Row -->
+<div class="row">
+
+  <!-- Contador de recibos -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-secondary shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Ventas</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800 vend-cont-total">{{totalVentas}}</div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-clipboard fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contador de productos -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-secondary shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Ganancia</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800 vend-cont-total" *ngIf="totalGanancia != null">$. {{formatoMoneda.setFormato(totalGanancia.toFixed(2))}}</div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-chart-line fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contador de productos -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-secondary shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Clientes</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800 vend-cont-total">{{totalClientes}}</div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-users fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contador de tiendas -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-secondary shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">PRODUCTOS VENDIDOS</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800 vend-cont-total">{{totalProdVendidos}}</div>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-fw fa-list fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+
+
+<!-- Banner -->
+<div class="row mt-5">
+  
+  <div class="col-md-12 text-center">
+    <!-- <img src="assets/img/slider/slider-1.jpg" style="width: 100%;border-radius: 3px;"> -->
+
+    <span class="fas fa-users" style="font-size: 200px;color: #d0d0d0"></span>
+    <h3 class="mt-3" style="color: #a0a0a0">¡Bienvenido(a) al sistema!</h3>
+  </div>
+
+</div>

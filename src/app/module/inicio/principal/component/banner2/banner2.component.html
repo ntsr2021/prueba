@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-1">
+      <div class="container demo-1 mt-3">
+        <div class="main">
+
+
+          <!-- Consultar marcas -->
+          <ul id="carousel" class="elastislide-list text-center" *ngIf="banners != null">
+            <li *ngFor="let ban of banners">
+
+              <!-- Redireccionar segun la categoria a la que apunta el banner -->
+              <a routerLink="/../../categoria/{{ban.id_departamento1}},{{ban.id_departamento2}},{{ban.id_departamento3}}">
+                <img src="assets/img/banner/marca/{{ban.foto}}" alt="Marca">
+              </a>
+
+
+            </li>
+          </ul>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

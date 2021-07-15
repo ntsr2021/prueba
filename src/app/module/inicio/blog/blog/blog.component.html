@@ -1,0 +1,119 @@
+<div class="container">
+  
+  <h2 class="text-center mb-4 mt-4" id="blog-title">BLOG</h2>
+  
+
+  <!-- Bienvenida -->
+  <div class="row">
+
+    <div class="col-lg-6 mb-2">
+      <img src="assets/img/blog/banner/banner.jpg" id="banner-bienvenida">
+    </div>
+
+    <div class="col-lg-6">
+      <h4>¡Te damos la bienvenida al Blog NTS Store!</h4>
+      <p class="text-justify">
+        En este espacio ofreceremos los más interesantes artículos, las más deliciosas recetas, reseñas interesantes e informaciones curiosas y de interés con respecto a todos nuestros productos, nuestra Tienda Online y todo lo que tenemos disponible para ti; con todo el contenido acá publicado disfrutarás, aprenderás y tendrás una buena lectura asegurada. Te invitamos a no perderte nada y que te unas a la interacción dejando tus comentarios en cada entrada.
+      </p>
+    </div>
+    
+  </div>
+  
+  <hr/>
+
+
+  <!-- Buscador -->
+  <div class="row mt-5">
+    <div class="offset-lg-3 offset-md-2 col-lg-6 col-md-8">
+      <form>
+        <div class="form-inline">
+          <div class="input-group w-100">
+
+            <!-- Input -->
+            <input class="form-control" placeholder="Buscar articulo..." autocomplete="off" name="busquedad" id="buscador-input" 
+            [(ngModel)]="buscador.busquedad" (keyup)="consArticulosInicio()">
+
+            <!-- Lupa -->
+            <div class="input-group-prepend">
+              <div class="input-group-text" id="buscador-icon">   
+                <i class="fa fa-search"></i>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+
+
+  <!-- Articulos -->
+  <div id="blog-articulos">
+    
+
+    <!-- Se muestra cuando el servidor responde -->
+    <div *ngIf="articulos != null; else espere"> 
+
+
+      <!-- Si existen articulos -->
+      <div class="row mb-5" *ngIf="articulos != false; else vacio"> 
+        <div class="col-lg-4 col-md-6 col-6 mt-4" *ngFor="let art of articulos">
+          <div class="articulo" (click)="verDetalles(art.id_articulo_blog)">
+
+            <!-- Foto -->
+            <div class="art-header" style="outline: none !important">
+              <img src="assets/img/blog/{{art.img}}.jpg" class="art-img">
+            </div>
+
+            <!-- Contenido -->
+            <div class="art-body mt-2 mb-4">
+              <h5 class="mt-1">{{art.titulo}}</h5>
+              <small class="text-secondary"><b>{{art.fecha}}</b></small>
+              <p class="texto-resumen">{{art.descripcion}}</p> <!-- Limita el texto de la descripcion a una linea -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    
+      
+      <!-- Btn consultar mas -->
+      <div class="text-center mb-5" *ngIf="activarConsMasArticulos == true">
+        <button class="btn btn-secondary" id="btn-cons-mas" (click)="consMasArticulos()">
+          Ver mas
+        </button>
+      </div>
+
+
+      <!-- Loading cuando se pulsa el btn de ver mas -->
+      <div class="text-center pb-5 spinner-content" *ngIf="activarSpinner == true">
+        <mat-spinner></mat-spinner>
+      </div>
+
+
+      <!-- No hay articulos -->
+      <ng-template #vacio>
+        <div class="text-center pb-5 mt-4">
+          <span class="far fa-newspaper" id="art-icon-vacio"></span>
+          <h5><b>No hay artículos</b></h5>
+        </div>
+      </ng-template>
+
+    </div>
+    <!--/ Se muestra cuando el servidor responde -->
+
+
+    <!-- Loading mientras se espera respuesta del servidor -->
+    <ng-template #espere>
+      <div class="text-center mt-3 pb-5 spinner-content">
+        <mat-spinner></mat-spinner>
+      </div>
+    </ng-template>
+
+  </div>
+  <!--/ Articulos -->
+
+
+
+</div>

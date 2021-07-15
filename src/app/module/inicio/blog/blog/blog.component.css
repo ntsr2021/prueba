@@ -1,0 +1,116 @@
+@media screen and (max-width: 990px) {
+  #blog-title {
+    margin-top: -235px !important;
+  }
+}
+
+#banner-bienvenida {
+  width: 100%;
+  height: auto
+}
+
+
+/* Buscador */
+
+#buscador-input {
+  background: #e9ecef;
+  color: black;
+  border: none;
+  padding: 20px;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px
+}
+
+#buscador-icon {
+  border-top-right-radius: 25px !important;
+  border-bottom-right-radius: 25px !important;
+  background: #e9ecef;
+  border: none
+}
+
+#buscador-icon i {
+  font-size: 25px
+}
+
+#buscador-icon i:hover {
+  color: blue;
+  cursor: pointer
+}
+
+
+
+/* Articulo */
+
+.articulo {
+  background: white;
+  overflow: hidden;
+  transform: scale(1);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+.articulo:hover {
+  box-shadow: 0px 0px 10px 2px #b0b0b0;
+  transform: scale(1.030) 
+}
+
+.art-body {
+  padding: 15px
+}
+
+.art-icon-star {
+  float: right;
+  font-size: 20px
+}
+
+.art-img {
+  width: 100% !important;
+  height: auto !important;
+  padding: 10px;
+  outline: 0 !important;
+  cursor: pointer;
+}
+
+.art-btn-detalle {
+  position: absolute;
+  left: 10%;
+  top: 220px;
+  display: block; 
+  opacity: 0;
+  width: 80%;
+  margin: auto;
+  border-radius: 0 !important;
+  background: #BDBDBD !important;
+  color: black !important;
+  transition: opacity .5s ease-in-out;
+}
+
+.art-btn-detalle:hover {
+  background: #dbcc8f !important;
+  color: white !important
+}
+
+.articulo:hover .art-btn-detalle {
+  opacity: 1;
+}
+
+#art-icon-vacio {
+  font-size: 150px;
+}
+
+
+/* Loading pagina */
+
+.spinner-content {
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+
+/* Reducir el texto de la descripcion a una linea */
+
+.texto-resumen {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden
+}

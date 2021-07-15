@@ -1,0 +1,34 @@
+<form id="pago-gift-card">
+
+	<div class="form-group">
+	  <div class="input-group">
+	    <div class="input-group-prepend">
+	      <div class="input-group-text">Monto a cancelar ($)</div>
+	    </div>
+	    <input class="form-control" readonly="" name="monto_dol" value="{{formatoMoneda.setFormato(total$())}}">
+	  </div>
+	</div>
+
+
+	<div class="form-group">
+	  <div class="input-group">
+	    <div class="input-group-prepend">
+	      <div class="input-group-text">Código Gift Card</div>
+	    </div>
+	    <input class="form-control" name="codigo" [(ngModel)]="pago.referencia">
+	  </div>
+	  <label class="error error-label" id="codigo-error" for="codigo"></label>
+	</div>
+
+
+	<div class="alert alert-info text-center" role="alert">
+	  Al finalizar la compra, el saldo de su Gift Card sera descontado automaticamente segun el monto a cancelar.
+	</div>
+
+
+	<div class="text-right">
+	  <button type="button" class="btn btn-primary mr-3" (click)="anterior()">Anterior</button>
+	  <button type="submit" class="btn btn-primary" (click)="finalizar()">Finalizar</button>
+	</div>
+
+</form>

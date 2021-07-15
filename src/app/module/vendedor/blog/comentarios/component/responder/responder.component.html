@@ -1,0 +1,51 @@
+<!-- Modal responder -->
+
+<div class="modal fade" tabindex="-1" role="responder-modal" id="responder-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Responder a <b *ngIf="comentario.receptor != null">{{comentario.receptor}}</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form id="responder-form">
+        <div class="modal-body">
+
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Comentario</span>
+              </div>
+              <textarea rows="3" readonly="" class="form-control" name="coment_receptor" [(ngModel)]="comentario.coment_receptor"></textarea>
+            </div>
+            <label class="error error-label" id="coment_receptor-error" for="coment_receptor"></label>
+          </div> 
+
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Respuesta</span>
+              </div>
+              <textarea rows="3" class="form-control" name="comentario" [(ngModel)]="comentario.comentario"></textarea>
+            </div>
+            <label class="error error-label" id="comentario-error" for="comentario"></label>
+          </div>
+            
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary" (click)="responder()">Comentar</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- / Modal responder -->

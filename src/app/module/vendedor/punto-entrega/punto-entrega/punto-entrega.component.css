@@ -1,0 +1,11 @@
+.a-opc {
+	cursor: pointer;
+	color: blue
+}
+@media only screen and (max-width: 991px) {
+  #table-recibo {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+  }
+}

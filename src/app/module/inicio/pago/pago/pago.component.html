@@ -1,0 +1,90 @@
+<div class="container-fluid mt-5 mb-5" id="pago-content">
+
+	<app-limite-tiempo></app-limite-tiempo>
+	
+	<h2 class="text-center mb-4" style="padding-top: 30px">REALIZAR COMPRA</h2>
+
+	<div> <!-- Boton cancelar pago -->
+		<button class="btn btn-secondary" routerLink="">Cancelar compra</button>
+	</div>
+	
+
+	<!-- Fila contenedor pago y resumen -->
+	<div class="row">
+		
+		<!-- Contenedor de pago -->
+		<div class="col-lg-8 order-lg-1 order-12">
+		<div class="mt-2 stepper">
+			
+			<!-- Pasos stepper -->
+			<div class="row" >
+				
+				<div class="col-4">
+					<h6 class="stepper-item stepper-item-active" id="stepper-item-1" data-target="#stepper-content-1"> 
+						<span class="stepper-cont">1</span> 
+						<span class="stepper-item-text">Datos personales</span>
+					</h6>
+				</div>
+
+				<div class="col-4 text-center">
+					<h6 class="stepper-item" id="stepper-item-2" data-target="#stepper-content-2">
+						<span class="stepper-cont">2</span> 
+						<span class="stepper-item-text">Metodo de entrega</span>
+					</h6>
+				</div>
+
+				<div class="col-4 text-right">
+					<h6 class="stepper-item" id="stepper-item-3" data-target="#stepper-content-3">
+						<span class="stepper-cont">3</span> 
+						<span class="stepper-item-text">Pago</span>
+					</h6>
+				</div>
+
+			</div>
+			
+			<hr class="stepper-hr">
+
+
+			<!-- Content stepper -->
+
+			<div class="container" id="stepper-content">
+
+				<div id="stepper-content-1">
+					<app-datos></app-datos>
+				</div>
+
+				<div id="stepper-content-2" style="display: none;">
+					<app-metodo-entrega (metodoEntregaEvent)="metodoEntrega($event)"></app-metodo-entrega>
+				</div>
+
+				<div id="stepper-content-3" style="display: none;">
+					<app-metodo-pago [metodo_entrega]="metodo_entrega"></app-metodo-pago>
+				</div>
+
+			</div>
+
+	
+		</div>
+		</div>
+		<!--/ Contenedor de pago -->
+
+
+		<!-- Contenedor resumen de compra -->
+		<div class="col-lg-4 order-lg-12 order-1">
+			
+			<div class="stepper mt-2">
+
+				<app-resumen></app-resumen>
+				
+			</div>
+
+		</div>
+
+
+
+	</div>
+	<!--/ Fila contenedor pago y resumen -->
+
+
+	
+</div>

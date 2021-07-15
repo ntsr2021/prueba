@@ -1,0 +1,123 @@
+<div class="container">
+
+	<h3 class="text-center mb-4" style="padding-top: 30px">CARRO DE COMPRA</h3>
+
+
+	<!-- Boton seguir comprando -->
+	<a class="btn btn-info mb-4" routerLink="../">Seguir comprando</a>
+
+	
+	<div class="row" *ngIf="dolar != null">
+		<!-- Mostrar tasa del dolar -->
+		<div class="col-md-6 col-sm-8">
+			<div class="form-group">
+			  <div class="input-group">
+			    <div class="input-group-prepend">
+			      <div class="input-group-text">Tasa del dolar (Bs.)</div>
+			    </div>
+			    <input class="form-control" name="dolar" readonly="" value="{{formatoMoneda.setFormato(dolar.toFixed(2))}}"> 	
+			  </div>
+			</div>
+		</div>
+
+		<!-- Vaciar carrito -->
+		<div class="offset-md-2 col-md-4">
+			<button class="btn btn-secondary" style="float: right;" (click)="vaciar()"><i class="fas fa-cart-arrow-down"></i> Vaciar carrito</button>
+		</div>
+	</div>
+	
+
+	<!-- Tabla productos agregados -->
+	<div class="mat-elevation-z8 mt-2 mb-5" id="tabla">
+	  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 tabla-adaptable" matSort #tabla1 style="width: 100%" id="table-carro">
+
+	  	
+	  	<ng-container matColumnDef="foto">
+	      <th mat-header-cell *matHeaderCellDef mat-sort-header> Foto </th>
+	      <td mat-cell *matCellDef="let pro">
+	        <img class="pro-img" src="assets/img/producto/{{pro.foto_prin}}.jpg">
+	      </td>
+	      <td mat-footer-cell *matFooterCellDef></td>
+	    </ng-container>
+
+
+	  	<ng-container matColumnDef="codigo">
+	  	  <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>
+	  	  <td mat-cell *matCellDef="let pro"> {{pro.codigo}} </td>
+	  	  <td mat-footer-cell *matFooterCellDef></td>
+	  	</ng-container>
+
+	    <ng-container matColumnDef="nombre">
+	      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+	      <td mat-cell *matCellDef="let pro"> {{pro.nombre}} </td>
+	      <td mat-footer-cell *matFooterCellDef> <strong>TOTAL</strong> </td>
+	    </ng-container>
+
+	    <ng-container matColumnDef="precio_dol">
+	      <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio($) </th>
+	      <td mat-cell *matCellDef="let pro"> {{formatoMoneda.setFormato((pro.precio*pro.can_comprar).toFixed(2))}} </td>
+	      <td mat-footer-cell *matFooterCellDef> <strong>{{formatoMoneda.setFormato(total$())}}</strong> </td>
+	    </ng-container>
+
+	    <ng-container matColumnDef="precio_bs">
+	      <th mat-header-cell *matHeaderCellDef mat-sort-header> Precio(Bs) </th>
+	      <td mat-cell *matCellDef="let pro"> {{formatoMoneda.setFormato(((pro.precio*dolar)*pro.can_comprar).toFixed(2))}} </td>
+	      <td mat-footer-cell *matFooterCellDef> <strong>{{formatoMoneda.setFormato(totalBs())}}</strong> </td>
+	    </ng-container>
+
+	    <ng-container matColumnDef="cantidad">
+	      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad </th> <!-- Debe tener controles para poderse modificar -->
+	      <td mat-cell *matCellDef="let pro"> 
+
+	      	<!-- Controles para cambiar cantidad -->
+	      	<div class="btn-group mt-2 mb-3" role="group">
+
+	      	  <!-- Aumentar -->
+	      	  <button type="button" class="btn btn-secondary" (click)="disminuir(pro)"><i class="fas fa-angle-left"></i></button>
+
+	      	  <!-- Numero de la cantidad establecida -->
+	      	  <input class="form-control" readonly="" [(ngModel)]="pro.can_comprar" style="border-radius: 0 !important;width: 70px;text-align: center;">
+
+	      	  <!-- Disminuir -->
+	      	  <button type="button" class="btn btn-secondary" (click)="aumentar(pro)"><i class="fas fa-angle-right"></i></button>
+
+	      	</div>
+
+	      </td>
+	      <td mat-footer-cell *matFooterCellDef></td>
+	    </ng-container>
+
+	    <ng-container matColumnDef="consultar"> <!-- Consultar detalles del producto -->
+	      <th mat-header-cell *matHeaderCellDef></th>
+	      <td mat-cell *matCellDef="let pro"> <a routerLink="../detalle/{{pro.id_producto}}" class="btn btn-primary btn-sm"><i class="fa fa-search"></i></a> </td>
+	      <td mat-footer-cell *matFooterCellDef></td>
+	    </ng-container>
+
+	    <ng-container matColumnDef="eliminar"> <!-- Eliminar -->
+	      <th mat-header-cell *matHeaderCellDef></th>
+	      <td mat-cell *matCellDef="let pro"> <a class="btn btn-danger btn-sm" (click)="eliminar(pro)"><i class="fa fa-remove"></i></a> </td>
+	      <td mat-footer-cell *matFooterCellDef></td>
+	    </ng-container>
+
+
+	    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+	    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+	    <tr mat-footer-row *matFooterRowDef="columnas"></tr>
+	  </table>
+	  
+
+	</div>
+	<!-- /Tabla productos agregados -->
+
+
+
+	<!-- Boton procesar compra -->
+	<div class="text-center">
+		<button class="btn btn-warning btn-lg mb-5" (click)="procesar()"><i class="fa fa-shopping-cart"></i> PROCESAR COMPRA</button>
+	</div>
+
+
+</div>
+
+
+

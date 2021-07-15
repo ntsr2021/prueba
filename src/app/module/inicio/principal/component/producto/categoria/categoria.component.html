@@ -1,0 +1,78 @@
+<div class="container mt-4 mb-5">
+	
+	
+	<div *ngIf="departamento1 != false && departamento2 != false && departamento3 != false">
+		
+		<!-- Titulo de la categoria a consultar -->
+		<h3 class="mt-3 mb-3">
+			
+			<span *ngIf="departamento1 != null && departamento2 == null">
+				{{departamento1}}
+			</span>
+
+			<span *ngIf="departamento2 != null && departamento3 == null">
+				{{departamento2}}
+			</span>
+
+			<span *ngIf="departamento3 != null">
+				{{departamento3}}
+			</span>
+
+		</h3>
+
+
+
+		<!-- Semillero --> 
+		<h6 class="mb-4" *ngIf="departamento2 != null"> <!-- Solo si se ha seleccionado un segundo departamento debe aparecer el semillero -->
+			<b>
+
+				<span *ngIf="departamento1 != null">
+					<span *ngIf="departamento2 == null ; else filtro_interactivo1"> {{departamento1.toUpperCase()}}</span>
+					<ng-template #filtro_interactivo1>
+						<a class="filtro-semillero" (click)="filtrarDep1()"> {{departamento1.toUpperCase()}}</a>
+					</ng-template>
+				</span>
+
+
+				<span *ngIf="departamento2 != null">
+					<span *ngIf="departamento3 == null; else filtro_interactivo2"> / {{departamento2.toUpperCase()}}</span>
+					<ng-template #filtro_interactivo2>
+						<a class="filtro-semillero" (click)="filtrarDep2()"> / {{departamento2.toUpperCase()}}</a>
+					</ng-template>
+				</span>
+
+				
+				<span *ngIf="departamento3 != null"> / {{departamento3.toUpperCase()}}</span>
+
+			</b>
+		</h6>
+		<!--/ Semillero -->
+
+	</div>
+
+	
+
+
+
+
+	<!-- Productos -->
+	<app-producto [productos]="productos"></app-producto>
+
+
+	<!-- Animacion de espera -->
+	<div *ngIf="animEspera == true">
+		<app-spinner></app-spinner>
+	</div>
+
+
+	<!-- Btn consultar mas -->
+	<div class="text-center mb-5 mt-2" *ngIf="activarConsMas == true">
+		<button class="btn btn-secondary" (click)="consProductos()">Ver más</button>
+	</div>
+
+
+</div>
+
+
+<!-- Btn subir scroll -->
+<app-btn-subir-scroll></app-btn-subir-scroll>

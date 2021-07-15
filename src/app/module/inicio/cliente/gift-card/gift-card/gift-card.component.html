@@ -1,0 +1,76 @@
+<div class="container">
+	
+
+	<!-- Titulo -->
+	<div class="text-center">
+		<span class="fas fa-gift" style="font-size: 100px"></span>
+		<h2>Gift Cards</h2>
+	</div>
+
+
+	<!-- Tabla -->
+
+	<mat-form-field>
+	  <mat-label>Buscar</mat-label>
+	  <input matInput (keyup)="filtrar($event)" placeholder="buscar">
+	</mat-form-field>
+
+
+	<div class="mat-elevation-z8 mb-5" id="tabla">
+	  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 tabla-adaptable" matSort #tabla1 style="width: 100%">
+
+	  	<ng-container matColumnDef="codigo">
+	  	  <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>
+	  	  <td mat-cell *matCellDef="let gc"> {{gc.codigo}} </td>
+	  	</ng-container>
+
+	  	<ng-container matColumnDef="titulo">
+	  	  <th mat-header-cell *matHeaderCellDef mat-sort-header> Titulo </th>
+	  	  <td mat-cell *matCellDef="let gc"> {{gc.titulo}} </td>
+	  	</ng-container>
+
+	    <ng-container matColumnDef="saldo">
+	      <th mat-header-cell *matHeaderCellDef mat-sort-header> Saldo </th>
+	      <td mat-cell *matCellDef="let gc"> $ {{formatoMoneda.setFormato(gc.saldo.toFixed(2))}} </td>
+	    </ng-container>
+
+	    <ng-container matColumnDef="fecha_creacion">
+	      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de creación </th>
+	      <td mat-cell *matCellDef="let gc"> {{gc.fecha_creacion}} </td>
+	    </ng-container>
+
+	    <ng-container matColumnDef="fecha_expiracion">
+	      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de expiración </th>
+	      <td mat-cell *matCellDef="let gc"> {{gc.fecha_expiracion}} </td>
+	    </ng-container>
+
+	    <ng-container matColumnDef="remitente">
+	      <th mat-header-cell *matHeaderCellDef mat-sort-header> Remitente </th>
+	      <td mat-cell *matCellDef="let gc"> {{gc.nombre_remitente}} </td>
+	    </ng-container>
+
+	    <ng-container matColumnDef="consultar">
+	      <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+	      <td mat-cell *matCellDef="let gc">
+	      	<a class="btn btn-info btn-sm" (click)="consultar.consultar(gc.id_gift_card)"><i class="fa fa-search"></i></a>
+	      </td>
+	    </ng-container>
+
+
+	    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+	    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+	  </table>
+
+	  <mat-paginator [pageSizeOptions]="[10, 15]" showFirstLastButtons></mat-paginator>
+	  
+	</div>
+
+	<!--/ Tabla -->
+
+
+</div>
+
+
+
+<!-- Consultar modal -->
+<app-consultar #consultar></app-consultar>

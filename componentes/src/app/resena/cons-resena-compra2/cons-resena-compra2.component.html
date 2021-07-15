@@ -1,0 +1,40 @@
+<div class="example-container mat-elevation-z8">
+    <!-- <div class="example-loading-shade"
+         *ngIf="isLoadingResults || isRateLimitReached">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+      <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+        GitHub's API rate limit has been reached. It will be reset in one minute.
+      </div>
+    </div> -->
+  
+    <div class="example-table-container">
+  
+      <table mat-table [dataSource]="data" class="example-table"
+             matSort matSortActive="created" matSortDisableClear matSortDirection="asc">
+        <!-- IDReseña Column -->
+        <ng-container matColumnDef="id_resena_compra">
+          <th mat-header-cell *matHeaderCellDef>Id resena</th>
+          <td mat-cell *matCellDef="let row">{{row.id_resena_compra}}</td>
+        </ng-container>
+  
+        <!-- Puntaje Column -->
+        <ng-container matColumnDef="puntaje">
+          <th mat-header-cell *matHeaderCellDef>Puntaje</th>
+          <td mat-cell *matCellDef="let row">{{row.puntaje}}</td>
+        </ng-container>
+  
+        <!-- Descripcion Column -->
+        <ng-container matColumnDef="descripcion">
+          <th mat-header-cell *matHeaderCellDef>Descripcion</th>
+          <td mat-cell *matCellDef="let row">{{row.descripcion}}</td>
+        </ng-container>
+  
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  
+    <mat-paginator [length]="resultsLength" [pageSize]="20"></mat-paginator>
+</div>
+  

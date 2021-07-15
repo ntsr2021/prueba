@@ -1,0 +1,53 @@
+<div class="container">
+	
+
+	<div class="text-right mt-3 mb-3" id="foto-producto-controles">
+		<a class="btn btn-primary" (click)="clicFile()"><i class="fa fa-plus"></i> Agregar</a>
+	</div>
+
+
+	<!-- Banners -->
+	<div *ngIf="banners != null;else sin_banners">
+		<div class="row mb-4" *ngFor="let b of banners">
+			<div class="col-md-12">
+				
+				<div class="text-right mb-2">
+
+					<!-- Desplazar posicion del banner -->
+					<button type="button" class="btn btn-info btn-sm mr-2" (click)="bajarPosicion(b.id_banner_principal)">
+				    <i class="fas fa-arrow-alt-circle-down"></i>
+				  </button>
+					<button type="button" class="btn btn-info btn-sm mr-4" (click)="subirPosicion(b.id_banner_principal)">
+				    <i class="fas fa-arrow-alt-circle-up"></i>
+				  </button>
+
+
+				  <!-- Editar y eliminar banner -->
+				  <button type="button" class="btn btn-primary btn-sm mr-2" (click)="clicFile2(b)">
+				    <i class="fa fa-pencil"></i>
+				  </button>
+				  <button type="button" class="btn btn-danger btn-sm" (click)="eliminar(b.id_banner_principal)">
+				    <i class="fa fa-remove"></i>
+				  </button>
+				</div>
+
+				<img src="assets/img/banner/principal/{{b.foto}}?marcaTiempo={{marcaTiempo}}" class="foto-img imagen"> 
+
+			</div>
+		</div>
+	</div>
+
+
+	<!-- No hay banners -->
+	<ng-template #sin_banners>
+		<h2 class="text-center">No hay banners</h2>
+	</ng-template>
+
+
+</div>
+
+
+
+<!-- Inputs type file para agregar las imagenes de los banners -->
+<input type="file" name="banner" (change)="seleccionarArchivo($event)" style="display: none">
+<input type="file" name="banner2" (change)="seleccionarArchivo2($event)" style="display: none">

@@ -1,0 +1,68 @@
+<div class="text-center">
+  <h3>Seleccione un método de pago</h3>
+</div>
+
+
+<div class="text-center mt-3" *ngIf="user!=null">
+
+	<mat-radio-group [(ngModel)]="forma_pago" (change)="formaPago()" name="forma_pago">
+		<mat-radio-button value="pago_mixto" color="primary">Pago mixto</mat-radio-button>
+		<mat-radio-button value="tran_bs" color="primary">Transferencia en bolívares</mat-radio-button>
+		<mat-radio-button value="pago_movil" color="primary">Pago movil</mat-radio-button>
+		<mat-radio-button value="divisa" color="primary">Efectivo en divisa</mat-radio-button>
+		<mat-radio-button value="tran_dol" color="primary">Transferencia en dólares</mat-radio-button>
+
+		<mat-radio-button value="paypal" color="primary">PayPal</mat-radio-button>
+
+
+		<!-- <mat-radio-button value="gift_card" color="primary">Gift Card</mat-radio-button> -->
+		<!-- Solo si el usuario es el ganador del concurso -->
+
+
+	</mat-radio-group>
+
+</div>
+
+
+<div class="row mt-3">
+	<div class="col-xl-10 offset-xl-1">
+
+		<div id="tran_dol" style="display: none">
+			<app-dolares [metodo_entrega]="metodo_entrega"></app-dolares>
+		</div>
+ 
+		<div id="tran_bs" style="display: none">
+			<app-bolivares [metodo_entrega]="metodo_entrega"></app-bolivares>
+		</div>
+
+		<div id="pago_movil" style="display: none">
+			<app-pago-movil [metodo_entrega]="metodo_entrega"></app-pago-movil>
+		</div>
+
+		<div id="divisa" style="display: none">
+			<app-efectivo [metodo_entrega]="metodo_entrega"></app-efectivo>
+		</div>
+
+		<div id="pago_mixto" style="display: none">
+			<app-pago-mixto [metodo_entrega]="metodo_entrega"></app-pago-mixto>
+		</div>
+
+
+		<div id="paypal" style="display: none">
+			<app-paypal [metodo_entrega]="metodo_entrega"></app-paypal>
+		</div>
+
+
+		<div id="gift_card" style="display: none">
+			<app-gift-card [metodo_entrega]="metodo_entrega"></app-gift-card>
+		</div>
+
+
+		<!-- Btn temporal para retroceder -->
+		<div class="text-right">
+		  <button type="button" class="btn btn-primary mr-3" id="punico-btn-anterior" (click)="anterior()">Anterior</button>
+		</div>
+
+
+	</div>
+</div>

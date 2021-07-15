@@ -1,0 +1,36 @@
+<!-- Modal agregar departamento -->
+<div class="modal fade" tabindex="-1" role="departamento-agregar-modal" id="departamento-agregar-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Agregar departamento</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form id="departamento-agregar-form">
+	      <div class="modal-body">
+
+	        <div class="form-group">
+	          <div class="input-group">
+	            <div class="input-group-prepend">
+	              <span class="input-group-text">Nombre</span>
+	            </div>
+	            <input class="form-control" name="nombre" [(ngModel)]="nombre">
+	          </div>
+	          <label class="error error-label" id="nombre-error" for="nombre"></label>
+	        </div> 
+	          
+	      </div>
+
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+	        <button type="submit" class="btn btn-primary" (click)="agregar()"><i class="fa fa-save"></i> Guardar</button>
+	      </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

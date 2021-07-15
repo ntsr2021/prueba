@@ -1,0 +1,94 @@
+<div style="background: #f8f9fa !important;">
+	
+	<app-buscador (buscarEvent)="resulBusquedad($event)"></app-buscador>
+
+
+	<div class="container" id="multimax-producto-perfume">
+
+		<div id="pro-exis" *ngIf="productos != null; else espere">  
+			
+			<div class="row" *ngIf="productos != false;else vacio" >
+
+				<div class="col-lg-3 col-md-4 col-sm-6 col-6 columna-producto mb-5" *ngFor="let pro of productos">
+			  	<div class="producto">
+			       
+			      <div class="pro-header" (click)="verDetalles(pro.id_producto)" *ngIf="pro.descripcion != ''; else sin_descripcion" style="outline: none !important">
+			        <img src="assets/img/producto/{{pro.codigo}}-1.jpg?marcaTiempo={{pro.marcaTiempo}}" class="pro-img">
+			        <a class="btn pro-btn-detalle" ><i class="fa fa-eye"></i> Detalles</a>
+			      </div>
+
+
+			      <ng-template #sin_descripcion>
+			      	<div class="pro-header text-center mb-4" style="outline: none !important">
+			      	  <span class="fas fa-image pro-icono mt-4"></span>
+			      	</div>
+			      </ng-template>
+
+			      
+	 
+
+			      <div class="pro-body mt-2 mb-4">
+			        <i class="fa fa-star pro-icon-star"></i>
+			        
+
+			        <span>{{pro.codigo}}</span><br>
+			        <span style="font-size: 14px !important">{{pro.nombre}}</span>
+			        
+			        
+			        <div class="text-center">
+			        	<b class="text-warning">
+
+				        	<span class="producto-moneda-tipo">$. </span>
+				        	<span class="producto-moneda-precio">{{formatoMoneda.setFormato(pro.precio.toFixed(2))}}</span>
+				        	
+			        	</b>
+			        </div> 
+			      </div>
+
+			    </div>
+			  </div>
+
+			</div> 
+			
+
+			<!-- Btn consultar mas -->
+			<div class="text-center pb-5" *ngIf="activarConsMas == true">
+				<button class="btn btn-secondary" (click)="consMas()">
+					Ver mas
+				</button>
+			</div>
+
+
+			<!-- Loading cuando baja el scroll -->
+	 		<div class="text-center pb-5 spinner-content" *ngIf="spinnerScroll == true">
+				<mat-spinner></mat-spinner>
+			</div>
+
+			<ng-template #vacio>
+				<div class="text-center pb-5">
+					<span class="fa fa-product-hunt" id="pro-icon-vacio"></span>
+					<h5><b>No hay productos</b></h5>
+				</div>
+			</ng-template>
+		</div>
+
+		<ng-template #espere>
+			<div class="text-center pb-5 spinner-content">
+				<mat-spinner></mat-spinner>
+			</div>
+		</ng-template>
+
+
+	</div>
+
+
+	<!-- Scroll to Top Button-->
+	<a class="scroll-to-top2 rounded" href="#" id="scroll-to-top2">
+	  <i class="fas fa-angle-up"></i>
+	</a>
+
+	<!-- Chat -->
+	<app-chat></app-chat>
+
+
+</div>

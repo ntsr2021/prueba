@@ -1,0 +1,51 @@
+<div style="width: auto !important;height: auto !important;">
+	
+	<form class="mt-4" id="cue-login-form">
+					
+		<div class="text-center mb-2">
+	    <img src="assets/img/logo1.png" height="60px" weight="298px"  alt="Logo de la Empresa">
+	  </div>
+
+	  <h3 class="text-center">Iniciar sesión</h3>
+
+		<!-- Correo -->
+		<div class="form-group mt-4">
+		  <div class="input-group">
+		    <div class="input-group-prepend">
+		      <div class="input-group-text">@</div>
+		    </div>
+		    <input class="form-control" name="username" placeholder="Correo electrónico" [(ngModel)]="user.username" disabled="{{disabled}}"> 
+		  </div>
+		  <label class="error error-label" id="username-error" for="username"></label>
+		</div>
+
+		<!-- Contraseña -->
+		<div class="form-group mt-4">
+		  <div class="input-group">
+		    <div class="input-group-prepend">
+		      <div class="input-group-text"><i class="fa fa-key"></i></div>
+		    </div>
+		    <input class="form-control" type="password" name="password" placeholder="Contraseña" [(ngModel)]="user.password" disabled="{{disabled}}"> 
+		  </div>
+		  <label class="error error-label" id="password-error" for="password"></label>
+		</div>
+
+		<!-- Boton submit -->
+		<div class="pt-2 text-center">
+	  	<button type="submit" *ngIf="disabled == false" class="btn btn-secondary" id="form-btn" (click)="acceder()"><i class="fa fa-door-open"></i> Acceder</button>
+	  </div>
+
+	</form>
+			
+
+	<!-- Spinner - espera -->
+	<div class="text-center mt-3 mb-3 spinner-espera" *ngIf="espera == true"> 
+	  <mat-spinner></mat-spinner>
+	</div>
+
+
+	<div class="text-center" id="ini-login-cont" *ngIf="contPenitencia > 0">
+		{{contPenitencia}}
+	</div>
+
+</div>

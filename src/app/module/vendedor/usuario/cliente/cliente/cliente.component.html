@@ -1,0 +1,75 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Clientes</h1>
+</div>
+
+
+<mat-form-field>
+  <mat-label>Buscar</mat-label>
+  <input matInput [(ngModel)]="busquedad" (keyup)="consultar()" placeholder="Buscar">
+</mat-form-field>
+
+
+<div class="mat-elevation-z8 mb-4" id="tabla">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 tabla-adaptable" matSort #tabla1 style="width: 100%" id="table-cliente">
+    
+    <ng-container matColumnDef="ci">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Documento </th>
+      <td mat-cell *matCellDef="let cli"> 
+        <span *ngIf="cli.doc != null">
+          {{cli.tipo_doc.toUpperCase()}}-{{cli.doc}}
+        </span> 
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+      <td mat-cell *matCellDef="let cli"> {{cli.nombre}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="apellido">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </th>
+      <td mat-cell *matCellDef="let cli"> {{cli.apellido}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="telefono">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Teléfono </th>
+      <td mat-cell *matCellDef="let cli"> {{cli.telefono}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="correo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Correo </th>
+      <td mat-cell *matCellDef="let cli"> {{cli.correo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="consultar">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let cli">
+        <a class="btn btn-info btn-sm" (click)="consulta.consUno(cli.id_user)">
+          <i class="fa fa-search"></i>
+        </a> 
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="eliminar">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let cli">
+        <a class="btn btn-danger btn-sm" (click)="eliminar(cli.id_user)">
+          <i class="fa fa-remove"></i>
+        </a> 
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10, 15]" showFirstLastButtons></mat-paginator>
+  
+</div>
+
+
+
+<app-consulta #consulta></app-consulta>
+
+
+

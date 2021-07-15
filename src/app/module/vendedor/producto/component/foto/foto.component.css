@@ -1,0 +1,30 @@
+/*.foto {
+	width: 100%;
+}
+
+.foto-icon {
+	font-size: 150px;
+}
+.foto-icon:hover {
+	color: orange;
+	cursor: pointer
+}*/
+
+
+.foto-icon {
+  font-size: 150px
+}
+.foto-icon:hover {
+  color: blue;
+  cursor: pointer
+}
+
+.foto-img {
+  width: 100%;
+  height: 200px;
+  cursor: pointer
+}
+
+.foto-eliminar, .foto-editar {
+  float: right;
+}

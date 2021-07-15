@@ -1,0 +1,25 @@
+<div style="padding: 30px">
+					
+	<h4 class="mb-3 text-center">Resumen</h4>
+	
+	<table class="table table-bordered">
+		<tr>
+			<td>Productos: </td>
+			<td class="text-right">{{resumen.productos}}</td>
+		</tr>
+		<tr>
+			<td>Total ($): </td>
+			<td class="text-right" *ngIf="resumen.dolares != null">{{formatoMoneda.setFormato(resumen.dolares.toFixed(2))}}</td>
+		</tr>
+		<tr>
+			<td>Total (Bs): </td>
+			<td class="text-right" *ngIf="resumen.bolivares != null">{{formatoMoneda.setFormato(resumen.bolivares.toFixed(2))}}</td>
+		</tr>
+		<tr>
+			<td>Tasa del dolar (Bs): </td>
+			<td class="text-right" *ngIf="resumen.productos != null">{{formatoMoneda.setFormato(dolar.toFixed(2))}}</td>
+		</tr>
+	</table>
+
+
+</div>

@@ -1,0 +1,37 @@
+<h2 class="text-center mt-4 mb-4" style="padding-top: 30px">NUESTRAS TIENDAS</h2>
+
+<section class="mb-5 container">
+	<div class="container mb-5">
+		<div class="row" *ngIf="tiendas != null">
+
+
+			<div class="col-lg-4 col-md-6 card-columna" *ngFor="let tie of tiendas">
+				<div class="card">
+					<div class="card-img-content">
+						<img src="assets/img/tienda/{{tie.img}}" class="card-img-top">
+					</div>
+				  <div class="card-body">
+				    <h5 class="card-title text-center">{{tie.nombre}}</h5>
+				    <p class="card-text">{{tie.direccion}}</p>
+				  </div>
+				  <div class="card-footer">
+				  	<div class="row">
+				  		<div class="col-4 text-center">
+				  			<a href="{{tie.google_map}}" target="_blank">
+				  				<img src="assets/img/iconos/ubicacion.png" class="card-icon">
+				  			</a>
+				  		</div>
+				  		<div class="col-4 offset-4 text-center">
+				  			<a href="https://api.whatsapp.com/send?phone={{tie.telefono}}&text=Necesito%20Informacion" target="_blank">
+				  				<img src="assets/img/iconos/whatsapp.png" class="card-icon">
+				  			</a>
+				  		</div>
+				  	</div>
+				  </div>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</section>

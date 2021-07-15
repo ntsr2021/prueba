@@ -1,0 +1,94 @@
+<form class="mt-4" id="cue-registro-form">
+  
+
+  <div class="text-center mb-2">
+    <img src="assets/img/logo1.png" height="60px" weight="298px"  alt="Logo de la Empresa">
+  </div>
+
+  <h3 class="text-center">Registrar</h3>
+
+  <div class="form-group mt-4">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text">Nombre</div>
+      </div>
+      <input class="form-control" name="nombre" [(ngModel)]="cliente.nombre"> 
+    </div>
+    <label class="error error-label" id="nombre-error" for="nombre"></label>
+  </div>
+
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text">Apellido</div>
+      </div>
+      <input class="form-control" name="apellido" [(ngModel)]="cliente.apellido"> 
+    </div>
+    <label class="error error-label" id="apellido-error" for="apellido"></label>
+  </div>
+
+
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text">Teléfono</div>
+      </div>
+      <input class="form-control" name="telefono" [(ngModel)]="cliente.telefono"> 
+    </div>
+    <label class="error error-label" id="telefono-error" for="telefono"></label>
+  </div>
+
+  <div class="form-group mt-4">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text">@</div>
+      </div>
+      <input class="form-control" name="correo" placeholder="Correo electrónico" [(ngModel)]="cliente.correo"> 
+    </div>
+    <label class="error error-label" id="correo-error" for="correo"></label>
+  </div>
+            
+  <div class="form-group ">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text"><i class="fa fa-key"></i></div>
+      </div>
+      <input class="form-control" type="password" name="contrasena_reg" placeholder="Contraseña" id="contrasena_reg" [(ngModel)]="cliente.contrasena"> 
+    </div>
+    <label class="error error-label" id="contrasena_reg-error" for="contrasena_reg"></label>
+  </div>
+
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <div class="input-group-text"><i class="fa fa-key"></i></div>
+      </div>
+      <input class="form-control" type="password" name="contrasena2_reg" id="contrasena2_reg" placeholder="Repetir contraseña"> 
+    </div>
+    <label class="error error-label" id="contrasena2_reg-error" for="contrasena2_reg"></label>
+  </div>  
+
+
+  <!-- Aceptar terminos y condiciones -->
+  <div class="form-check mb-3">
+    <input class="form-check-input" type="checkbox" id="terminos-check">
+    <label class="form-check-label">
+      Acepto los <a routerLink="/terminos-condiciones">Términos y Condiciones</a> y la <a routerLink="/politica-privacidad">Política de Privacidad</a> de ntsstore.com.
+    </label>
+  </div>
+
+
+  <div class="text-center mb-1">
+    <button type="submit" class="btn btn-secondary" (click)="verificarDatos()">Registrar</button>
+  </div>
+
+
+  <!-- Spinner - espera -->
+  <div class="text-center mt-3 mb-3 spinner-espera" *ngIf="espera == true"> 
+    <mat-spinner></mat-spinner>
+  </div>
+  
+
+</form>
+
+

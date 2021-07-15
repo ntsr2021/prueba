@@ -1,0 +1,39 @@
+<!-- Modal responder -->
+
+<div class="modal fade" tabindex="-1" role="comentar-modal" id="comentar-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Comentar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form id="comentar-form">
+        <div class="modal-body">
+
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Comentario</span>
+              </div>
+              <textarea rows="3" class="form-control" name="comentario" [(ngModel)]="comentario.comentario"></textarea>
+            </div>
+            <label class="error error-label" id="comentario-error" for="comentario"></label>
+          </div> 
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary" (click)="comentar()">Comentar</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- / Modal responder -->

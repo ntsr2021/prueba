@@ -1,0 +1,131 @@
+<h4>Gift Card</h4>
+<hr>
+<form autocomplete="off" (ngSubmit)="guardar()" [formGroup]="forma">
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div>
+                    <div class="form-check">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col" *ngFor="let pre of giftCardPre">
+                                    <input class="form-check-input" 
+                                           type="radio" 
+                                           name="gftcard" 
+                                           formControlName="gftcard" 
+                                           id="{{ pre.id_gift_card_presentecion}}" 
+                                           value="{{ pre.id_gift_card_presentecion}}" 
+                                           (click)="selecImg(pre.nombre)"
+                                           [class.is-invalid]="gftcardNovalido">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                    <img src="../../../assets/images/{{ pre.nombre}}" class="img-thumbnail" alt="Giftcard">
+                                  </label>
+                                </div>
+                            </div>
+                            <span>{{ getError('gftcard')}}</span>
+                        </div>
+
+                    </div>
+                    <br>
+                    <hr>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Saldo</label>
+                        </div>
+                        <select class="custom-select" 
+                                id="inputGroupSelect01" 
+                                name="saldo" 
+                                formControlName="saldo"
+                                [class.is-invalid]="saldoNovalido">
+                          <option value="">Seleccione...</option>
+                          <option value="50" >$50</option>
+                          <option value="100" >$100</option>
+                          <option value="150" >$150</option>
+                          <option value="200" >$200</option>
+                        </select>
+                    </div>
+                    <span>{{ getError('saldo')}}</span>
+
+                    <br>
+                    <div class="form-group row">
+                        <label class="col-3 col-form-label">Cantidad Tarjetas</label>
+                        <div class="col-8">
+                            <input class="form-control" 
+                                   type="number"
+                                   name="ntarjetas"  
+                                   formControlName="ntarjetas" 
+                                   placeholder="Cantidad Tarjetas"
+                                   [class.is-invalid]="ntarjetasNovalido">
+                            <span>{{ getError('ntarjetas')}}</span>      
+                        </div>
+                    </div>
+
+                    <br>
+                    <hr>
+
+                    <div class="form-group row">
+                        <label class="col-3 col-form-label">Título</label>
+                        <div class="col-8">
+                            <input class="form-control" 
+                                   type="text" 
+                                   formControlName="titulo" 
+                                   placeholder="Titulo"
+                                   [class.is-invalid]="tituloNovalido">
+                            <span>{{ getError('titulo')}}</span>      
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-3 col-form-label">Nombre Remitente</label>
+                        <div class="col-8">
+
+                            <input class="form-control" 
+                                   type="text" 
+                                   formControlName="nombreRemitente" 
+                                   placeholder="Nombre Remitente"
+                                   [class.is-invalid]="nombreRemitenteNovalido">
+                            <span>{{ getError('nombreRemitente')}}</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-3 col-form-label">Mensaje</label>
+                        <div class="col-8">
+
+                            <textarea class="form-control" 
+                                      type="text" 
+                                      formControlName="mensaje" 
+                                      placeholder="Mensaje"
+                                      [class.is-invalid]="mensajeNovalido"></textarea>
+                            <span>{{ getError('mensaje')}}</span>                                     
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">&nbsp;</label>
+                    <div class="input-group col-md-8">
+                        <button type="submit" class="btn btn-outline-primary">
+                            Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="col-md5">
+                    
+
+                    <div class="card" style="width: 18rem;">
+                        <img src="../../../assets/images/{{ imgSelec }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">{{ forma.value.mensaje }}</p>
+                            <hr>
+                            <p class="card-text">Saldo Disponible: ${{ forma.value.saldo }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,53 @@
+<div class="container pt-5">
+	
+
+	<div class="mb-2">
+		<a class="btn btn-secondary mr-3" routerLink="./../../">Ver más artículos</a>
+	</div>
+
+
+	<div class="card mb-5">
+
+
+		<div class="card-body" id="articulo-body" style="display: none">
+			
+
+			<article>
+				<!-- Contenedor del contenido del articulo cargado de manera dinamica -->
+				<div id="inicio-articulo-content"></div>
+
+				<!-- Etiquetas -->
+				<!--
+				<hr />
+
+				<footer>
+					<h5>Etiqueas:</h5>
+
+					<a class="badge badge-warning badge-lg mr-2" routerLink="./" *ngFor="let eti of vecEtiquetas" title="{{titulo}}">{{eti}}</a>
+
+				</footer> -->
+
+			</article>
+			
+
+
+			<br>
+			<hr>
+
+			<!-- Fecha y hora de publicación -->
+			<blockquote>
+				<cite class="text-secondary">Publicado el {{fechaFormateada}}</cite>
+			</blockquote>
+
+
+			<!-- Comentarios -->
+			<app-comentario [id_articulo_blog]="articulo.id_articulo_blog"></app-comentario>
+
+
+		</div>
+
+
+	</div>
+</div>
+
+

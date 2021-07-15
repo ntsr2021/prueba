@@ -1,0 +1,52 @@
+<div id="login-content"> 
+<form class="container" id="login-form">
+<div class="row">
+  <div class="offset-md-3 col-md-6" id="login-col">
+
+    <hr class="login-hr">
+
+    <div class="text-center">
+      <img src="assets/img/logo2.png" height="60px" weight="298px"  alt="Logo de la Empresa">
+    </div>
+
+    <div class="form-group">
+      <div class="input-group mt-4">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><i class="fa fa-user"></i></div>
+        </div>
+        <input class="form-control" disabled="{{disabled}}" name="username" placeholder="Usuario" [(ngModel)]="user.username"> 
+      </div>
+      <label class="error error-label" id="username-error" for="username"></label>
+    </div>
+    
+    <div class="form-group mt-4">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text"><i class="fa fa-key"></i></div>
+        </div>
+        <input class="form-control" disabled="{{disabled}}" type="password" name="password" placeholder="Contraseña" [(ngModel)]="user.password"> 
+      </div>
+      <label class="error error-label" id="password-error" for="password"></label>
+    </div>
+
+    <hr class="login-hr" style="margin-top: 30px !important">
+
+    <div class="text-center mt-3 mb-3 spinner-espera" *ngIf="espera == true"> 
+      <mat-spinner></mat-spinner>
+    </div>
+       
+    <div class="text-center" *ngIf="disabled == false">
+      <button type="submit" class="btn btn-primary" id="form-btn" (click)="acceder()"><i class="fa fa-door-open"></i> Acceder</button>
+    </div>
+
+    <div class="text-center" id="ini-login-cont" *ngIf="contPenitencia > 0">
+      {{contPenitencia}}
+    </div>
+
+
+  </div>
+</div>
+
+</form>
+
+</div>

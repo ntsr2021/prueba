@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Asignaciones" company="" webLink="http://" view-date="2021-06-22" view-index="0" gantt-divider-location="805" resource-divider-location="300" version="2.8.11" locale="es">
+    <description/>
+    <view zooming-state="default:2" id="gantt-chart">
+        <field id="tpd3" name="Nombre" width="658" order="0"/>
+        <field id="tpd4" name="Fecha de inicio" width="67" order="1"/>
+        <field id="tpd5" name="Fecha de fin" width="61" order="2"/>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Nombre" width="210" order="0"/>
+        <field id="1" name="Función" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="0" name="PRINCIPAL" color="#000000" meeting="false" start="2021-06-21" duration="1" complete="0" thirdDate="2021-06-21" thirdDate-constraint="0" expand="true">
+            <task id="1" name="Integrar publicidad en la pagina" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="6" name="Incorporar API Paypal" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="16" name="Crear App movil que permita consultar inventario de los 3 almacenes principales" color="#8cb6ce" meeting="false" start="2021-06-21" duration="1" complete="0" thirdDate="2021-06-21" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[central, consorcio y .., , que ademas permita consultar el precio en Bs y $, que se automatice diariamente (la consulta del almacen de multimax es extra unicamente con lo que esta disponible en la pg).]]></notes>
+            </task>
+            <task id="36" name="Adelantar backup automatico con php" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="39" name="Cambiar nombre del toltal &quot;Ganancia ($)&quot; por el indicado en el modulo recibo" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+        </task>
+        <task id="7" name="SEGUNDARIO" color="#000000" meeting="false" start="2021-06-21" duration="1" complete="0" thirdDate="2021-06-21" thirdDate-constraint="0" expand="false">
+            <task id="15" name="Agregar barra con redes sociales al lateral izquierdo de la pagina (evaluar)" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="22" name="Añadir filtros para consultar clientes por fecha de registro" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="24" name="Incorporar filtro en el home para ordenar desde el mas barato al mas caro" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="40" name="Programar expiracion de Gift Card" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="46" name="Ventana emergente que muestre una alerta en el home de la pagina (evaluar)" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+        </task>
+        <task id="12" name="SOPORTE" color="#000000" meeting="false" start="2021-06-21" duration="1" complete="0" thirdDate="2021-06-21" thirdDate-constraint="0" expand="true">
+            <task id="13" name="Verificar error al crear carro de compra y abandonarlo" color="#8cb6ce" meeting="false" start="2021-06-21" duration="1" complete="0" thirdDate="2021-06-21" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[El producto no vuelve al inventario]]></notes>
+            </task>
+            <task id="21" name="Al revertir un recibo manejar la notificacion correspondiente al mismo" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="23" name="Permitir filtrar productos (activos, en promocion, etc) en el modulo productos" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="32" name="Validar el registro de nombre y descripcion al registrar un producto , igualmente al editarlo" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="33" name="Mejorar recibo de compra" color="#8cb6ce" meeting="false" start="2021-06-21" duration="1" complete="0" thirdDate="2021-06-21" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Permitir que todo el contenido quepa en una sola hoja o que en su defecto se divida en dos, una para los datos del cliente y el pago y otra para los productos comprados]]></notes>
+            </task>
+            <task id="35" name="Incorporar API de dolar today" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="41" name="Dividir la tabla recibo_pago en varias tablas segun el tipo de pago" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="42" name="Crear metodo o clase q valide token" color="#8cb6ce" meeting="false" start="2021-06-21" duration="1" complete="0" thirdDate="2021-06-21" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[y permita desde el servidor consultar el id_user sin tener q hacer un doble ajax desde el cliente]]></notes>
+            </task>
+            <task id="44" name="Los correos llegan a spam en hotmail y la img del logo no se carga" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="45" name="Al seleccionar una categoria en el home de la pagina: eliminar el banner y mostrar solo los productos con su marca descriptiva" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="51" name="Corregir registrar comentario, al momento de indicar el estatus del mismo, este debe evaluarse segun el rol del usuario y no el id" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="52" name="Las alertas en cuanto a los pendientes (pedidos y comentarios del blog) no deben refrescarse cada seg" color="#8cb6ce" meeting="false" start="2021-06-21" duration="1" complete="0" thirdDate="2021-06-21" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[xq podrian sobrecargar el sistema, esta deben refrescarse de manera manual al actualizar la pagina o procesar el pendiente]]></notes>
+            </task>
+            <task id="25" name="Colocar el estatus de un recibo al consultarlo" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="26" name="Mejorar buscador (mostrar resultados de la busquedad en una lista para luego seleccionar la busquedad de interes)" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="27" name="Mejorar menu de categoria, este debe ser mas entendible" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="28" name="El modo telefono durante el proceso de compra es un poco complicado de usar" color="#8cb6ce" meeting="false" start="2021-06-21" duration="1" complete="0" thirdDate="2021-06-21" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[debido a que el resumen de compra se muestra de primero cada vez que el usuario presiona siguiente]]></notes>
+            </task>
+            <task id="30" name="Impedir q un usuario q no posee un carro de compra registrado en BD pueda pernanecer en el modulo pago" color="#8cb6ce" meeting="false" start="2021-06-21" duration="1" complete="0" thirdDate="2021-06-21" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[el sistema solo lo redirecciona si en el localStorage no hay carro de compra, pero puede darse el caso de que en el local storage haya datps pero en la bd no]]></notes>
+            </task>
+        </task>
+        <task id="117" name="AHORA" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true">
+            <task id="77" name="Mejorar busquedad de productos por su descripcion mediante palabras claves" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="71" name="Al consultar un producto debe aparecer una lista de productos relacionados al mismo" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="73" name="Incorporar aliados en el footer de la pagina" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="79" name="Indicar horario de atencion y entrega en el footer" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="72" name="Mejorar el responsive" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="75" name="Indicar la cantidad disponible de cada producto" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="76" name="Al momento de registrarce se debe permitir tambien el registro de una empresa juridica, con campos como nombre o razon social, etc" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="81" name="Agregar chat online" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="87" name="Colocar video del paso a paso en el home de la pagina" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="90" name="Subscripcion" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="102" name="logo de tarjetas internacionales (visa, master card, diners club, etc)" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+        </task>
+        <task id="19" name="ACTUALIZACION 1" color="#000000" meeting="false" start="2021-06-21" duration="1" complete="0" thirdDate="2021-06-21" thirdDate-constraint="0" expand="true">
+            <task id="20" name="Crear App para comprar desde el movil" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="37" name="Crear un archivo .htaccess en la carpeta server y assets del hosting para que redireccione al index" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="38" name="Impedir q mediante un programa linux se descargue el archvo conex.php" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="54" name="Incorporar inicio sesion con google" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="55" name="Permitir que los clientes creen listas de deseos, mediante ella podran seleccionar los productos que mas llaman su atencion." meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="56" name="Permitir recibir correo de entrega de la gift card" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+        </task>
+        <task id="61" name="ACTUALIZACION 2" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true">
+            <task id="65" name="Crear app de musica" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="66" name="Conectar con la base de datos del SENIAT para validar CI" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="67" name="Incrementar SEO" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="68" name="Reseñas (de un producto y al realizar una compra)" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="69" name="Mejorar velocidad de la pagina" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="70" name="Añadir feed a la pagina" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="74" name="Se debe permitir cambiar el color de un producto o cualquier otra categoria" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="78" name="Gift Card" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="80" name="Agregar venta de combos en la pagina" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="82" name="Añadir metodo de pago con una API, por ej PYPAL" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="83" name="Mejorar diseño de la pagina" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="84" name="Añadir envio de mensaje de texto para verificar cuenta de usuario" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="85" name="El cliente debe poder agregar mas de una direccion" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="86" name="Usar frases de enganche en los distintos puntos de la pagina" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="88" name="Permitir escribir un comentario al realizar un pedido" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="89" name="Album" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+        </task>
+        <task id="62" name="ACTUALIZACION 3" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true">
+            <task id="91" name="Asistente de ayuda" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="92" name="Debe haber botones de agregar por encima de los productos" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="93" name="Permitir monitoreo del pedido (estado del mismo y a que persona se la ha asignado)" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="94" name="Aumentar a la version prime" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="95" name="Agregar bitacora a la pagina" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="96" name="Inidicar si al comprar se desea acreditar el vuelto al saldo de la persona" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="97" name="Al introducir la direccion se le debe guiar al usuario en cuanto a la seleccion del estado al que pertenece, ciudad, etc." meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="98" name="Al momento del delivery el sistema debe poder indicar una direccion de envio junto con instrucciones especiales si asi lo desea." meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="99" name="Incorporar traductor web" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="100" name="Añadir informacion del corona virus" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="103" name="Club NTS" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="104" name="Poder programar la entrega de un pedido en un tiempo determinado" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="105" name="Incorporar convensor de divisas" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="106" name="Otorgar membresia a mejores clientes" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="107" name="Permitir exportar correos de clientes registrados o permitir envio de correos electronicos masivos" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+        </task>
+        <task id="57" name="TERMINADO" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+        <task id="58" name="OTROS" meeting="false" start="2021-06-21" duration="1" complete="0" expand="false">
+            <task id="5" name="Crear animcacion del logo nts parecida al logo de Kucce" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="109" name="Cambiar cuenta barquisimeto por nts online cuando este lista" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+        </task>
+        <task id="59" name="ASIGNACIONES" meeting="false" start="2021-06-21" duration="1" complete="0" expand="false">
+            <task id="115" name="Script para reducir tamaño de imagenes" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="114" name="Inicio de sesion con google" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="113" name="Conversor de divisas" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+        </task>
+        <task id="110" name="CAMBIOS" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true">
+            <task id="111" name="Se creo la carpeta banner dentro la carpeta blog" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+            <task id="112" name="Se modifico la tabla articulo_blog" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+        </task>
+        <task id="60" name="VERSION ACTUAL 60" meeting="false" start="2021-06-21" duration="1" complete="0" expand="true"/>
+    </tasks>
+    <resources/>
+    <allocations/>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+</project>

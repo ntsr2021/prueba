@@ -1,0 +1,69 @@
+/* Control de formulario en el navbar */
+
+.navbar-label {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border:none;
+}
+
+.navbar-label-i {
+  font-size: 25px
+}
+
+.navbar-selec {
+  background: black;
+  border: none;
+  border-radius: 25px;
+  color: rgba(255, 255, 255, 0.8)
+}
+
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+
+	#navbar2-ul-moneda {
+		clear: left !important;
+		padding-top: 10px;
+		padding-left: 14px;
+	}
+
+  #navbar2-ul-filtros {
+  	display: list-item;
+  }
+
+  #navbar2-ul-filtros li {
+  	float: left;
+  }
+
+  #navbar2-group-moneda {
+  	width: 60%;
+  }
+
+}	
+
+/* Modo telefono */
+@media screen and (max-width: 470px) {
+
+  #btn-categorias-text {
+    display: none !important
+  }
+
+  #filtro-reciente-text1 {
+    display: none
+  }
+
+  #filtro-reciente-text2 {
+    display: inline !important;
+  }
+
+}
+
+
+/* Desaparecer link mas solicitados al entrar en el modo tableta */
+@media screen and (max-width: 840px) {
+
+  #nav1-mas-solicitados {
+    display: none !important;
+  }
+
+}

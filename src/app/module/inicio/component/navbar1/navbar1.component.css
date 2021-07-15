@@ -1,0 +1,177 @@
+#inicio-nav {
+  background: black
+}
+
+#logo {
+	width: 100px !important;
+	height: 60px !important
+}
+
+
+/* Buscador */
+
+#buscador-form {
+  width: 40% !important;
+}
+
+#buscador-content {
+  width: 100% !important
+}
+
+#buscador-group {
+  width: 100% !important
+}
+
+@media only screen and (max-width: 992px) {
+  #buscador-form {
+    width: 80%;
+    display: block;
+    float: left;
+  }
+
+  #buscador-form #buscador-group {
+    width: 50vw !important;
+  }
+}
+
+#buscador-input {
+  background: #e9ecef;
+  color: black;
+  border: none;
+  padding: 20px;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px
+}
+
+#buscador-icon-content {
+  border-top-right-radius: 25px !important;
+  border-bottom-right-radius: 25px !important;
+  background: #e9ecef;
+  border: none
+}
+
+#buscador-icon {
+  font-size: 25px
+}
+#buscador-icon:hover {
+  color: blue;
+  cursor: pointer
+}
+
+/***********************************/
+
+
+/* Icono carro compra */
+
+#carro-icon-li {
+  position: relative
+}
+
+#carro-icon-a {
+  cursor: pointer
+}
+
+#carro-icon {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 37px
+}
+#carro-icon:hover {
+  color: white
+}
+
+#carro-icon-cont {
+  position: absolute;
+  right: 0px;
+  background: #404040;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  bottom: 40px;
+  text-align: center;
+  color: white
+} 
+
+/***************************/
+
+
+/* Link user */
+
+#ini-nav-user .row, #ini-nav-user2 .row {
+  margin-right: -42px
+}
+
+#ini-nav-user .fa-user {
+  font-size: 37px !important
+}
+
+#ini-nav-user .col-md-9 {
+  margin-top: -5px
+}
+
+#ini-nav-user .col-md-9 span {
+  font-size: 14px
+}
+
+
+
+/* Responsive */
+@media screen and (max-width: 991px) {
+
+  #logo-a {
+    margin-left: 10px !important
+  }
+
+
+  #buscador-form {
+    float: right;
+    width: 60% !important;
+    margin-top: -55px !important;
+  }
+
+  #buscador-form #buscador-group {
+    width: 95vw !important;
+    padding-right: 15px !important;
+  }
+
+
+  #ul-right-navbar {
+    clear: left !important;
+    float: right;
+    margin-top: 10px;
+    display: list-item !important;
+    padding-right: 15px !important;
+  }
+
+  #ul-right-navbar li {
+    float: left;
+    margin-left: 15px;
+  }
+
+
+  #carro-icon-li {
+    margin-right: 10px;
+  }
+
+  #carro-icon-cont {
+    right: -7px;
+    bottom: 34px;
+  }
+
+}
+
+
+/* Modo telefono */
+@media screen and (max-width: 470px) {
+  #pto-entrega-text1 {
+    display: none
+  }
+
+  #pto-entrega-text2 {
+    padding-left: 5px;
+    display: inline-block !important
+  }
+
+}

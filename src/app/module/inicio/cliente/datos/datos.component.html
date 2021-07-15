@@ -1,0 +1,113 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-md-3 col-md-6">
+
+      <form class="mt-1" id="cli-datos-form">
+        
+
+        <div class="text-center">
+          <h3>Mis datos</h3>
+        </div>
+
+
+        <div class="row mt-4">
+          
+          <div class="col-sm-4 form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Tipo</div>
+              </div>
+              <select name="tipo_doc" class="form-control" [(ngModel)]="cliente.tipo_doc">
+                <option value="v">V</option>
+                <option value="e">E</option>        
+                <option value="j">J</option>  
+                <option value="p">P</option>  
+                <option value="g">G</option>            
+              </select>
+            </div>
+          </div>
+
+          <div class="col-sm-8 form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">Documento</div>
+              </div>
+              <input class="form-control" name="doc" [(ngModel)]="cliente.doc"> 
+            </div>
+            <label class="error error-label" id="doc-error" for="doc"></label>
+          </div>
+
+        </div>
+
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Nombre</div>
+            </div>
+            <input class="form-control" name="nombre" [(ngModel)]="cliente.nombre"> 
+          </div>
+          <label class="error error-label" id="nombre-error" for="nombre"></label>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Apellido</div>
+            </div>
+            <input class="form-control" name="apellido" [(ngModel)]="cliente.apellido"> 
+          </div>
+          <label class="error error-label" id="apellido-error" for="apellido"></label>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Dirección</div>
+            </div>
+            <textarea class="form-control" name="direccion" [(ngModel)]="cliente.direccion"></textarea>
+          </div>
+          <label class="error error-label" id="direccion-error" for="direccion"></label>
+          <div class="alert alert-info text-center" role="alert">
+            La dirección de su residencia debe ser lo más explícita posible, ej.: (ciudad / sector o parroquia / urbanización / calle o avenida / número de casa o departamento)
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">Teléfono</div>
+            </div>
+            <input class="form-control" name="telefono" [(ngModel)]="cliente.telefono"> 
+          </div>
+          <label class="error error-label" id="telefono-error" for="telefono"></label>
+        </div>
+
+        <div class="form-group mt-4">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">@</div>
+            </div>
+            <input class="form-control" name="correo" placeholder="Correo electrónico" readonly="" [(ngModel)]="cliente.correo"> 
+          </div>
+          <label class="error error-label" id="correo-error" for="correo"></label>
+        </div>
+
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-secondary" (click)="editar()"><i class="fa fa-pencil"></i> Editar</button>
+        </div>
+
+
+
+      </form>
+
+
+      <!-- Spinner - espera -->
+      <div class="text-center mt-3 mb-3 spinner-espera" *ngIf="espera == true"> 
+        <mat-spinner></mat-spinner>
+      </div>
+
+    </div>
+  </div>
+</div>

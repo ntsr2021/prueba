@@ -1,0 +1,163 @@
+<!-- Datos cuenta de la empresa -->
+<div>
+	<h4>Pago movil</h4>
+</div>
+
+<form>
+	<div class="form-group">
+	  <div class="input-group">
+	    <div class="input-group-prepend">
+	      <div class="input-group-text">Banco</div>
+	    </div>
+	    <input class="form-control" readonly="" name="" value="Banesco">
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <div class="input-group">
+	    <div class="input-group-prepend">
+	      <div class="input-group-text">Beneficiario</div>
+	    </div>
+	    <input class="form-control" readonly="" name="" value="NTS ONLINE, C.A.">
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <div class="input-group">
+	    <div class="input-group-prepend">
+	      <div class="input-group-text">R.I.F.</div>
+	    </div>
+	    <input class="form-control" readonly="" name="" value="J-50058410-5">
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <div class="input-group">
+	    <div class="input-group-prepend">
+	      <div class="input-group-text">Número de teléfono</div>
+	    </div>
+	    <input class="form-control" readonly="" name="" value="04146784115">
+	  </div>
+	</div>
+
+</form>
+<!--/ Datos de la empresa -->
+
+
+<!-- Datos del pago movil -->
+<form class="pt-2" id="pm-pago-movil-form">
+	<div>
+		<h4>Datos de la operación</h4>
+	</div>
+
+
+	<!-- Monto a cancelar y diferencia -->
+
+	<div class="row" *ngIf="montoPagado == null; else diferencia">
+
+	  <div class="col-md-6">
+	    <div class="form-group">
+	      <div class="input-group">
+	        <div class="input-group-prepend">
+	          <div class="input-group-text">Monto (Bs)</div>
+	        </div>
+	        <input class="form-control" name="pm_monto" [(ngModel)]="montoFormato" (keypress)="formatoMoneda.validar($event)" (keyup)="tipear()">
+	      </div>
+	      <label class="error error-label" id="pm_monto-error" for="pm_monto"></label>
+	    </div>
+	  </div>
+
+	  <div class="col-md-6">
+	    <div class="form-group">
+	      <div class="input-group">
+	        <div class="input-group-prepend">
+	          <div class="input-group-text">Total (Bs)</div>
+	        </div>
+	        <input class="form-control" readonly="" name="total" value="{{formatoMoneda.setFormato(total())}}">
+	      </div>
+	    </div>
+	  </div>
+
+	</div>
+
+	<ng-template #diferencia>
+		<div class="form-group">
+	    <div class="input-group">
+	      <div class="input-group-prepend">
+	        <div class="input-group-text">Diferencia (Bs)</div>
+	      </div>
+	      <input class="form-control" readonly="" name="pm_monto" value="{{formatoMoneda.setFormato(total())}}">
+	    </div>
+	    <label class="error error-label" id="pm_monto-error" for="pm_monto"></label>
+	  </div>
+	</ng-template>
+
+
+
+
+	<div class="form-group">
+	  <div class="input-group">
+	    <div class="input-group-prepend">
+	      <div class="input-group-text">Titular de la cuenta</div>
+	    </div>
+	    <input class="form-control" name="pm_nombre_titular" [(ngModel)]="pago.nombre_titular" >
+	  </div>
+	  <label class="error error-label" id="pm_nombre_titular-error" for="pm_nombre_titular"></label>
+	</div>
+
+
+	<h6>Documento de identidad del titular</h6>
+
+	<div class="row">
+	  
+	  <div class="col-sm-3 form-group">
+	    <div class="input-group">
+	      <div class="input-group-prepend">
+	        <div class="input-group-text">Tipo</div>
+	      </div>
+	      <select name="pm_tipo_doc_titular" class="form-control" [(ngModel)]="pago.tipo_doc_titular">
+	        <option value="v">V</option>
+	        <option value="e">E</option>        
+	        <option value="j">J</option>
+	        <option value="p">P</option>    
+	        <option value="g">G</option>            
+	      </select>
+	    </div>
+	  </div>
+
+	  <div class="col-sm-9 form-group">
+	    <div class="input-group">
+	      <div class="input-group-prepend">
+	        <div class="input-group-text">Documento</div>
+	      </div>
+	      <input class="form-control" name="pm_doc_titular" [(ngModel)]="pago.doc_titular"> 
+	    </div>
+	    <label class="error error-label" id="pm_doc_titular-error" for="pm_doc_titular"></label>
+	  </div>
+
+	</div>
+
+
+	<div class="form-group">
+	  <div class="input-group">
+	    <div class="input-group-prepend">
+	      <div class="input-group-text">Código de referencia</div>
+	    </div>
+	    <input class="form-control" name="pm_referencia" [(ngModel)]="pago.referencia">
+	  </div>
+	  <label class="error error-label" id="pm_referencia-error" for="pm_referencia"></label>
+	</div>
+
+
+	<!-- Alerta -->
+	<div class="alert alert-info text-center" role="alert">
+	  Tenga en cuenta que el tiempo de validación de su pago puede tardar 24 horas 
+	</div>
+
+	<div class="mt-3 text-right">
+	  <button type="button" class="btn btn-primary mr-3" (click)="anterior()">Anterior</button>
+	  <button type="submit" class="btn btn-primary" (click)="siguiente()">Siguiente</button>
+	</div>
+
+</form>
+<!--/ Datos del pago movil -->

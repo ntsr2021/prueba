@@ -1,0 +1,27 @@
+<div class="container mt-4 mb-5">
+	
+	
+	<h3 class="mt-3 mb-3">Productos recientes</h3>
+
+
+	<!-- Productos -->
+	<app-producto [productos]="productos"></app-producto>
+
+
+	<!-- Animacion de espera -->
+	<div *ngIf="animEspera == true">
+		<app-spinner></app-spinner>
+	</div>
+
+
+	<!-- Btn consultar mas -->
+	<div class="text-center mb-5 mt-2" *ngIf="activarConsMas == true">
+		<button class="btn btn-secondary" (click)="consProductos()">Ver más</button>
+	</div>
+
+
+</div>
+
+
+<!-- Btn subir scroll -->
+<app-btn-subir-scroll></app-btn-subir-scroll>

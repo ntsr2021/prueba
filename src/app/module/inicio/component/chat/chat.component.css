@@ -1,0 +1,82 @@
+#chat-content {
+	z-index: 1000;
+	position: fixed;
+	overflow: hidden;
+	background: rgba(0,0,0,.7) !important;
+	width: 60px;
+	height: 55px; 
+	bottom: 70px;
+	right: 15px;
+	border-radius: 20px;
+}
+
+
+.chat-link {
+	position: absolute;
+}
+/*.chat-link span {
+	color: #e5e5e5;
+}*/
+.chat-link span:hover {
+	cursor: pointer;
+	/*color: white;*/
+}
+
+
+#chat-open {
+	bottom: 5px;
+	right: 10.5px;
+}
+#chat-open span {
+	font-size: 40px;
+	color: #2cb0c8;
+}
+#chat-open span:hover {
+	color: #2594a8;
+}
+
+#chat-whastapp {
+	bottom: 73px;
+	right: 9px;
+}
+#chat-whastapp span {
+	font-size: 50px;
+	color: #2edd87;
+}
+#chat-whastapp span:hover {
+	color: #1ebea5;
+}
+
+#chat-telegram {
+	bottom: 140px;
+	right: 10px;
+}
+#chat-telegram span {
+	font-size: 50px;
+	color: #32afed;
+}
+#chat-telegram span:hover {
+	color: #0088cc;
+}
+
+#chat-email {
+	bottom: 206px;
+	right: 10px;
+}
+#chat-email span {
+	font-size: 40px;
+	color: #f4a101;
+}
+#chat-email span:hover {
+	color: orange;
+}
+
+.contacto {
+	position: absolute;
+	background: black;
+	color: white !important;
+	font-size: 12px !important;
+	right: 10px;
+	z-index: 1000;
+	overflow: visible;
+}

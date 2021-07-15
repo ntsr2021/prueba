@@ -1,0 +1,40 @@
+<div id="menu-categoria-content">
+	<div class="row">
+		<div class="col-xl-3 col-md-4 col-sm-5 col-9" id="menu-categoria-col">
+				
+			<h4 class="mt-3 mb-3 text-center text-white"><i class="fa fa-list"></i> Categorías</h4>
+
+			<nav class="mt-1" id="menu-categoria">
+			  <ul *ngFor="let men of menu" id="g-{{men.grupo.id_departamento_grupo}}">
+			    <div *ngFor="let dep of men.dep">
+			      <li *ngIf="dep.id_grupo_apunta != null; else sin_grupo" class="menu-categoria-desplegable">
+			        <a href="#g-{{dep.id_grupo_apunta}}" id="dep-{{dep.id_departamento}}" (click)="buscarPorDep($event)"> 
+			        	<span class="menu-categoria-circle fas fa-circle mr-1"></span>
+			        	{{dep.nombre}} 
+			        </a>
+			        <i class="fa fa-angle-down"></i>
+			      </li>
+			      <ng-template #sin_grupo>
+			        <li>
+			          <a href="#" id="dep-{{dep.id_departamento}}" (click)="buscarPorDep($event)"> 
+			          	<span class="menu-categoria-circle fas fa-circle mr-1"></span>
+			          	{{dep.nombre}}
+			          </a>
+			        </li>
+			      </ng-template>
+			    </div>
+			  </ul>
+			</nav>
+		
+		</div>
+
+
+		<div class="col-xl-9 col-md-8 col-sm-7 col-3" id="menu-categoria-col2" (click)="cerrar()">
+			<a id="menu-categoria-cerrar">
+			  <i class="fas fa-window-close"></i>
+			</a>
+		</div>
+
+
+	</div>
+</div>

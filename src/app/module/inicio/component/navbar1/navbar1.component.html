@@ -1,0 +1,96 @@
+<nav class="navbar navbar-expand-lg navbar-dark" id="inicio-nav">
+  <a class="navbar-brand ml-5" href="#" id="logo-a">
+    <img src="assets/img/logo2.png" id="logo" alt="Logo de la empresa">
+  </a>
+  <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-item" aria-controls="navbar-item" aria-expanded="false" aria-label="Navegación">
+    <span class="navbar-toggler-icon"></span>
+  </button> -->
+  <div class="navbar-collapse" id="navbar-item">
+    <ul class="navbar-nav mr-auto"></ul>
+
+
+    <!-- Buscador -->
+    <form class="mr-auto" id="buscador-form">
+
+      <div class="form-inline" id="buscador-content">
+
+        <div class="input-group" id="buscador-group">
+
+          <!-- Buscador -->
+          <input class="form-control" placeholder="Buscar..." autocomplete="off" name="busquedad" id="buscador-input" [(ngModel)]="busquedad" (keyup)="buscar()">
+
+
+          <div class="input-group-prepend">
+            <div class="input-group-text" id="buscador-icon-content">   
+              <i class="fa fa-search" id="buscador-icon"></i>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </form>
+
+
+    <ul class="navbar-nav mr-right" id="ul-right-navbar">
+
+
+      <!-- Btn abrir modal puntos entrega -->
+      <li class="nav-item dropdown mt-2 mr-3" id="li-puntos-entrega">
+        <div class="form-group buscador-group">
+          <button class="btn btn-secondary" data-toggle="modal" data-target="#punto-entrega-modal">
+            <i class="fas fa-truck-pickup"></i> 
+            <span id="pto-entrega-text1"> Puntos de entrega</span>
+          </button>
+        </div>
+      </li>
+
+
+      <li class="nav-item mr-3" id="ini-nav-sesion" *ngIf="user == null">
+        
+        <a class="nav-link item-nav" routerLinkActive="active" routerLink="/cuenta" id="ini-nav-user">
+          
+          <div class="row">
+            <div class="col-md-3 col-3">
+              <i class="fa fa-user"></i> 
+            </div>
+            <div class="col-md-9 col-9">
+              <span>Iniciar sesión</span> / <br>
+              <span>Registrar</span>
+            </div>
+          </div>
+
+        </a>
+      </li>
+
+
+      <!-- Mostrar link para entrar en cuenta del cliente -->
+      <li class="nav-item" *ngIf="user != null">
+        <a class="nav-link item-nav " routerLinkActive="active" routerLink="/cliente" *ngIf="cliente != null" id="ini-nav-user">
+
+          <div class="row">
+            <div class="col-md-3 col-3">
+              <i class="fa fa-user mr-4"></i> 
+            </div>
+            <div class="col-md-9 col-9">
+              <span>{{cliente.nombre}}</span>  <br>
+              <span>{{cliente.apellido}}</span>
+            </div>
+          </div>
+
+        </a>
+      </li>
+
+
+      <!-- Carro de compra -->
+      <li class="nav-item" id="carro-icon-li">
+        <a class="nav-link item-nav" routerLinkActive="active" routerLink="/carro" id="carro-icon-a">
+          <i class="fas fa-shopping-cart" id="carro-icon"></i> 
+          <b id="carro-icon-cont" [ngStyle]="{'display':(prodCarro!=null && user != null)?'inline':'none'}"></b>
+        </a>
+      </li>
+
+
+    </ul>
+  </div>
+</nav>
+

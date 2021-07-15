@@ -1,0 +1,118 @@
+<!-- Modal editar punto de entrega -->
+<div class="modal fade" tabindex="-1" role="vendedor-editar-modal" id="vendedor-editar-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Editar vendedor</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form id="vendedor-editar-form">
+	      <div class="modal-body">
+
+	      	<div class="text-center mb-3">
+	      		<span class="fa fa-user modal-icon"></span>
+	      	</div>
+
+	        <div class="form-group">
+	          <div class="input-group">
+	            <div class="input-group-prepend">
+	              <span class="input-group-text">Nombre</span>
+	            </div>
+	            <input class="form-control" name="nombre" [(ngModel)]="vendedor.nombre">
+	          </div>
+	          <label class="error error-label" id="nombre-error" for="nombre"></label>
+	        </div> 
+
+	        <div class="form-group">
+	          <div class="input-group">
+	            <div class="input-group-prepend">
+	              <span class="input-group-text">Apellido</span>
+	            </div>
+	            <input class="form-control" name="apellido" [(ngModel)]="vendedor.apellido">
+	          </div>
+	          <label class="error error-label" id="apellido-error" for="apellido"></label>
+	        </div> 
+
+	        <div class="form-group">
+	          <div class="input-group">
+	            <div class="input-group-prepend">
+	              <span class="input-group-text">C.I.</span>
+	            </div>
+	            <input class="form-control" name="ci" [(ngModel)]="vendedor.ci">
+	          </div>
+	          <label class="error error-label" id="ci-error" for="ci"></label>
+	        </div> 
+
+	        <div class="form-group">
+	          <div class="input-group">
+	            <div class="input-group-prepend">
+	              <span class="input-group-text">Cargo</span>
+	            </div>
+	            <select class="form-control" name="cargo" [(ngModel)]="vendedor.cargo">
+	            	<option value=""></option>
+	            	<option value="v">Vendedor</option>
+	            	<option value="s">Supervisor</option>
+	            	<option value="d">Despachador</option>
+	            </select>
+	          </div>
+	          <label class="error error-label" id="cargo-error" for="cargo"></label>
+	        </div> 
+
+	        <div class="form-group">
+	          <div class="input-group">
+	            <div class="input-group-prepend">
+	              <span class="input-group-text">Usuario</span>
+	            </div>
+	            <input class="form-control" name="username" readonly="" [(ngModel)]="vendedor.username">
+	          </div>
+	          <label class="error error-label" id="username-error" for="username"></label>
+	        </div> 
+
+
+
+
+	        <!-- Edicion de contraseña -->
+
+	        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="contrasena-activar" (change)="activarCambContrasena()">
+            <label class="form-check-label" for="contrasena-activar">Cambiar contraseña</label>
+          </div>
+
+	        <div class="form-group">
+	          <div class="input-group">
+	            <div class="input-group-prepend">
+	              <span class="input-group-text">Nueva contraseña</span>
+	            </div>
+	            <input type="password" class="form-control" name="password_nuevo" id="password_nuevo" disabled="" [(ngModel)]="vendedor.password">
+	          </div>
+	          <label class="error error-label" id="password_nuevo-error" for="password_nuevo"></label>
+	        </div> 
+
+	        <div class="form-group">
+	          <div class="input-group">
+	            <div class="input-group-prepend">
+	              <span class="input-group-text">Repetir nueva contraseña</span>
+	            </div>
+	            <input type="password" class="form-control" name="password_nuevo2" id="password_nuevo2" disabled="">
+	          </div>
+	          <label class="error error-label" id="password_nuevo2-error" for="password_nuevo2"></label>
+	        </div> 
+
+	        <!--/ Edicion de contraseña -->
+	          
+
+
+	      </div>
+
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+	        <button type="submit" class="btn btn-primary" (click)="editar()"><i class="fa fa-pencil"></i> Editar</button>
+	      </div>
+      </form>
+
+    </div>
+  </div>
+</div>

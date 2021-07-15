@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-md-3 col-md-6">
+
+      <form class="mt-5" id="cierre-tienda-form">
+      	
+        
+        <div class="card shadow">
+          <div class="card-header">
+            <h5 class="text-center"><i class="fas fa-lock"></i> Horario de cierre de la tienda</h5>
+          </div>
+          <div class="card-body">
+            
+
+          	<!-- Activar horario de cierre -->
+  	      	<div class="form-check">
+  				    <input type="checkbox" name="horario_activar" class="form-check-input" id="horario_activar" [(ngModel)]="horario.activar" (change)="activarHorario()">
+  				    <label class="form-check-label" for="horario_activar">Activar horario de cierre</label>
+  				  </div>
+
+
+            <div class="form-group mt-4">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">Hora de apertura</div>
+                </div>
+                <input class="form-control" type="time" name="hora_apertura" [(ngModel)]="horario.hora_apertura" disabled="{{!this.horario.activar}}"> 
+              </div>
+              <label class="error error-label" id="hora_apertura-error" for="hora_apertura"></label>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">Hora de cierre</div>
+                </div>
+                <input class="form-control" type="time" name="hora_cierre" id="hora_cierre" [(ngModel)]="horario.hora_cierre" disabled="{{!this.horario.activar}}"> 
+              </div>
+              <label class="error error-label" id="hora_cierre-error" for="hora_cierre"></label>
+            </div>
+
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-secondary" (click)="guardar()"><i class="fa fa-save"></i> Guardar configuración</button>
+            </div>
+
+          </div>
+        </div>
+
+
+      </form>
+
+      <!-- Spinner - espera -->
+      <!-- <div class="text-center mt-3 mb-3 spinner-espera" *ngIf="espera == true"> 
+        <mat-spinner></mat-spinner>
+      </div> -->
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,121 @@
+.columna-producto {
+		display: flex !important
+}
+@media screen and (max-width: 575px) {
+  .columna-producto {
+  	display: block
+  }
+}
+
+
+.producto {
+  background: white;
+  overflow: hidden;
+  transition: all .2s ease-in-out;
+
+  box-shadow: 0px 0px 10px 2px #f0f0f0; 
+}
+.producto:hover {
+  box-shadow: 0px 0px 10px 2px #b0b0b0; 
+}
+
+
+.pro-btn-agregar {
+  right: 0px;
+  z-index: 10;
+  border-radius: 0 !important;
+  float: right
+}
+
+
+.pro-body {
+  padding: 15px
+}
+.pro-icon-star {
+  float: right;
+  font-size: 20px
+}
+
+
+.pro-img {
+  width: 100% !important;
+  /*height: 260px !important;*/
+  outline: 0 !important
+}
+.pro-img {
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+  transform: scale(1);
+  transition: all 0.8s ease-in-out
+}
+.producto:hover .pro-img {
+  transform: scale(1.075)
+}
+
+
+.pro-btn-detalle {
+  position: absolute;
+  left: 10%;
+  top: 220px;
+  display: block; 
+  opacity: 0;
+  width: 80%;
+  margin: auto;
+  border-radius: 0 !important;
+  background: #BDBDBD !important;
+  color: black !important;
+  transition: opacity .5s ease-in-out;
+}
+.pro-btn-detalle:hover {
+  background: #dbcc8f !important;
+  color: white !important
+}
+.producto:hover .pro-btn-detalle {
+  opacity: 1;
+}
+
+
+/* Mas estilos */
+#pro-icon-vacio {
+	font-size: 150px;
+}
+
+.cantidad-icon {
+	font-size: 30px;
+	cursor: pointer;
+}
+.cantidad-icon-left:active {
+	color: red
+}
+.cantidad-icon-right:active {
+	color: blue
+}
+/*****************/
+
+
+/*.producto:active {
+  box-shadow: 0px 0px 10px 2px black;
+}
+.producto:active .prod-start {
+  color: orange
+}*/
+
+.pro-agregado {
+  box-shadow: 0px 0px 10px 2px #808080 !important; 
+}
+
+.pro-agregado-star {
+  color: #ffc107
+}
+
+
+.pro-agotado {
+  color: gray;
+}
+
+.pro-badge {
+  padding: 5px;
+  margin-bottom: 5px
+}
+

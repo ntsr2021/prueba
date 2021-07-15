@@ -1,0 +1,10 @@
+<div role="alert" class="alert alert-danger alert-dismissible fade show text-center" *ngIf="mostrarAlerta == true"> 
+	
+	<strong>
+		Estimado cliente, le informamos que el tiempo límite para el pago de su pedido es de 2 horas.<br>
+		Tiempo restante: {{minRestantes.toString().padStart(2,'0')}}:{{segRestantes.toString().padStart(2,'0')}}.
+	</strong>
+
+	<button type="button" data-dismiss="alert" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+
+</div>

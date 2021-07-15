@@ -1,0 +1,69 @@
+<div class="container">
+
+
+	<h3 class="text-center pt-4 mb-4">PEDIDOS REALIZADOS</h3>
+
+	<div class="mat-elevation-z8 mb-5" id="tabla">
+	  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 tabla-adaptable" matSort #tabla1 style="width: 100%" id="table-recibo">
+
+	  	<ng-container matColumnDef="codigo">
+	  	  <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>
+	  	  <td mat-cell *matCellDef="let rec"> {{rec.codigo}} </td>
+	  	</ng-container>
+
+	    <ng-container matColumnDef="fecha">
+	      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de solicitud </th>
+	      <td mat-cell *matCellDef="let rec"> {{rec.fecha}} </td>
+	    </ng-container>
+
+	    <ng-container matColumnDef="hora">
+	      <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de solicitud </th>
+	      <td mat-cell *matCellDef="let rec"> {{rec.hora}} </td>
+	    </ng-container>
+
+	    <ng-container matColumnDef="productos">
+	      <th mat-header-cell *matHeaderCellDef mat-sort-header> Productos </th>
+	      <td mat-cell *matCellDef="let rec"> {{rec.productos}} </td>
+	    </ng-container>
+
+	    <ng-container matColumnDef="monto">
+	      <th mat-header-cell *matHeaderCellDef mat-sort-header> Monto ($) </th>
+	      <td mat-cell *matCellDef="let rec"> {{formatoMoneda.setFormato(rec.monto.toFixed(2))}} $</td>
+	    </ng-container>
+
+	    <ng-container matColumnDef="monto_bs">
+	      <th mat-header-cell *matHeaderCellDef mat-sort-header> Monto (Bs) </th>
+	      <td mat-cell *matCellDef="let rec"> {{formatoMoneda.setFormato((rec.monto*dolar).toFixed(2))}} Bs</td>
+	    </ng-container>
+
+	    <ng-container matColumnDef="estado">
+	      <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+	      <td mat-cell *matCellDef="let rec"> 
+
+    			<span [ngSwitch]="rec.estatus">
+    	    	<span *ngSwitchCase="'p'" style="font-weight: bold">En espera</span>
+    	    	<span *ngSwitchCase="'a'">Aprobado</span>
+    	    	<span *ngSwitchCase="'r'">Rechazado</span>
+    	    	<span *ngSwitchCase="'f'">Aprobado</span>
+    	  	</span>
+
+	      </td>
+	    </ng-container>
+
+	    <ng-container matColumnDef="consulta">
+	      <th mat-header-cell *matHeaderCellDef></th>
+	      <td mat-cell *matCellDef="let rec"> <a class="btn btn-info btn-sm" routerLink="./consulta/{{rec.id_recibo}}"><i class="fa fa-search"></i></a> </td>
+	    </ng-container>
+
+	    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+	    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+	  </table>
+
+	  <mat-paginator [pageSizeOptions]="[10, 15]" showFirstLastButtons></mat-paginator>
+	  
+	</div>
+
+</div>
+
+
+<app-generar-recibo #generar_recibo></app-generar-recibo>

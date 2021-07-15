@@ -1,0 +1,113 @@
+<h4>Lista de Estados</h4>
+<hr>
+
+<form  [formGroup]="forma" autocomplete="off" (ngSubmit)="enviar()">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">¿Fuera de Venezuela?</label>
+                    <div class="col-8">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text">
+                                <input (change)="cambio(true)" type="checkbox" aria-label="Checkbox for following text input" name="otro"
+                                formControlName="pais" >
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label">Estados</label>
+                        <div class="col-8">
+                            <select class="js-example-basic-single"
+                                    id="inputGroupSelect01"  
+                                    name="estado"
+                                    formControlName="estado"
+                                    (change)="getCiudades($event.target.value)" 
+                                    style="width: 150px;"
+                                    [class.is-invalid]="estadoNovalido">
+                                <option value="" selected>Seleccione...</option>
+                                <option *ngFor="let mydata of estados" value="{{mydata.id_estado}}">{{mydata.estado}}</option>
+                              </select>
+                              <span class="text-danger">{{ getError('estado')}}</span>
+                        </div>
+                        
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label">Ciudad</label>
+                        <div class="col-8">
+                            <select class="js-example-basic-single" 
+                                    id="inputGroupSelect02" 
+                                    name="ciudad" 
+                                    formControlName="ciudad"
+                                    style="width: 150px;"
+                                    [class.is-invalid]="ciudadNovalido">
+                                <option value="">Seleccione...</option>
+                                <option *ngFor="let ciudad of ciudades" value="{{ciudad.id_ciudad}}" >{{ciudad.ciudad}}</option>
+                             </select>
+                             <span class="text-danger">{{ getError('ciudad')}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label">Municipio</label>
+                        <div class="col-8">
+                            <select class="js-example-basic-single" 
+                                    id="inputGroupSelect03" 
+                                    name="municipio"
+                                    (change)="getParroquias($event.target.value)" 
+                                    formControlName="municipio"
+                                    style="width: 150px;"
+                                    [class.is-invalid]="municipioNovalido">
+                                <option value="">Seleccione...</option>
+                                <option *ngFor="let municipio of municipios" value="{{municipio.id_municipio}}" >{{municipio.municipio}}</option>
+                             </select>
+                             <span class="text-danger">{{ getError('municipio')}}</span>
+                        </div>
+                    </div>
+    
+                    <div class="form-group row">
+                        <label class="col-4 col-form-label">Parroquia</label>
+                        <div class="col-8">
+                            <select class="js-example-basic-single" 
+                                    id="inputGroupSelect04" 
+                                    name="parroquia"  
+                                    formControlName="parroquia"
+                                    style="width: 150px;"
+                                    [class.is-invalid]="parroquiaNovalido">
+                                <option value="">Seleccione...</option>
+                                <option *ngFor="let parroquia of parroquias" value="{{parroquia.id_parroquia}}" >{{parroquia.parroquia}}</option>
+                             </select>
+                             <span class="text-danger">{{ getError('parroquia')}}</span>
+                        </div>
+                    </div>
+                <div class="form-group row">
+                    <label class="col-4 col-form-label">Dirección</label>
+                    <div class="col-8">
+                        <textarea class="form-control" 
+                                  type="text" 
+                                  formControlName="direccion"
+                                  name="direccion"  
+                                  [class.is-invalid]="direccionNovalido"    
+                                  placeholder="Introduzca su direccion"
+                                  ></textarea>
+                        <span>{{ getError('direccion')}}</span>                                     
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-1 col-form-label">&nbsp;</label>
+            <div class="input-group col-md-8">
+                <button type="submit" class="btn btn-outline-primary">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+<!-- <pre>
+    {{forma.value | json}}
+    
+</pre> -->

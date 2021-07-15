@@ -1,0 +1,46 @@
+Contraseñas guardadas:
+	
+	(WEB)
+
+	rol: c
+	user: jesusfuentem@gmail.com
+	pass: 0791gyZ.
+
+	rol: c
+	user: jesuscompra083@gmail.com
+	pass: Jesus123*
+
+	rol: c
+	user: clientents@gmail.com
+	pass: Nts1..$
+
+
+	(LOCAL)
+
+	rol: sistema
+	user: sistema
+	clave: ..,$Cue1..$
+
+	rol: admin
+	user: adminnts
+	clave: ..,$Cue1..$	
+
+	rol: supervisor
+	user: pedroperez 
+	clave: Pedro1..$ 
+
+	rol: vendedor
+	user: marioflores
+	clave: Mario1..$
+
+	rol: despachador
+	user: despachador
+	clave: $Desp1..$
+	
+	rol: cliente
+	user: jesusfuentem@gmail.com 
+	clave: 0791gyZ*
+
+	rol: cliente
+	user: clientents@gmail.com
+	clave: ..$Cliente1Nts

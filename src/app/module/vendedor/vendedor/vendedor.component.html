@@ -1,0 +1,304 @@
+<div id="wrapper" *ngIf="user != null">
+  
+
+  <div id="page-top"></div>
+
+
+  <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background: #045b62 !important">
+
+    <a class="sidebar-brand">
+      <div class="sidebar-brand-icon" style="margin-top: -10px">
+        <img src="assets/img/logo2.png" id="vend-logo-img" style="width: 90px;height: 55px">
+      </div>
+    </a>
+
+    <hr class="sidebar-divider my-0 mt-3" id="sidevar-hr-1">
+
+    <li class="nav-item active">
+      <a class="nav-link" >
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Panel de control</span></a>
+    </li>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-heading">
+      Modulos
+    </div>
+
+    <li class="nav-item nav-sidebar" *ngIf="user.rol == 'a'">
+      <a class="nav-link" routerLink="inicio" routerLinkActive="nav-sidebar-active">
+        <i class="fas fa-fw fa-home"></i>
+        <span>Inicio</span></a>
+    </li>
+
+    <li class="nav-item nav-sidebar">
+      <a class="nav-link" routerLink="recibo" routerLinkActive="nav-sidebar-active">
+        <i class="fas fa-fw fa-clipboard"></i>
+        <span>Recibo</span>
+
+        <span class="badge badge-danger badge-counter counter-lateral" *ngIf="(user.rol == 'a' || user.rol == 's' || user.rol == 'v') && numPedidosPendientes != 0">{{numPedidosPendientes}}</span>
+
+      </a>
+    </li>
+
+    <li class="nav-item nav-sidebar" *ngIf="user.rol == 'a' || user.rol == 's' || user.rol == 'v'">
+      <a class="nav-link" routerLink="producto" routerLinkActive="nav-sidebar-active">
+        <i class="fas fa-fw fa-list"></i>
+        <span>Productos</span></a>
+    </li>
+
+    <li class="nav-item nav-sidebar" *ngIf="user.rol == 'a'">
+      <a class="nav-link" routerLink="perfume-multimax" routerLinkActive="nav-sidebar-active">
+        <i class="fas fa-fw fa-boxes"></i>
+        <span>Perfumes Multimax</span></a>
+    </li>
+
+    <li class="nav-item nav-sidebar" *ngIf="user.rol == 'a'">
+      <a class="nav-link" routerLink="blog" routerLinkActive="nav-sidebar-active">
+        <i class="fas fa-fw fa-blog"></i>
+        <span>Blog</span>
+        <span class="badge badge-danger badge-counter counter-lateral" *ngIf="numComentSinVer != 0">{{numComentSinVer}}</span>
+      </a>
+    </li>
+
+    <li class="nav-item nav-sidebar" *ngIf="user.rol == 'a' || user.rol == 's'">
+      <a class="nav-link" routerLink="dolar" routerLinkActive="nav-sidebar-active">
+        <i class="fa fa-money"></i>
+        <span>Tasa dolar</span></a>
+    </li>
+
+
+
+    <li class="nav-item nav-sidebar" routerLinkActive="nav-sidebar-active" *ngIf="user.rol == 'a' || user.rol == 's' || user.rol == 'v'">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#user-menu" aria-expanded="true" aria-controls="user-menu">
+        <i class="fa fa-users"></i>
+        <span>Usuarios</span>
+      </a>
+      <div id="user-menu" class="collapse nav-segundario-content" aria-labelledby="headingPages" data-parent="#user-menu">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Usuarios. Menu</h6>
+          <a class="collapse-item" routerLink="usuario/"> Clientes</a>
+          <a class="collapse-item" routerLink="usuario/vendedor" 
+          *ngIf="user.rol == 'a' || user.rol == 's'"> Personal</a>
+        </div>
+      </div>
+    </li>
+
+
+
+    <li class="nav-item nav-sidebar" *ngIf="user.rol == 'a'" routerLinkActive="nav-sidebar-active">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#config-menu" aria-expanded="true" aria-controls="config-menu">
+        <i class="fas fa-cogs"></i>
+        <span>Configuración</span>
+      </a>
+      <div id="config-menu" class="collapse nav-segundario-content" aria-labelledby="headingPages" data-parent="#config-menu">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Config. Menu</h6>
+          <a class="collapse-item" routerLink="cierre-tienda"> Cierre tienda</a>
+          <a class="collapse-item" routerLink="banner"> Banner</a>
+          <a class="collapse-item" routerLink="departamento"> Departamento</a>
+          <a class="collapse-item" routerLink="punto_entrega"> Punto de entrega</a>
+          <a class="collapse-item" routerLink="carga-masiva" *ngIf="user.id_user == 3"> Carga masiva</a>
+          <!-- <a class="collapse-item" routerLink="cuenta-bancaria"> Formas de pago</a> -->
+        </div>
+      </div>
+    </li>
+
+
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Flecha reducir navbar -->
+    <div class="text-center d-none d-md-inline">
+      <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+  </ul>
+
+  <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+
+      <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+          <i class="fa fa-bars"></i>
+        </button>
+
+
+        <!-- Buscador de opciones -->
+        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" id="opciones-form">
+          <div class="input-group" >
+            <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar modulo" aria-label="Search" aria-describedby="basic-addon2" list="opciones-lista" name="opciones" [(ngModel)]="opciones" autocomplete="off">
+            <div class="input-group-append">
+              <button class="btn btn-info" type="submit" (click)="buscarOpcion()">
+                <i class="fas fa-search fa-sm"></i>
+              </button>
+            </div>
+          </div>
+
+          <datalist id="opciones-lista" *ngIf="user.rol == 'a'">
+            <option value="ventas"></option>
+            <option value="inventario"></option>
+            <option value="dolar"></option>
+            <option value="clientes"></option>
+            <option value="vendedores"></option>
+            <option value="cierre tienda"></option>
+            <option value="banner principal"></option>
+            <option value="banner marcas"></option>
+            <option value="departamentos"></option>
+            <option value="tiendas"></option>
+            <option value="centros de acopio"></option>
+            <option value="cuentas bancarias"></option>
+            <option value="cambiar contraseña"></option>
+          </datalist>
+
+          <datalist id="opciones-lista" *ngIf="user.rol == 's'">
+            <option value="ventas"></option>
+            <option value="inventario"></option>
+            <option value="dolar"></option>
+            <option value="clientes"></option>
+            <option value="vendedores"></option>
+          </datalist>
+
+          <datalist id="opciones-lista" *ngIf="user.rol == 'v'">
+            <option value="ventas"></option>
+            <option value="inventario"></option>
+            <option value="clientes"></option>
+          </datalist>
+
+          <datalist id="opciones-lista" *ngIf="user.rol == 'd'">
+            <option value="ventas"></option>
+          </datalist>
+          
+
+        </form>
+        
+
+        <ul class="navbar-nav ml-auto">
+          
+
+          <!-- Indicador de tipo de usuario -->
+          <li class="nav-item mx-1" *ngIf="tipoUser != null && nombreUser != null">
+            <a class="nav-link">
+              <i class="fas fa-id-badge mr-1" style="color: #c1c3d2 !important;font-size: 18px"></i>
+              <span style="color: #858796 !important">{{tipoUser}} {{nombreUser}}</span> 
+            </a>
+          </li>
+
+
+
+          <!-- NOTIFICACIONES -->
+
+          <li class="nav-item dropdown no-arrow mx-1">
+            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="desacNotificaciones()">
+              <i class="fas fa-bell fa-fw" style="font-size: 22px"></i>
+              <!-- Counter - Alerts -->
+              <span class="badge badge-danger badge-counter" style="margin-right: 3px" *ngIf="contNotNuevas != null && contNotNuevas != 0">{{contNotNuevas}}</span>
+            </a>
+
+
+            <!-- Consultar notificaciones -->
+            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown" style="overflow-y: scroll;height: 315px">
+              <h6 class="dropdown-header">
+                Notificaciones
+              </h6>
+
+              <div id="vend-notif-contenido">
+                <a class="dropdown-item d-flex align-items-center" href="#" *ngFor="let not of notificaciones" routerLink="{{not.redirect_to}}">
+                  
+                  <!-- Evaluar el tipo de notificacion -->
+                  <div class="mr-3">
+                    <div [ngSwitch]="not.tipo">
+                      <div *ngSwitchCase="'registro_cliente'">
+                        <div class="icon-circle bg-info">
+                          <i class="fa fa-user text-white"></i>
+                        </div>
+                      </div>
+                      <div *ngSwitchCase="'pedido'">
+                        <div class="icon-circle bg-info">
+                          <i class="fas fa-clipboard text-white"></i> 
+                        </div>
+                      </div>
+                      <div *ngSwitchCase="'comentario_blog'">
+                        <div class="icon-circle bg-info">
+                          <i class="fas fa-blog text-white"></i> 
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  
+
+                  <!-- Datos de la notificacion -->
+                  <div>
+                    <div class="small text-gray-500">
+                      {{formatoFecha.fechaSoloNumeros(not.fecha.split(' ')[0])}}
+                      {{formatoFecha.hora(not.fecha.split(' ')[1])}}
+                    </div>
+                    <b>{{not.nombre}} {{not.apellido}}</b> {{not.accion}}
+                  </div>
+
+                </a>
+              </div>
+              
+              <!-- <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar todas</a> -->
+            </div>
+
+          </li> 
+
+          <!--/ NOTIFICACIONES -->
+
+
+
+          <div class="topbar-divider d-none d-sm-block"></div>
+
+
+          <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-user mr-1"></i>
+              <span class="mr-2 d-none d-lg-inline text-gray-600 small">Perfil</span>
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+              <a class="dropdown-item" routerLink="seguridad" *ngIf="user.rol == 'a'" id="vend-a-seguridad">
+                <i class="fas fa-key fa-sm fa-fw mr-2 text-gray-400"></i>
+                Seguridad
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" (click)="salir()">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                Salir
+              </a>
+            </div>
+          </li>
+
+
+
+        </ul>
+      </nav>
+
+
+      <div class="container-fluid">
+        <router-outlet></router-outlet>
+      </div>
+
+
+    </div>
+
+
+    <footer class="sticky-footer bg-white">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span>Copyright &copy; NTS Store 2020</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+</div>
+
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top" id="scroll-to-top2">
+  <i class="fas fa-angle-up"></i>
+</a>
+
+

@@ -1,0 +1,60 @@
+ <ul class="nav navbar-nav">
+    <!-- <li class="active"><a href="#">Principal</a></li> -->
+    <li style="display:none"><a href="#"><div id="google_translate_element"></div></a></li>
+     <!--<button  (click)="click($event.target.name)" name="es" class="btn btn-primary btn-sm" type="button">Español</button>
+    <button  (click)="click($event.target.name)" name="zh-CN" class="btn btn-primary btn-sm" type="button">Chino Tradicional</button>
+    <button  (click)="click($event.target.name)" name="zh-TW" class="btn btn-primary btn-sm" type="button">Chino Simplificado</button>
+    <button  (click)="click($event.target.name)" name="ar" class="btn btn-primary btn-sm" type="button">Arabe</button>
+    <button  (click)="click($event.target.name)" name="ru" class="btn btn-primary btn-sm" type="button">Ruso</button> -->   
+  </ul>
+ 
+
+  <!-- <select (change)="clickBandera($event.target.value)" class="form-control form-control-sm"
+  id="inputGroupSelect01"  
+      name="estado"
+      >
+      <option value="" selected>Seleccione...</option>
+      <option value="en">Ingles</option>
+      <option value="es">Español</option>
+      <option value="zh-CN">Chino Simplificado</option>
+      <option value="zh-TW">Chino Tradicional</option>
+      <option value="ar">Arabe</option>
+      <option value="ru">Ruso</option>
+    </select> -->
+
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm">
+          <img #valor (click)="clickBandera($event.target.name)" src="../../assets/images/ve.png"  name ="es" value ="es" class="img-fluid" alt="...">
+
+        </div>
+        <div class="col-sm">
+          <img #valor (click)="clickBandera($event.target.name)" src="../../assets/images/eeuu.png"  name ="en" value ="en" class="img-fluid" alt="...">
+
+        </div>
+        <!-- <div class="col-sm">
+          <img #valor (click)="clickBandera($event.target.name)" src="../../assets/images/chtradi.png"  name ="zh-CN" value ="zh-CN" class="img-fluid" alt="...">
+
+        </div> -->
+      </div>
+      <br>
+
+      <!-- <div class="row">
+        <div class="col-sm">
+          <img #valor (click)="clickBandera($event.target.name)" src="../../assets/images/chsimpli.png"  name ="zh-TW" value ="zh-TW" class="img-fluid" alt="...">
+
+        </div>
+        <div class="col-sm">
+          <img #valor (click)="clickBandera($event.target.name)" src="../../assets/images/arb.png"  name ="ar" value ="ar" class="img-fluid" alt="...">
+
+        </div>
+        <div class="col-sm">
+          <img #valor (click)="clickBandera($event.target.name)" src="../../assets/images/ru.png"  name ="ru" value ="ru" class="img-fluid" alt="...">
+
+        </div>
+      </div> -->
+
+
+    </div>
+    

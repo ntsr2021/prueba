@@ -1,0 +1,32 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Fotos segundarias del producto: <b *ngIf="codigo != null">{{codigo}}</b></h1>
+</div>
+
+<div id="foto-producto-controles">
+	<a class="btn btn-secondary btn-sm mr-4" routerLink="../../../producto">Volver</a>
+	<a class="btn btn-primary btn-sm" (click)="clicFile()"><i class="fa fa-plus"></i> Agregar</a>
+</div>
+
+
+<div class="row mt-4" *ngIf="fotos != null;else sin_fotos">
+	<div class="col-md-2" *ngFor="let f of fotos">
+		<div class="text-right mb-2">
+		  <button type="button" class="btn btn-primary btn-sm mr-2" (click)="clicFile2(f)">
+		    <i class="fa fa-pencil"></i>
+		  </button>
+		  <button type="button" class="btn btn-danger btn-sm" (click)="eliminarFoto(f)">
+		    <i class="fa fa-remove"></i>
+		  </button>
+		</div>
+
+		<img src="assets/img/producto/{{f.foto}}.jpg?x={{marcaTiempo}}" class="foto-img imagen"> 
+	</div>
+</div>
+
+<ng-template #sin_fotos>
+	<h2 class="text-center">No hay fotos de este producto</h2>
+</ng-template>
+
+
+<input type="file" name="foto" (change)="seleccionarArchivo($event)" style="display: none"> <!-- Agregar foto -->
+<input type="file" name="foto2" (change)="seleccionarArchivo2($event)" style="display: none">

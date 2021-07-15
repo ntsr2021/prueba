@@ -1,0 +1,17 @@
+#ini-cuenta-content {
+	background: #f8f9fa;
+	width: 100vw;
+	height: 100vh;
+	overflow-x: hidden !important;
+}
+
+#ini-cuenta-content > div {
+	padding-bottom: 50px;
+	padding-top: 40px
+}
+
+.ini-cuenta-component {
+	padding-left: 50px;
+	padding-right: 50px;
+	overflow: hidden !important;
+}

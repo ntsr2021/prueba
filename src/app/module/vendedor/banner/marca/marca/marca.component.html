@@ -1,0 +1,53 @@
+<div class="container">
+	
+
+	<!-- Agregar -->
+	<div class="text-right mt-3 mb-3">
+		<a class="btn btn-primary" (click)="agregar.abrirModal()"><i class="fa fa-plus"></i> Agregar</a>
+	</div>
+
+
+	<!-- Banners -->
+	<div *ngIf="banners != null;else sin_banners">
+		<div class="row mb-4">
+			<div class="col-lg-3 col-md-6  mb-2" *ngFor="let b of banners">
+				
+				<div class="text-right mb-2">
+
+
+					<!-- Desplazar posicion del banner -->
+					<button type="button" class="btn btn-info btn-sm mr-2" (click)="moverIzquierda(b.id_banner_marca)">
+				    <i class="fas fa-arrow-alt-circle-left"></i>
+				  </button>
+					<button type="button" class="btn btn-info btn-sm mr-4" (click)="moverDerecha(b.id_banner_marca)">
+				    <i class="fas fa-arrow-alt-circle-right"></i>
+				  </button>
+
+
+				  <button type="button" class="btn btn-primary btn-sm mr-2" (click)="editar.consUno(b.id_banner_marca)">
+				    <i class="fa fa-pencil"></i>
+				  </button>
+				  <button type="button" class="btn btn-danger btn-sm" (click)="eliminar(b.id_banner_marca)">
+				    <i class="fa fa-remove"></i>
+				  </button>
+				</div>
+
+				<img src="assets/img/banner/marca/{{b.foto}}?marcaTiempo={{marcaTiempo}}" class="foto-img imagen marca-foto"> 
+
+			</div>
+		</div>
+	</div>
+
+
+	<!-- No hay banners -->
+	<ng-template #sin_banners>
+		<h2 class="text-center">No hay banners</h2>
+	</ng-template>
+
+
+</div>
+
+
+<!-- Componente agregar marca -->
+<app-agregar #agregar (getRegistroEvent)="consTodos()"></app-agregar>
+<app-editar #editar (getEdicionEvent)="consTodos()"></app-editar>

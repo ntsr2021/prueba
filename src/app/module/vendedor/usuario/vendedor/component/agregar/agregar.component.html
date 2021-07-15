@@ -1,0 +1,104 @@
+<!-- Modal agregar punto de entrega -->
+<div class="modal fade" tabindex="-1" role="vendedor-registrar-modal" id="vendedor-registrar-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Registrar vendedor</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form id="vendedor-registrar-form">
+	      <div class="modal-body">
+
+	      	<div class="text-center mb-3">
+	      		<span class="fa fa-user modal-icon"></span>
+	      	</div>
+
+	        <div class="form-group">
+	          <div class="input-group">
+	            <div class="input-group-prepend">
+	              <span class="input-group-text">Nombre</span>
+	            </div>
+	            <input class="form-control" name="nombre" [(ngModel)]="vendedor.nombre">
+	          </div>
+	          <label class="error error-label" id="nombre-error" for="nombre"></label>
+	        </div> 
+
+	        <div class="form-group">
+	          <div class="input-group">
+	            <div class="input-group-prepend">
+	              <span class="input-group-text">Apellido</span>
+	            </div>
+	            <input class="form-control" name="apellido" [(ngModel)]="vendedor.apellido">
+	          </div>
+	          <label class="error error-label" id="apellido-error" for="apellido"></label>
+	        </div> 
+
+	        <div class="form-group">
+	          <div class="input-group">
+	            <div class="input-group-prepend">
+	              <span class="input-group-text">C.I.</span>
+	            </div>
+	            <input class="form-control" name="ci" [(ngModel)]="vendedor.ci">
+	          </div>
+	          <label class="error error-label" id="ci-error" for="ci"></label>
+	        </div> 
+
+	        <div class="form-group">
+	          <div class="input-group">
+	            <div class="input-group-prepend">
+	              <span class="input-group-text">Cargo</span>
+	            </div>
+	            <select class="form-control" name="cargo" [(ngModel)]="vendedor.cargo">
+	            	<option value=""></option>
+	            	<option value="v">Vendedor</option>
+	            	<option value="s">Supervisor</option>
+	            	<option value="d">Despachador</option>
+	            </select>
+	          </div>
+	          <label class="error error-label" id="cargo-error" for="cargo"></label>
+	        </div> 
+
+	        <div class="form-group">
+	          <div class="input-group">
+	            <div class="input-group-prepend">
+	              <span class="input-group-text">Usuario</span>
+	            </div>
+	            <input class="form-control" name="username" [(ngModel)]="vendedor.username">
+	          </div>
+	          <label class="error error-label" id="username-error" for="username"></label>
+	        </div> 
+
+	        <div class="form-group">
+	          <div class="input-group">
+	            <div class="input-group-prepend">
+	              <span class="input-group-text">Contraseña</span>
+	            </div>
+	            <input type="password" class="form-control" name="ven_reg_password" id="ven_reg_password" [(ngModel)]="vendedor.password">
+	          </div>
+	          <label class="error error-label" id="ven_reg_password-error" for="ven_reg_password"></label>
+	        </div> 
+
+	        <div class="form-group">
+	          <div class="input-group">
+	            <div class="input-group-prepend">
+	              <span class="input-group-text">Repetir contraseña</span>
+	            </div>
+	            <input type="password" class="form-control" name="password2">
+	          </div>
+	          <label class="error error-label" id="password2-error" for="password2"></label>
+	        </div> 
+	          
+	      </div>
+
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+	        <button type="submit" class="btn btn-primary" (click)="registrar()"><i class="fa fa-save"></i> Guardar</button>
+	      </div>
+      </form>
+
+    </div>
+  </div>
+</div>

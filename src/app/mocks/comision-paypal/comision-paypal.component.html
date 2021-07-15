@@ -1,0 +1,25 @@
+
+<h3>Calculadora Paypal</h3><br><br>
+
+
+
+<form id="form">
+
+	<div>
+    <label>Si quieres pagar:</label>
+    <input name="pagar">
+	</div>
+
+  <div>
+    <label>Debes enviar: </label>
+    <input name="enviar" disabled>
+  </div>
+
+  <div>
+    <label>La comisión es: </label>
+    <input name="comision" disabled>
+  </div>
+
+  <button (click)="calcularComision()">Calcular</button>
+
+</form>

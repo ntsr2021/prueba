@@ -1,0 +1,85 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Personal</h1>
+</div>
+
+
+    
+<mat-form-field>
+  <mat-label>Buscar</mat-label>
+  <input matInput (keyup)="filtrar($event)" placeholder="buscar">
+</mat-form-field>
+
+
+<div class="text-right" style="float: right;padding-top: 15px" *ngIf="user != null && user.rol=='a'">
+  <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#vendedor-registrar-modal"><i class="fa fa-plus"></i> Agregar</button>
+</div>
+
+
+<div class="mat-elevation-z8 mb-4">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 tabla-adaptable" matSort #tabla1 style="width: 100%" id="table-vendedor" *ngIf="vendedores != null">
+    
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+      <td mat-cell *matCellDef="let ven"> {{ven.nombre}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="apellido">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellido </th>
+      <td mat-cell *matCellDef="let ven"> {{ven.apellido}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ci">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> C.I. </th>
+      <td mat-cell *matCellDef="let ven"> {{ven.ci}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cargo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cargo </th>
+      <td mat-cell *matCellDef="let ven">  
+
+        <span [ngSwitch]="ven.rol">
+          <span *ngSwitchCase="'v'">Vendedor</span>
+          <span *ngSwitchCase="'s'">Supervisor</span>
+          <span *ngSwitchCase="'d'">Despachador</span>
+        </span>
+
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="usuario">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </th>
+      <td mat-cell *matCellDef="let ven"> {{ven.username}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="editar">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let ven"> 
+        <a class="btn btn-info btn-sm" (click)="editar.consUno(ven.id_user)"><i class="fa fa-pencil"></i></a>
+      </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="eliminar">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let ven">
+        <a class="btn btn-danger btn-sm" (click)="eliminar(ven.id_user)">
+          <i class="fa fa-remove"></i>
+        </a> 
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10, 15]" showFirstLastButtons></mat-paginator>
+  
+</div>
+
+
+
+<app-agregar (vendedorAgregadoEvent)="consTodos()"></app-agregar>
+<app-editar #editar (vendedorEditadoEvent)="consTodos()"></app-editar>
+
+
+

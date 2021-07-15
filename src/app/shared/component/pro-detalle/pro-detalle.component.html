@@ -1,0 +1,131 @@
+<div class="container pt-2">
+
+  <!-- Volver -->
+  <div class="mt-3">
+    <a class="btn btn-info" href="javascript:window.history.back()"> Volver</a>
+  </div>
+
+
+  <!-- Titulos -->
+  <div *ngIf="producto.nombre != null">
+    <h3 class="text-center">{{producto.nombre}}</h3>
+    <h3 class="text-center">CODIGO: <strong>{{producto.codigo}}</strong></h3>
+
+    <h5 class="text-center">({{producto.cat1.toUpperCase()}} <span *ngIf="producto.cat2 != null">/ {{producto.cat2.toUpperCase()}}</span>)</h5>
+  </div>
+  
+
+
+  <div class="demo-2">
+    <div class="main clearfix">
+      <div class="row mt-5">
+
+
+        <!-- Fotos del producto -->
+        <div class="col-lg-2">
+          <ul class="elastislide-list" id="carousel-detalle" *ngIf="producto.foto_prin != null">
+            <!-- Mostrar foto principal -->
+            <li><a href="#"><img src="assets/img/producto/{{producto.foto_prin}}.jpg" alt="Foto" id="foto-prin" /></a></li>
+            <!-- Consultar fotos segundarias del producto -->
+            <li class="mt-1" *ngFor="let f of fotos"><a href="#"><img src="assets/img/producto/{{f.foto}}.jpg" alt="Foto" /></a></li>
+          </ul>
+        </div>
+
+
+        <!-- Visor -->
+        <div class="col-lg-6" *ngIf="producto.foto_prin != null" id="visor-culumna">
+          <div class="card">
+            <div class="cord-body">
+              <div id="visor">
+                <img class="drift-demo-trigger" src="assets/img/producto/{{producto.foto_prin}}.jpg?w=400&amp;ch=DPR&amp;dpr=2" id="visor-img"> 
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Precio y cantidad del producto -->
+        <div class="col-lg-4" id="precio-content">
+        <div class="detail">
+
+
+          <!-- Gestionar producto -->
+          <div class="card">
+            <div class="card-body" style="padding-bottom: 60px !important">
+
+              <i class="fa fa-star" class="star" [ngStyle]="{'display': (bandProdAgregado==true) ? 'inline' : 'none'}"></i>
+
+              <h3 class="text-center">Producto</h3>
+                
+
+              <!-- Controles para cambiar cantidad -->
+              <div class="btn-group mt-2 mb-3" role="group">
+                <button type="button" class="btn btn-secondary" (click)="disminuir()"><i class="fas fa-angle-left"></i></button>
+                <input class="form-control" id="cantidad" readonly="" name="cantidad"  [(ngModel)]="producto.can_comprar">
+                <button type="button" class="btn btn-secondary" (click)="aumentar()"><i class="fas fa-angle-right"></i></button>
+              </div>
+
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Precio</span>
+                </div>
+                <input class="form-control" name="precio" readonly="" 
+
+                value="{{formatoMoneda.setFormato((producto.precio*producto.can_comprar).toFixed(2))}} $ / {{formatoMoneda.setFormato((producto.precio*producto.can_comprar*dolar).toFixed(2))}} Bs">
+
+              </div>
+
+
+
+              <!-- Btn agregar, editar, eliminar -->
+              <div>
+                <button type="submit" class="btn btn-primary" [ngStyle]="{'display': (bandProdAgregado==false) ? 'inline' : 'none'}" (click)="agregar()"><i class="fa fa-plus" ></i> Agregar</button>
+
+                <button type="button" class="btn btn-danger" [ngStyle]="{'display': (bandProdAgregado==true) ? 'inline' : 'none'}" (click)="eliminar()"><i class="fa fa-remove"></i> Eliminar</button>
+              </div>
+              
+
+            </div>
+          </div>
+          <!--/ Gestionar producto -->
+
+
+        </div>
+        </div>
+        <!-- Precio y cantidad del producto -->
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Detalles del producto -->
+  <div class="row mt-5 mb-5" id="detalles-content">
+    <div class="col-lg-8">
+      <div class="card">
+        <div class="card-body">
+          <div id="descripcion-content">
+            <h3>Descripción del producto</h3>
+            <p class="text-justify" id="pro-descripcion"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+  <!-- Reseñas del producto -->
+  <!-- <app-pro-resena></app-pro-resena> -->
+
+
+
+  <!-- Productos relacionados -->
+  <app-productos-relacionados [id_producto]="producto.id_producto"></app-productos-relacionados>
+
+
+</div>
+

@@ -1,0 +1,52 @@
+<div id="chat-content">
+	<div>
+
+		<a class="chat-link" id="chat-email" data-toggle="modal" data-target="#email-modal" data-toggle="modal">
+			<span class="fas fa-envelope"></span>
+		</a>
+
+		<a href="https://t.me/NTSOnline" target="_blank" class="chat-link" id="chat-telegram">
+			<span class="fab fa-telegram-plane"></span>
+			<span class="contacto"></span>
+		</a>
+
+		<a href="https://api.whatsapp.com/send?phone=584244346395&text=Necesito%20Informacion" target="_blank" class="chat-link" id="chat-whastapp">
+			<span class="fab fa-whatsapp"></span>
+			<span class="contacto"></span>
+		</a>
+
+		<a class="chat-link" id="chat-open" (click)="expandirChat()">
+			<span class="fas fa-comments"></span>
+			<span class="contacto"></span>
+		</a>
+
+	</div>
+</div>
+
+
+<!-- Modal correo de contacto -->
+<div class="modal fade" tabindex="-1" role="-modal" id="email-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Correo de contacto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <h4 class="text-center">info@ntsstore.com</h4>
+          
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+
+
+    </div>
+  </div>
+</div>

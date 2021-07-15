@@ -1,0 +1,66 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800">Puntos de entrega</h1>
+</div>
+
+
+<div class="row">
+  <div class="offset-md-1 col-md-10">
+    
+    <mat-form-field>
+      <mat-label>Buscar</mat-label>
+      <input matInput (keyup)="filtrar($event)" placeholder="buscar">
+    </mat-form-field>
+
+
+    <div class="text-right" style="float: right;padding-top: 15px">
+      <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#punto-entrega-agregar-modal"><i class="fa fa-plus"></i> Agregar</button> 
+
+      <!-- Al abrir el registro de punto de entrega, llama a la funcion reset para vaciar todos los campos del modal de agregar -->
+   
+    </div>
+
+
+    <div class="mat-elevation-z8 mb-4" *ngIf="puntos != null">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 tabla-adaptable" matSort #tabla1 style="width: 100%" id="table-punto-entrega" *ngIf="puntos != null">
+        
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+          <td mat-cell *matCellDef="let p"> {{p.nombre}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="direccion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Dirección </th>
+          <td mat-cell *matCellDef="let p"> {{p.direccion}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="editar">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let p"> 
+            <a class="btn btn-info btn-sm" (click)="editar.consUno(p.id_punto_entrega)"><i class="fa fa-pencil"></i></a>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="eliminar">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let p">
+            <a class="btn btn-danger btn-sm" (click)="eliminar(p.id_punto_entrega)">
+              <i class="fa fa-remove"></i>
+            </a> 
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[10, 15]" showFirstLastButtons></mat-paginator>
+      
+    </div>
+
+  </div>
+</div>
+
+
+
+<app-agregar (puntoAgregadoEvent)="consTodos()"></app-agregar>
+<app-editar #editar (puntoEditadoEvent)="consTodos()"></app-editar>

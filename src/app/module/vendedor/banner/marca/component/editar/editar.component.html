@@ -1,0 +1,100 @@
+<!-- Modal agregar marca -->
+<div class="modal fade" tabindex="10" role="config-marca-editar-modal" id="config-marca-editar-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><b>Editar marca</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form id="config-marca-editar-form">
+      <div class="modal-body">
+
+
+      	<!-- Foto -->
+      	<div class="text-center">
+      	  <div class="row">
+      	    <div class="offset-md-3 col-md-6 col-6 offset-3">
+
+			      	<div id="config-marca-foto-content2">
+			      	  <span class="fa fa-photo foto-icon" (click)="clicFile()" [ngStyle]="{'display':displayIcon}"></span>
+			      	  <div class="text-right mb-2">
+			      	    <button type="button" class="btn btn-primary btn-sm mr-2" (click)="clicFile()" [ngStyle]="{'display':displayImg}">
+			      	      <i class="fa fa-pencil"></i>
+			      	    </button>
+			      	    <button type="button" class="btn btn-danger btn-sm" (click)="eliminarFoto()" [ngStyle]="{'display':displayImg}">
+			      	      <i class="fa fa-remove"></i>
+			      	    </button>
+			      	  </div>
+			      	  <img src="{{marca.fotoTemp}}" class="foto-img imagen" [ngStyle]="{'display':displayImg}">
+			      	  <input type="file" name="config_foto_marca2" (change)="seleccionarArchivo($event)" style="display: none">
+			      	</div>
+
+      	    </div>
+      	  </div>
+      	</div>
+
+
+      	<h6 class="mt-2">Indique el departamento al que pertenece esta marca</h6>
+        
+
+        <!-- departamento1 -->
+
+        <div class="form-group" *ngIf="grupo1 != null">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">{{grupo1.nombre}}</span>
+            </div>
+            <select class="form-control" name="departamento1" [(ngModel)]="marca.departamento1" (change)="selecDep1()"> 
+              <option value=""></option>
+              <option *ngFor="let dep of departamentos1" value="{{dep.id_departamento}}">{{dep.nombre}}</option>
+            </select>
+          </div>
+          <label class="error error-label" id="departamento1-error" for="departamento1"></label>
+        </div>
+
+        <!-- departamento2 -->
+
+        <div class="form-group" *ngIf="grupo2 != null">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">{{grupo2.nombre}}</span>
+            </div>
+            <select class="form-control" name="departamento2" [(ngModel)]="marca.departamento2" (change)="selecDep2()">
+              <option value=""></option>
+              <option *ngFor="let dep of departamentos2" value="{{dep.id_departamento}}">{{dep.nombre}}</option>
+            </select>
+          </div>
+          <span>(Opcional)</span>
+        </div>
+
+        <!-- departamento3 -->
+
+        <div class="form-group" *ngIf="grupo3 != null">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">{{grupo3.nombre}}</span>
+            </div>
+            <select class="form-control" name="departamento3" [(ngModel)]="marca.departamento3">
+              <option value=""></option>
+              <option *ngFor="let dep of departamentos3" value="{{dep.id_departamento}}">{{dep.nombre}}</option>
+            </select>
+          </div>
+          <span>(Opcional)</span>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary" (click)="editar()"><i class="fa fa-pencil"></i> Editar</button>
+      </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+

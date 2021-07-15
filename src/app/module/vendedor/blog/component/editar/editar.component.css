@@ -1,0 +1,56 @@
+#articulo-editar-form {
+	overflow-x: auto
+}
+
+
+#articulo-editar-form .card {
+	min-width: 1024px !important;
+	position: relative;
+}
+
+
+#lienzo-editar {
+	width: auto;
+	height: 650px;
+	overflow: auto; 
+}
+
+.tamano-letra {
+	cursor: pointer;
+	outline: none !important;
+}
+
+
+.img-tam-mediano {
+	width: 300px !important;
+	height: auto;
+}
+
+.img-tam-grande {
+	width: 600px !important;
+	height: auto;
+}
+
+
+.img-selec {
+	border: 1px solid #000;
+}
+
+
+
+.foto-icon {
+  font-size: 200px
+}
+.foto-icon:hover {
+  color: blue;
+  cursor: pointer
+}
+
+.foto-img {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.foto-eliminar, .foto-editar {
+  float: right;
+}

@@ -1,0 +1,17 @@
+[01-Mar-2021 00:32:19 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function entero() in /home/ntsstore/public_html/nts02/server/cliente/eliminar.php:13
+Stack trace:
+#0 {main}
+  thrown in /home/ntsstore/public_html/nts02/server/cliente/eliminar.php on line 13
+[01-Mar-2021 01:10:16 America/Caracas] PHP Warning:  hash_hmac() expects parameter 3 to be string, array given in /home/ntsstore/public_html/nts02/server/cliente/registrar.php on line 21
+[01-Mar-2021 01:16:35 America/Caracas] PHP Warning:  hash_hmac() expects parameter 3 to be string, array given in /home/ntsstore/public_html/nts02/server/cliente/registrar.php on line 21
+[01-Mar-2021 01:18:52 America/Caracas] PHP Warning:  hash_hmac() expects parameter 3 to be string, array given in /home/ntsstore/public_html/nts02/server/cliente/registrar.php on line 21
+[01-Mar-2021 01:19:05 America/Caracas] PHP Warning:  hash_hmac() expects parameter 3 to be string, array given in /home/ntsstore/public_html/nts02/server/cliente/registrar.php on line 21
+[01-Mar-2021 01:22:48 America/Caracas] PHP Warning:  hash_hmac() expects parameter 3 to be string, array given in /home/ntsstore/public_html/nts02/server/cliente/registrar.php on line 21
+[01-Mar-2021 02:43:55 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function entero() in /home/ntsstore/public_html/nts02/server/cliente/cons-vendedor.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/ntsstore/public_html/nts02/server/cliente/cons-vendedor.php on line 12
+[01-Mar-2021 02:44:00 America/Caracas] PHP Fatal error:  Uncaught Error: Call to undefined function entero() in /home/ntsstore/public_html/nts02/server/cliente/cons-vendedor.php:12
+Stack trace:
+#0 {main}
+  thrown in /home/ntsstore/public_html/nts02/server/cliente/cons-vendedor.php on line 12
